@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css">
+
+  <!--Jquery-->
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous" defer></script>
+
+  <!--Liens exemple portfolio-->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet" type="text/css"
+    as="font">
+
+  <!--Fonts persos-->
+  <link rel="preconnect" href="https://fonts.googleapis.com" as="font">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@1,700&display=swap" rel="stylesheet"
+    as="font">
+
+
+  <!--Animate.css-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+  <!--JS custom-->
+  <script src="js/index.js" defer></script>
+
+  <!--CSS custom-->
+  <link rel="stylesheet" href="css/index.css">
+
+  <link href="css/freelancer.min.css" rel="stylesheet">
+
+  <!--Liens exemples portfolio-->
+  <script src="vendor/bootstrap/js/jquery.min.js" defer></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js" defer></script>
+  <script src="js/freelancer.min.js" defer></script>
+
+  <title>Fabien Hombert - Portfolio</title>
+</head>
+
+<body>
+
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg bg-secondary fixed-top shadow-lg text-center" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand" href="#">Fabien
+          Hombert</a>
+        <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-danger text-white rounded"
+          type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+          aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item mx-0 mx-lg-2">
+              <a class="nav-link py-3 px-0 px-lg-3 rounded text-uppercase font-size-1" href="#about">À
+                Propos</a>
+            </li>
+            <li class="nav-item mx-0 mx-lg-2">
+              <a class="nav-link py-3 px-0 px-lg-3 rounded text-uppercase font-size-1" href="#portfolio">Mon
+                Portfolio</a>
+            </li>
+            <li class="nav-item mx-0 mx-lg-2">
+              <a class="nav-link py-3 px-0 px-lg-3 rounded text-uppercase font-size-1" href="#contact">Me
+                Contacter</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Masthead -->
+    <header class="masthead bg-secondary text-white text-center">
+      <div class="d-flex align-items-center flex-column">
+
+        <!-- Masthead Avatar Image -->
+        <img class="masthead-avatar animate__animated animate__fadeInDown mb-5" src="img/avataaars.svg" alt="">
+        <!-- Masthead Heading -->
+        <h1 class="masthead-heading animate__animated animate__fadeInUp text-uppercase mb-0 text-warning">Fabien
+          Hombert</h1>
+
+        <!-- Icon Divider -->
+        <div class="divider-custom divider-light animate__animated animate__flipInX animate__delay-1s">
+          <div class="divider-custom-line"></div>
+          <div class="divider-custom-icon">
+            <i class="fas fa-star"></i>
+          </div>
+          <div class=" divider-custom-line">
+          </div>
+        </div>
+
+        <!-- Masthead Subheading -->
+        <p
+          class="masthead-subheading font-weight-bold mb-0 animate__animated animate__flipInX animate__delay-1s text-warning">
+          Étudiant en développement web</p>
+      </div>
+    </header>
+
+    <section id="about" class="cta bg-secondary bg-gradient">
+      <div class="container-fluid">
+        <div class="row d-flex justify-content-around">
+          <div class="col-lg-6 col-9">
+            <div class="cta-inner animate__animated animate__slow bg-faded text-secondary rounded opacity-0 mb-5">
+              <h2 class="section-heading mb-4">
+                <span class="section-heading-upper pb-3 bubble-title">Qui suis-je ?</span>
+                <span class="section-heading-lower">Une brève introduction</span>
+              </h2>
+              <p class="mb-0">Je m'appelle Fabien Hombert, étudiant de 20 ans en deuxième année de BUT Métiers du
+                Multimédia et Internet à Castres. Je suis passionné
+                par la
+                programmation depuis maintenant quelques années, et je compte faire de cette passion mon métier. En
+                cette optique, je suis actuellement en recherche active d'une alternance de 18 mois, afin de mettre en
+                pratique les connaissances que j'ai pu acquérir durant les trois premiers semestres de ma formation.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row d-flex justify-content-around mt-5">
+        <h2 class="section-heading mb-4 text-center">
+          <span class="pb-3 champagne section-title">Mes compétences</span>
+        </h2>
+        <div class="row d-flex justify-content-around mt-5">
+          <div class="col-lg-4 col-md-4 col-9">
+            <div
+              class="cta-inner animate__animated animate__slow bg-faded text-secondary text-center rounded opacity-0 mb-5">
+              <h2 class="section-heading mb-4 text-center">
+                <span class="bubble-title pb-3">Côté com'</span>
+              </h2>
+              <p class="pb-5">La rédaction complète d'une analyse de communication et marketing pour votre entreprise à
+                l'aide
+                d'outils modernes tels que la matrice <i>SWOT</i> et le modèle <i>PESTEL</i>, entre autres.</p>
+              </p>
+              <table class="d-flex justify-content-center">
+                <tr>
+                  <td><img class="img-fluid" src="img/SWOT.webp" alt="Logo SWOT" srcset=""></td>
+                  <td><img class="img-fluid" src="img/PESTEL.webp" alt="Logo PESTEL" srcset=""></td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-9">
+            <div
+              class="cta-inner animate__animated animate__slow bg-faded text-secondary text-center rounded opacity-0 mb-5">
+              <h2 class="section-heading mb-4 text-center">
+                <span class="bubble-title pb-3">Côté graphisme</span>
+              </h2>
+              <p class="pb-5">Mes capacités d'utilisation des logiciels les plus importants de la suite Adobe et
+                autres outils graphiques me permettent de répondre aux besoins identitaires visuels de votre
+                entreprise.</p>
+              <table class="d-flex justify-content-around">
+                <tr>
+                  <td><img class="img-fluid" src="img/photoshop.webp" alt="Logo photoshop" srcset=""></td>
+                  <td><img class="img-fluid" src="img/illustrator.webp" alt="Logo illustrator" srcset=""></td>
+                  <td><img class="img-fluid" src="img/Canva.webp" alt="Logo Canva" srcset=""></td>
+                  <td><img class="img-fluid" src="img/XD.webp" alt="Logo XD" srcset=""></td>
+                  <td><img class="img-fluid" src="img/indesign.webp" alt="Logo indesign" srcset=""></td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-9">
+            <div
+              class="cta-inner animate__animated animate__slow bg-faded text-secondary text-center rounded opacity-0 mb-5">
+              <h2 class="section-heading mb-4 text-center">
+                <span class="bubble-title pb-3">Côté développement</span>
+              </h2>
+              <p class="pb-5">Ma maîtrise des langages <i>HTML5/CSS3/JS</i> pour le
+                front-end,
+                mes connaissances avancées en <i>PHP/mySQL</i> pour le back-end ainsi que mon utilisation des frameworks
+                <i>React,
+                  Tailwind, SASS/SCSS,
+                  Bootstrap</i> et <i>Laravel</i> pour la structure de mon code me rendent assez polyvalent et autonome
+                lors de la
+                réalisation de projets.
+              <table class="d-flex justify-content-around">
+                <tr>
+                  <td><img class="img-fluid" src="img/HTML_CSS_JS.webp" alt="Logo HTML_CSS_JS" srcset=""></td>
+                  <td><img class="img-fluid" src="img/php.webp" alt="Logo PHP" srcset=""></td>
+                  <td><img class="img-fluid" src="img/SASS.webp" alt="Logo SASS" srcset=""></td>
+                  <td><img class="img-fluid" src="img/SQL.webp" alt="Logo SQL" srcset=""></td>
+                </tr>
+                <tr>
+                  <td><img class="img-fluid" src="img/Bootstrap.webp" alt="Logo Bootstrap" srcset=""></td>
+                  <td><img class="img-fluid" src="img/Tailwind.webp" alt="Logo Tailwind" srcset=""></td>
+                  <td><img class="img-fluid" src="img/React.webp" alt="Logo React" srcset=""></td>
+                  <td><img class="img-fluid" src="img/Laravel.webp" alt="Logo Laravel" srcset=""></td>
+                </tr>
+              </table>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="portfolio" class="cta bg-secondary bg-gradient portfolio-pc">
+      <h2 class="section-heading mb-4 text-center">
+        <span class="py-3 champagne section-title">Mes réalisations</span>
+      </h2>
+      <div class="container-fluid">
+        <div class="card-container-pc row mt-5 animate__animated opacity-0">
+          <div class="col-sm-4 col-9 d-flex justify-content-center mx-auto mb-5">
+            <div class="card bg-secondary bg-gradient border border-warning" style="width: 25rem;">
+              <a href="https://agence-reart.netlify.app" target="_blank">
+                <picture type="image/avif" srcset="img/reart.avif"
+                  class="card-img-top img-fluid border-bottom border-warning" alt="Site de l'agence Reart">
+                  <img src="img/reart.webp" class="card-img-top img-fluid border-bottom border-warning"
+                    alt="Site de l'agence Reart">
+                </picture>
+              </a>
+              <div class="card-body text-warning">
+                <p class="card-title fs-4"><b>Agence ReArt</b></p>
+                <p class="card-text">Site single page d'une agence de communication fictive construit en HTML/CSS/JS.
+                </p>
+              </div>
+              <ul class="list-group list-group-flush border-top border-warning">
+                <li class="list-group-item">
+                  <p class="chakra tech">Technologies utilisées :</p>
+                </li>
+                <li class="list-group-item text-center">
+                  <img src="img/HTML_CSS_JS.webp" class="col-sm-4 col-6 img-fluid" alt="Logo HTML/CSS/JS" srcset=""><img
+                    src="img/vscode.webp" class="col-sm-4 col-6 img-fluid" alt="Logo Visual Studio Code" srcset="">
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-sm-4 col-9 d-flex justify-content-center mx-auto mb-5">
+            <div class="card bg-secondary bg-gradient border border-warning" style="width: 25rem;">
+              <a href="https://webmmi.iut-tlse3.fr/~dld3826a/cesure/" target="_blank">
+                <picture type="image/avif" srcset="img/cesure.avif"
+                  class="card-img-top img-fluid border-bottom border-warning" alt="Site de l'association Césure">
+                  <img src="img/cesure.webp" class="card-img-top img-fluid border-bottom border-warning"
+                    alt="Site de l'association Césure">
+                </picture>
+              </a>
+              <div class="card-body text-warning">
+                <p class="card-title fs-4"><b>Association Césure</b></p>
+                <p class="card-text">Proposition de refonte du site de l'Accueil Temporaire Césure sur Wordpress lors
+                  d'un concours organisé par l'association.</p>
+              </div>
+              <ul class="list-group list-group-flush border-top border-warning">
+                <li class="list-group-item">
+                  <p class="chakra tech">Technologie utilisée :</p>
+                </li>
+                <li class="list-group-item text-center"><img src="img/Wordpress.webp" class="col-sm-4 col-6 img-fluid"
+                    alt="Logo Wordpress" srcset="" />
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-sm-4 col-9 d-flex justify-content-center mx-auto mb-5">
+            <div class="card bg-secondary bg-gradient border border-warning" style="width: 25rem;">
+              <a href="https://fabien-forkify.netlify.app" target="_blank">
+                <picture type="image/avif" srcset="img/forkify.avif"
+                  class="card-img-top img-fluid border-bottom border-warning" alt="Application web Forkify">
+                  <img src="img/forkify.webp" class="card-img-top border-bottom border-warning"
+                    alt="Application web Forkify">
+                </picture>
+              </a>
+              <div class="card-body text-warning">
+                <p class="card-title fs-4"><b>Forkify</b></p>
+                <p class="card-text">Application web de recherche de plats par mot-clé via une API, projet compris dans
+                  une
+                  formation Javascript effectuée dans mon temps libre. Bon appétit !</p>
+              </div>
+              <ul class="list-group list-group-flush border-top border-warning">
+                <li class="list-group-item">
+                  <p class="chakra tech">Technologies utilisées :</p>
+                </li>
+                <li class="list-group-item text-center"><img src="img/javascript.webp" class="col-sm-4 col-6 img-fluid"
+                    alt="Logo javascript" srcset=""><img src="img/vscode.webp" class="col-sm-4 col-6 img-fluid"
+                    alt="Logo Visual Studio Code" srcset="">
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="card-container-pc row mt-5 animate__animated opacity-0">
+          <div class="col-sm-4 col-9 d-flex justify-content-center mx-auto mb-5">
+            <div class="card bg-secondary bg-gradient border border-warning" style="width: 25rem;">
+              <a href="https://fabien-trillo.netlify.app" target="_blank">
+                <picture type="image/avif" srcset="img/trillo-2.avif"
+                  class="card-img-top img-fluid border-bottom border-warning" alt="Application web Trillo">
+                  <img src="img/trillo-2.webp" class="card-img-top img-fluid border-bottom border-warning"
+                    alt="Application web Trillo">
+                </picture>
+              </a>
+              <div class="card-body text-warning">
+                <p class="card-title fs-4"><b>Trillo</b></p>
+
+                <p class="card-text">Design d'interface pour une application de réservation d'hôtel, projet compris
+                  dans une formation CSS avancé / SASS effectuée dans mon temps libre.</p>
+              </div>
+              <ul class="list-group list-group-flush border-top border-warning">
+                <li class="list-group-item">
+                  <p class="chakra tech">Technologies utilisées :</p>
+                </li>
+                <li class="list-group-item text-center"><img src="img/HTML_CSS_JS.webp" class="col-4 img-fluid"
+                    alt="Logo HTML/CSS/JS" srcset=""><img src="img/SASS.webp" class="col-4 img-fluid" alt="Logo SASS"
+                    srcset=""><img src="img/vscode.webp" class="col-4 img-fluid" alt="Logo Visual Studio Code"
+                    srcset="">
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-sm-4 col-9 d-flex justify-content-center mx-auto mb-5">
+            <div class="card bg-secondary bg-gradient border border-warning" style="width: 25rem;">
+              <picture type="image/avif" srcset="img/terre-d_oc.avif"
+                class="card-img-top img-fluid border-bottom border-warning" alt="Logo Terre d'Occitanie">
+                <img src="img/terre-d_oc.webp" class="card-img-top img-fluid border-bottom border-warning"
+                  alt="Logo Terre d'Occitanie">
+              </picture>
+              <div class="card-body text-warning">
+                <p class="card-title fs-4"><b>Terre d'Occitanie</b></p>
+                <p class="card-text">Proposition de refonte du logo de l'entreprise Terre d'Occitanie lors d'un concours
+                  organisé en partenariat avec notre IUT.</p>
+              </div>
+              <ul class="list-group list-group-flush border-top border-warning">
+                <li class="list-group-item">
+                  <p class="chakra tech">Technologies utilisées :</p>
+                </li>
+                <li class="list-group-item text-center"><img src="img/photoshop.webp" class="col-sm-4 col-6 img-fluid"
+                    alt="Logo photoshop" srcset=""><img src="img/illustrator.webp" class="col-sm-4 col-6 img-fluid"
+                    alt="Logo illustrator" srcset="">
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-sm-4 col-9 d-flex justify-content-around mx-auto">
+            <div class="card bg-secondary bg-gradient border border-warning" style="width: 25rem;">
+              <a href="#">
+                <picture type="image/avif" srcset="img/forkify.avif"
+                  class="card-img-top img-fluid border-bottom border-warning" alt="Mon Portfolio">
+                  <img src="img/portfolio.webp" class="card-img-top img-fluid border-bottom border-warning"
+                    alt="Mon Portfolio">
+                </picture>
+              </a>
+              <div class="card-body text-warning">
+                <p class="card-title fs-4"><b>Mon Portfolio</b></p>
+                <p class="card-text">Le site personnel que je viendrai régulièrement mettre à jour pour y afficher mes
+                  projets les plus récents.</p>
+              </div>
+              <ul class="list-group list-group-flush border-top border-warning">
+                <li class="list-group-item">
+                  <p class="chakra tech">Technologies utilisées :</p>
+                </li>
+                <li class="list-group-item text-center"><img src="img/HTML_CSS_JS.webp"
+                    class="col-sm-auto col-6 img-fluid" alt="Logo HTML_CSS_JS
+                    srcset="><img src="img/Bootstrap.webp" class="col-sm-auto col-6 img-fluid" alt="Logo Bootstrap"
+                    srcset=""><img src="img/php.webp" class="col-sm-auto col-6 img-fluid" alt="Logo PHP" srcset=""><img
+                    src="img/vscode.webp" class="col-sm-auto col-6 img-fluid" alt="Logo Visual Studio Code" srcset="">
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="portfolio" class="cta bg-secondary bg-gradient portfolio-tel">
+      <h2 class="section-heading mb-4 text-center">
+        <span class="py-3 champagne section-title">Mes réalisations</span>
+      </h2>
+      <div class="container-fluid">
+        <div class="row mt-5">
+          <div class="col-lg-4 col-9 d-flex justify-content-center mx-auto mb-5">
+            <div class="card animate__animated opacity-0 bg-secondary bg-gradient border border-warning"
+              style="width: 25rem;">
+              <a href="https://agence-reart.netlify.app" target="_blank"><img src="img/reart.webp"
+                  class="card-img-top img-fluid border-bottom border-warning" alt="Site de l'agence Reart"></a>
+              <div class="card-body text-warning">
+                <p class="card-title fs-4"><b>Agence ReArt</b></p>
+                <p class="card-text">Site single page d'une agence de communication fictive construit en HTML/CSS/JS.
+                </p>
+              </div>
+              <ul class="list-group list-group-flush border-top border-warning">
+                <li class="list-group-item">
+                  <p class="chakra tech">Technologies utilisées :</p>
+                </li>
+                <li class="list-group-item text-center">
+                  <img src="img/HTML_CSS_JS.webp" class="col-sm-4 col-5 img-fluid" alt="Logo HTML/CSS/JS" srcset=""><img
+                    src="img/vscode.webp" class="col-sm-4 col-5 img-fluid" alt="Logo Visual Studio Code" srcset="">
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-4 col-9 d-flex justify-content-center mx-auto mb-5">
+            <div class="card animate__animated opacity-0 bg-secondary bg-gradient border border-warning"
+              style="width: 25rem;">
+              <a href="https://webmmi.iut-tlse3.fr/~dld3826a/cesure/" target="_blank"><img src="img/cesure.webp"
+                  class="card-img-top img-fluid border-bottom border-warning" alt="Site de l'association Césure"></a>
+              <div class="card-body text-warning">
+                <p class="card-title fs-4"><b>Association Césure</b></p>
+                <p class="card-text">Proposition de refonte du site de l'Accueil Temporaire Césure sur Wordpress lors
+                  d'un concours organisé par l'association.</p>
+              </div>
+              <ul class="list-group list-group-flush border-top border-warning">
+                <li class="list-group-item">
+                  <p class="chakra tech">Technologie utilisée :</p>
+                </li>
+                <li class="list-group-item text-center"><img src="img/Wordpress.webp" class="col-sm-4 col-5 img-fluid"
+                    alt="Logo Wordpress" srcset="" />
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-4 col-9 d-flex justify-content-center mx-auto mb-5">
+            <div class="card animate__animated opacity-0 bg-secondary bg-gradient border border-warning"
+              style="width: 25rem;">
+              <a href="https://fabien-forkify.netlify.app" target="_blank"><img src="img/forkify.webp"
+                  class="card-img-top border-bottom border-warning" alt="Application web Forkify"></a>
+              <div class="card-body text-warning">
+                <p class="card-title fs-4"><b>Forkify</b></p>
+                <p class="card-text">Application web de recherche de plats par mot-clé via une API, projet compris dans
+                  une
+                  formation Javascript effectuée dans mon temps libre. Bon appétit !</p>
+              </div>
+              <ul class="list-group list-group-flush border-top border-warning">
+                <li class="list-group-item">
+                  <p class="chakra tech">Technologies utilisées :</p>
+                </li>
+                <li class="list-group-item text-center"><img src="img/javascript.webp" class="col-sm-4 col-5 img-fluid"
+                    alt="Logo javascript" srcset=""><img src="img/vscode.webp" class="col-sm-4 col-5 img-fluid"
+                    alt="Logo Visual Studio Code" srcset="">
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-5">
+          <div class="col-lg-4 col-9 d-flex justify-content-center mx-auto mb-5">
+            <div class="card animate__animated opacity-0 bg-secondary bg-gradient border border-warning"
+              style="width: 25rem;">
+              <a href="https://fabien-trillo.netlify.app" target="_blank"><img src="img/trillo-2.webp"
+                  class="card-img-top img-fluid border-bottom border-warning" alt="Application web Trillo"></a>
+              <div class="card-body text-warning">
+                <p class="card-title fs-4"><b>Trillo</b></p>
+                <p class="card-text">Design d'interface pour une application de réservation d'hôtel, projet compris
+                  dans une formation CSS avancé / SASS effectuée dans mon temps libre.</p>
+              </div>
+              <ul class="list-group list-group-flush border-top border-warning">
+                <li class="list-group-item">
+                  <p class="chakra tech">Technologies utilisées :</p>
+                </li>
+                <li class="list-group-item text-center"><img src="img/HTML_CSS_JS.webp" class="col-sm-3 col-4 img-fluid"
+                    alt="Logo HTML/CSS/JS" srcset=""><img src="img/SASS.webp" class="col-sm-3 col-4 img-fluid"
+                    alt="Logo SASS" srcset=""><img src="img/vscode.webp" class="col-sm-3 col-4 img-fluid"
+                    alt="Logo Visual Studio Code" srcset="">
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-4 col-9 d-flex justify-content-center mx-auto mb-5">
+            <div class="card animate__animated opacity-0 bg-secondary bg-gradient border border-warning"
+              style="width: 25rem;">
+              <img src="img/terre-d_oc.webp" class="card-img-top img-fluid border-bottom border-warning"
+                alt="Logo Terre d'Occitanie">
+              <div class="card-body text-warning">
+                <p class="card-title fs-4"><b>Terre d'Occitanie</b></p>
+                <p class="card-text">Proposition de refonte du logo de l'entreprise Terre d'Occitanie lors d'un concours
+                  organisé en partenariat avec notre IUT.</p>
+              </div>
+              <ul class="list-group list-group-flush border-top border-warning">
+                <li class="list-group-item">
+                  <p class="chakra tech">Technologies utilisées :</p>
+                </li>
+                <li class="list-group-item text-center"><img src="img/photoshop.webp" class="col-sm-4 col-5 img-fluid"
+                    alt="Logo photoshop" srcset=""><img src="img/illustrator.webp" class="col-sm-4 col-5 img-fluid"
+                    alt="Logo illustrator" srcset="">
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-4 col-9 d-flex justify-content-around mx-auto">
+            <div class="card animate__animated opacity-0 bg-secondary bg-gradient border border-warning"
+              style="width: 25rem;">
+              <a href="#"><img src="img/portfolio.webp" class="card-img-top img-fluid border-bottom border-warning"
+                  alt="Mon Portfolio"></a>
+              <div class="card-body text-warning">
+                <p class="card-title fs-4"><b>Mon Portfolio</b></p>
+                <p class="card-text">Le site personnel que je viendrai régulièrement mettre à jour pour y afficher mes
+                  projets les plus récents.</p>
+              </div>
+              <ul class="list-group list-group-flush border-top border-warning">
+                <li class="list-group-item">
+                  <p class="chakra tech">Technologies utilisées :</p>
+                </li>
+                <li class="list-group-item text-center"><img src="img/HTML_CSS_JS.webp" class="col-sm-4 col-4 img-fluid"
+                    alt="Logo HTML_CSS_JS
+                    srcset="><img src="img/Bootstrap.webp" class="col-sm-4 col-4 img-fluid" alt="Logo Bootstrap"
+                    srcset="">
+                </li>
+                <li class="list-group-item text-center"><img src="img/php.webp" class="col-sm-4 col-4 img-fluid"
+                    alt="Logo PHP" srcset=""><img src="img/vscode.webp" class="col-sm-4 col-4 img-fluid"
+                    alt="Logo Visual Studio Code" srcset="">
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="cta bg-secondary bg-gradient">
+      <div class="container">
+        <div class="wrapper">
+          <div class="inner">
+            <form autocomplete="off">
+              <div class="row justify-content-center">
+                <div class="col-10 text-center mb-5">
+                  <h2 class="heading-section chakra-yellow">Me Contacter</h2>
+                </div>
+              </div>
+              <p id="placeholder" class="chakra-yellow-lower text-center pb-5">Que vous ayez des questions ou que vous
+                voulez entrer en
+                contact, c'est ici
+                !
+              </p>
+              <label class="form-bundle">
+                <input type="text" name="nom" id="nom" class="form-input" placeholder="ㅤ">
+                <span>Votre Nom</span>
+                <span class="border"></span>
+              </label>
+              <label class="form-bundle">
+                <input type="text" name="mail" id="mail" class="form-input" placeholder="ㅤ">
+                <span>Votre Mail</span>
+                <span class="border"></span>
+              </label>
+              <label class="form-bundle">
+                <textarea name="message" id="message" class="form-input" placeholder="ㅤ"></textarea>
+                <span>Votre Message</span>
+                <span class="border"></span>
+              </label>
+              <button type="submit" name="submit" id="submit" class="rounded-pill">Envoyer
+                <i class="zmdi zmdi-arrow-right"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer class="bg-dark text-center text-white container-fluid">
+      <div class="container p-4 pb-0 border-bottom border-warning">
+        <section class="mb-4">
+          <a href="https://www.instagram.com/fabien_hombert/" target="_blank"
+            class="btn btn-outline-light m-1 rounded-circle" role="button"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.linkedin.com/in/fabien-hombert-328323229/" target="_blank"
+            class="btn btn-outline-light m-1 rounded-circle" role="button"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://github.com/Picoche" target="_blank" class="btn btn-outline-light m-1 rounded-circle"
+            role="button"><i class="fab fa-github"></i></a>
+        </section>
+      </div>
+      <div class="text-center p-3 bg-grey fs-6">
+        Copyright © 2022 Fabien Hombert
+      </div>
+    </footer>
+  </body>
+
+</html>

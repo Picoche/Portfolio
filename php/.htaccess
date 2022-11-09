@@ -1,0 +1,4 @@
+SetEnv HTTP_PHP_MAILER_HOST "smtp.ionos.fr"
+SetEnv HTTP_PHP_MAILER_PORT 465
+SetEnv HTTP_PHP_MAILER_USERNAME "fabien.hombert@fabien-hombert.dev"
+SetEnv HTTP_PHP_MAILER_PASSWORD "@Renouvier66"
