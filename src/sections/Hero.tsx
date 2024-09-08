@@ -22,7 +22,7 @@ const Hero = () => {
 
   return (
     <section className="min-h-screen w-full flex flex-col relative" id="home">
-      <div className="w-full mx-auto flex flex-col sm:mt-32 mt-20 c-space gap-3">
+      <div className="w-full mx-auto flex flex-col sm:mt-24 mt-20 c-space gap-3">
         <p className="sm:text-3xl text-xl font-medium text-white text-center font-generalsans">
           Bienvenue sur mon Portfolio <span className="waving-hand">👋</span>
         </p>
@@ -60,7 +60,7 @@ const Hero = () => {
       </div>
 
       <div className="absolute bottom-7 left-0 right-0 w-full z-10 c-space">
-        <a href="#contact" className="w-fit">
+        <a href="#about" className="w-fit">
           <Button
             name="Travaillons ensemble !"
             isBeam

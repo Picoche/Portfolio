@@ -18,7 +18,7 @@ const HeroCamera = ({
     if (!isMobile) {
       easing.dampE(
         groupRef.current!.rotation,
-        [state.pointer.y / 3, -state.pointer.x / 5, 0],
+        [-state.pointer.y / 3, state.pointer.x / 5, 0],
         0.25,
         delta
       );

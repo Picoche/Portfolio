@@ -259,12 +259,12 @@ export const navLinks = [
     targetPosition: [number, number, number];
   } => {
     return {
-      deskScale: isSmall ? 0.055 : isMobile ? 0.06 : isTablet ? 0.055 : 0.065,
+      deskScale: isSmall ? 0.055 : isMobile ? 0.06 : isTablet ? 0.055 : 0.055,
       cubeScale: isSmall ? .6 : isMobile ? .6 : isTablet ? .5 : .7,
       reactLogoScale: isSmall ? .3 : isMobile ? .4 : isTablet ? .3 : .5,
       ringScale: isSmall ? .3 : isMobile ? .4 : isTablet ? .3 : .5,
       targetScale: isSmall ? .5 : isMobile ? 1 : isTablet ? 1 : 1.5,
-      deskPosition: isSmall ? [0.5, -4, 0] : isMobile ? [0.5, -7, 0] : isTablet ? [0.25, -5, 0] : [0.25, -7, 0],
+      deskPosition: isSmall ? [0.5, -4, 0] : isMobile ? [0.5, -7, 0] : isTablet ? [0.25, -5, 0] : [0.25, -4.5, 0],
       cubePosition: isSmall ? [6, -2, 0] : isMobile ? [8, -3, 0] : isTablet ? [6.5, -4, 0] : [9, -5.5, 0],
       reactLogoPosition: isSmall ? [5, 5, 0] : isMobile ? [7, 4, 0] : isTablet ? [5, 4, 0] : [12, 3, 0],
       ringPosition: isSmall ? [-20, 13.5, 0] : isMobile ? [-5, 3, 0] : isTablet ? [-1, 3, 0] : [-7, 3, 0],

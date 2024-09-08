@@ -11,7 +11,6 @@ const Rings = ({
   position: [number, number, number];
   scale: number;
 }) => {
-  console.log(position);
   const refList = useRef<Mesh[]>([]);
   const getRef = useCallback((mesh: Mesh) => {
     if (mesh && !refList.current.includes(mesh)) {
