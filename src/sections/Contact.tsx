@@ -10,8 +10,12 @@ const Contact = () => {
     message: "",
   });
 
-  const handleChange = ({ name, value }: { name: string; value: string }) => {
-    setForm({ ...form, [name]: value });
+  const handleChange = (
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
