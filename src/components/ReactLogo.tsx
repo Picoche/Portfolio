@@ -11,11 +11,17 @@ type GLTFResult = GLTF & {
   };
 };
 
-const ReactLogo = ({ props }: { props: [number, number, number] }) => {
+const ReactLogo = ({
+  position,
+  scale,
+}: {
+  position: [number, number, number];
+  scale: number;
+}) => {
   const { nodes, materials } = useGLTF("/models/react_logo.glb") as GLTFResult;
   return (
     <Float floatIntensity={1} speed={2}>
-      <group scale={0.3} position={[8, 8, 0]} dispose={null} {...props}>
+      <group scale={scale} position={position} dispose={null}>
         <mesh
           castShadow
           receiveShadow

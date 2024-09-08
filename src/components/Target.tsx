@@ -4,7 +4,13 @@ import { BufferGeometry, Mesh, NormalBufferAttributes } from "three";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
-const Target = ({ position }: { position: [number, number, number] }) => {
+const Target = ({
+  position,
+  scale,
+}: {
+  position: [number, number, number];
+  scale: number;
+}) => {
   const targetRef = useRef<Mesh<BufferGeometry<NormalBufferAttributes>>>(null);
   const { scene } = useGLTF(
     "https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/target-stand/model.gltf"
@@ -22,7 +28,12 @@ const Target = ({ position }: { position: [number, number, number] }) => {
   });
 
   return (
-    <mesh position={position} ref={targetRef} rotation={[0, Math.PI / 5, 0]}>
+    <mesh
+      position={position}
+      ref={targetRef}
+      rotation={[0, Math.PI / 5, 0]}
+      scale={scale}
+    >
       <primitive object={scene} />
     </mesh>
   );

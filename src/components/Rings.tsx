@@ -1,10 +1,17 @@
 import { useGSAP } from "@gsap/react";
-import { Center, useTexture } from "@react-three/drei";
+import { useTexture } from "@react-three/drei";
 import gsap from "gsap";
 import { useCallback, useRef } from "react";
 import { Mesh } from "three";
 
-const Rings = ({ position }: { position: [number, number, number] }) => {
+const Rings = ({
+  position,
+  scale,
+}: {
+  position: [number, number, number];
+  scale: number;
+}) => {
+  console.log(position);
   const refList = useRef<Mesh[]>([]);
   const getRef = useCallback((mesh: Mesh) => {
     if (mesh && !refList.current.includes(mesh)) {
@@ -16,8 +23,6 @@ const Rings = ({ position }: { position: [number, number, number] }) => {
 
   useGSAP(
     () => {
-      if (refList.current.length === 0) return;
-
       refList.current.forEach((r) => {
         r.position.set(position[0], position[1], position[2]);
       });
@@ -45,16 +50,14 @@ const Rings = ({ position }: { position: [number, number, number] }) => {
   );
 
   return (
-    <Center>
-      <group scale={0.5}>
-        {Array.from({ length: 4 }, (_, index) => (
-          <mesh key={index} ref={getRef}>
-            <torusGeometry args={[(index + 1) * 0.5, 0.1]}></torusGeometry>
-            <meshMatcapMaterial matcap={texture} toneMapped={false} />
-          </mesh>
-        ))}
-      </group>
-    </Center>
+    <group scale={scale} position={position}>
+      {Array.from({ length: 4 }, (_, index) => (
+        <mesh key={index} ref={getRef}>
+          <torusGeometry args={[(index + 1) * 0.5, 0.1]}></torusGeometry>
+          <meshMatcapMaterial matcap={texture} toneMapped={false} />
+        </mesh>
+      ))}
+    </group>
   );
 };
 

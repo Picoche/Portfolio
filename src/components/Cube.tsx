@@ -14,7 +14,13 @@ type GLTFResult = GLTF & {
   };
 };
 
-const Cube = ({ ...props }) => {
+const Cube = ({
+  position,
+  scale,
+}: {
+  position: [number, number, number];
+  scale: number;
+}) => {
   const { nodes } = useGLTF("models/cube.glb") as GLTFResult;
 
   const texture = useTexture("textures/cube.png");
@@ -41,11 +47,10 @@ const Cube = ({ ...props }) => {
   return (
     <Float floatIntensity={2}>
       <group
-        position={[9, -4, 0]}
+        position={position}
         rotation={[2.6, 0.8, -1.8]}
-        scale={0.74}
+        scale={scale}
         dispose={null}
-        {...props}
       >
         <mesh
           ref={cubeRef}
