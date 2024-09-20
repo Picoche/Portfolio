@@ -22,6 +22,8 @@ const Experience = () => {
                 <Suspense fallback={<CanvasLoader />}>
                   <Developer
                     position-y={-3.5}
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                    //@ts-expect-error
                     scale={3.5}
                     animationName={animationName}
                   />
