@@ -1,6 +1,6 @@
 "use client";
 
-import { About } from "@/components/sections/About";
+import { About } from "@/components/sections/About/AboutBase";
 import { Hero } from "@/components/sections/Hero/HeroBase";
 import { Projects } from "@/components/sections/Projects";
 import { Skills } from "@/components/sections/Skills";
