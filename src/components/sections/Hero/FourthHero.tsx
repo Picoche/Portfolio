@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
 import {
   Code,
   Github,
@@ -39,71 +40,136 @@ const skillCards = [
 ];
 
 export function FourthHero() {
+  const sectionRef = useRef(null);
+  const textRef = useRef(null);
+  const cardsRef = useRef(null);
+  const backgroundRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Create a main timeline
+      const tl = gsap.timeline();
+
+      // Floating background animation
+      gsap.to(".floating-bg", {
+        backgroundPosition: "200% 50%",
+        duration: 20,
+        repeat: -1,
+        ease: "none",
+      });
+
+      // Text reveal animation with split text effect
+      const chars = gsap.utils.selector(textRef.current)(".animate-text");
+      tl.from(chars, {
+        opacity: 0,
+        y: 100,
+        rotateX: -90,
+        stagger: 0.02,
+        duration: 1,
+        ease: "back.out(1.7)",
+      });
+
+      // Status badge animation
+      tl.from(".status-badge", {
+        scale: 0,
+        opacity: 0,
+        duration: 0.5,
+        ease: "elastic.out(1, 0.5)",
+      }, "-=0.5");
+
+      // Skill cards stagger animation
+      const cards = gsap.utils.selector(cardsRef.current)(".skill-card");
+      tl.from(cards, {
+        opacity: 0,
+        scale: 0.8,
+        y: 100,
+        rotationY: 45,
+        stagger: 0.1,
+        duration: 0.8,
+        ease: "power3.out",
+      }, "-=0.3");
+
+      // Continuous floating animation for cards
+      cards.forEach((card, i) => {
+        gsap.to(card, {
+          y: "random(-10, 10)",
+          rotation: "random(-5, 5)",
+          duration: "random(2, 3)",
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut",
+          delay: i * 0.2,
+        });
+      });
+
+      // Social icons animation
+      tl.from(".social-icon", {
+        scale: 0,
+        opacity: 0,
+        rotation: 360,
+        stagger: 0.2,
+        duration: 0.5,
+        ease: "back.out(1.7)",
+      }, "-=0.5");
+
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="min-h-screen flex items-center justify-center bg-background dark:bg-primary relative overflow-hidden theme-transition">
+    <section 
+      ref={sectionRef} 
+      className="min-h-screen flex items-center justify-center bg-background dark:bg-primary relative overflow-hidden theme-transition"
+    >
       {/* Animated gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-accent/10 via-transparent to-secondary/10 animate-gradient-xy pointer-events-none" />
+      <div 
+        ref={backgroundRef}
+        className="floating-bg absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: `
+            linear-gradient(
+              45deg, 
+              rgba(var(--secondary-rgb), 0.1) 0%,
+              rgba(var(--accent-rgb), 0.1) 25%,
+              rgba(var(--primary-rgb), 0.1) 50%,
+              rgba(var(--accent-rgb), 0.1) 75%,
+              rgba(var(--secondary-rgb), 0.1) 100%
+            )
+          `,
+          backgroundSize: "200% 200%",
+        }}
+      />
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
           {/* Left Column - Introduction */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            className="lg:w-1/2 space-y-6"
-          >
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-            >
-              <span className="inline-flex items-center px-3 py-1 text-sm font-medium rounded-full bg-secondary/10 text-secondary dark:bg-accent/10 dark:text-accent">
-                <span className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse" />
-                Open to opportunities
-              </span>
-            </motion.div>
+          <div ref={textRef} className="lg:w-1/2 space-y-6">
+            <span className="status-badge inline-flex items-center px-3 py-1 text-sm font-medium rounded-full bg-secondary/10 text-secondary dark:bg-accent/10 dark:text-accent">
+              <span className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse" />
+              Open to opportunities
+            </span>
 
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="text-4xl lg:text-6xl font-bold font-heading"
-            >
-              <span className="text-primary dark:text-background">
+            <h1 className="text-4xl lg:text-6xl font-bold font-heading">
+              <span className="text-primary dark:text-background animate-text">
                 Hello, I&apos;m{" "}
               </span>
-              <span className="bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent animate-text">
                 John Doe
               </span>
-            </motion.h1>
+            </h1>
 
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-              className="text-xl lg:text-2xl text-secondary dark:text-accent font-accent"
-            >
+            <h2 className="text-xl lg:text-2xl text-secondary dark:text-accent font-accent">
               Full Stack Developer & DevOps Engineer
-            </motion.h2>
+            </h2>
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
-              className="text-primary/80 dark:text-background/80 font-body text-lg"
-            >
+            <p className="text-primary/80 dark:text-background/80 font-body text-lg">
               Specializing in building exceptional digital experiences that
               combine elegant frontend designs with robust backend
               architectures.
-            </motion.p>
+            </p>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
-              className="flex flex-wrap gap-4"
-            >
+            <div className="flex gap-4 pt-4">
               <Button
                 asChild
                 className="group bg-secondary hover:bg-accent text-background transition-all duration-300"
@@ -120,19 +186,14 @@ export function FourthHero() {
               >
                 <Link href="#contact">Let&apos;s Connect</Link>
               </Button>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7 }}
-              className="flex gap-4 pt-4"
-            >
+            <div className="flex gap-4 pt-4">
               <Link
                 href="https://github.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-primary dark:text-background hover:text-secondary dark:hover:text-accent transition-colors duration-300"
+                className="social-icon text-primary dark:text-background hover:text-secondary dark:hover:text-accent transition-colors duration-300"
               >
                 <Github className="w-6 h-6" />
               </Link>
@@ -140,29 +201,20 @@ export function FourthHero() {
                 href="https://linkedin.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-primary dark:text-background hover:text-secondary dark:hover:text-accent transition-colors duration-300"
+                className="social-icon text-primary dark:text-background hover:text-secondary dark:hover:text-accent transition-colors duration-300"
               >
                 <Linkedin className="w-6 h-6" />
               </Link>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
 
           {/* Right Column - Skill Cards */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            className="lg:w-1/2"
-          >
+          <div ref={cardsRef} className="lg:w-1/2">
             <div className="grid grid-cols-2 gap-4">
               {skillCards.map((card, index) => (
-                <motion.div
+                <div
                   key={card.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3 + index * 0.1 }}
-                  whileHover={{ scale: 1.05 }}
-                  className={`bg-gradient-to-br ${card.gradient} p-6 rounded-xl text-background shadow-lg`}
+                  className={`skill-card bg-gradient-to-br ${card.gradient} p-6 rounded-xl text-background shadow-lg transform transition-transform duration-300 hover:scale-105`}
                 >
                   <card.icon size={32} className="mb-4" />
                   <h3 className="text-xl font-bold mb-2 font-heading">
@@ -175,10 +227,10 @@ export function FourthHero() {
                       </p>
                     ))}
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
