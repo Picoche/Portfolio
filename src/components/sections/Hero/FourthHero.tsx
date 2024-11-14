@@ -211,7 +211,7 @@ export function FourthHero() {
           {/* Right Column - Skill Cards */}
           <div ref={cardsRef} className="lg:w-1/2">
             <div className="grid grid-cols-2 gap-4">
-              {skillCards.map((card, index) => (
+              {skillCards.map(card => (
                 <div
                   key={card.title}
                   className={`skill-card bg-gradient-to-br ${card.gradient} p-6 rounded-xl text-background shadow-lg transform transition-transform duration-300 hover:scale-105`}
