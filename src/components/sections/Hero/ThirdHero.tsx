@@ -1,7 +1,8 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { gsap } from "gsap";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { useGSAP } from "@gsap/react";
 import {
   Monitor,
   Server,
@@ -38,126 +39,104 @@ export function ThirdHero() {
   const sectionRef = useRef(null);
   const gridRef = useRef(null);
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline();
+  useGSAP(() => {
+    const tl = gsap.timeline();
 
-      // Animate grid pattern
-      tl.from(".bg-grid-pattern", {
-        opacity: 0,
-        scale: 1.2,
-        duration: 1,
-        ease: "power2.out",
+    // Animate grid pattern
+    tl.from(".bg-grid-pattern", {
+      opacity: 0,
+      scale: 1.2,
+      duration: 1,
+      ease: "power2.out",
+    });
+
+    // Gradient background animation
+    tl.from(".gradient-overlay", {
+      opacity: 0,
+      duration: 0.8,
+      ease: "power2.out",
+    }, "-=0.5");
+
+    // Status badge animation
+    tl.from(".status-badge", {
+      y: -20,
+      opacity: 0,
+      duration: 0.4,
+      ease: "back.out(1.7)",
+    });
+
+    // Split and animate heading text
+    const headingWords = gsap.utils.toArray(".heading-word");
+    tl.from(headingWords, {
+      opacity: 0,
+      y: 30,
+      rotateX: -45,
+      stagger: 0.1,
+      duration: 0.6,
+      ease: "back.out(1.7)",
+    }, "-=0.2");
+
+    // Animate description
+    tl.from(".hero-description", {
+      opacity: 0,
+      y: 20,
+      duration: 0.6,
+      ease: "power2.out",
+    }, "-=0.3");
+
+    // Skill cards stagger animation with 3D effect
+    gsap.from(".skill-card", {
+      opacity: 0,
+      y: 50,
+      rotationX: 45,
+      stagger: 0.15,
+      duration: 0.8,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: ".skills-grid",
+        start: "top center+=100",
+      },
+    });
+
+    // Continuous floating animation for skill cards
+    gsap.utils.toArray(".skill-card").forEach((card: any, i) => {
+      gsap.to(card, {
+        y: "random(-8, 8)",
+        rotation: "random(-2, 2)",
+        duration: "random(2, 3)",
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+        delay: i * 0.2,
       });
+    });
 
-      // Gradient background animation
-      tl.from(".gradient-overlay", {
-        opacity: 0,
-        duration: 0.8,
-        ease: "power2.out",
-      }, "-=0.5");
+    // Technology tags animation
+    gsap.from(".tech-tag", {
+      scale: 0,
+      opacity: 0,
+      stagger: 0.05,
+      duration: 0.4,
+      ease: "back.out(1.7)",
+      scrollTrigger: {
+        trigger: ".skills-grid",
+        start: "top center+=100",
+      },
+    });
+  }, { scope: sectionRef });
 
-      // Status badge animation
-      tl.from(".status-badge", {
-        y: -20,
-        opacity: 0,
-        duration: 0.4,
-        ease: "back.out(1.7)",
-      });
+  // Handle card hover animations separately with contextSafe
+  const { contextSafe } = useGSAP({ scope: sectionRef });
 
-      // Split and animate heading text
-      const headingWords = gsap.utils.toArray(".heading-word");
-      tl.from(headingWords, {
-        opacity: 0,
-        y: 30,
-        rotateX: -45,
-        stagger: 0.1,
-        duration: 0.6,
-        ease: "back.out(1.7)",
-      }, "-=0.2");
-
-      // Animate description
-      tl.from(".hero-description", {
-        opacity: 0,
-        y: 20,
-        duration: 0.6,
-        ease: "power2.out",
-      }, "-=0.3");
-
-      // Skill cards stagger animation with 3D effect
-      gsap.from(".skill-card", {
-        opacity: 0,
-        y: 50,
-        rotationX: 45,
-        stagger: 0.15,
-        duration: 0.8,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: ".skills-grid",
-          start: "top center+=100",
-        },
-      });
-
-      // Continuous floating animation for skill cards
-      gsap.utils.toArray(".skill-card").forEach((card: any, i) => {
-        gsap.to(card, {
-          y: "random(-8, 8)",
-          rotation: "random(-2, 2)",
-          duration: "random(2, 3)",
-          repeat: -1,
-          yoyo: true,
-          ease: "sine.inOut",
-          delay: i * 0.2,
-        });
-
-        // Add hover animation
-        card.addEventListener("mouseenter", () => {
-          gsap.to(card, {
-            scale: 1.05,
-            y: -10,
-            duration: 0.3,
-            ease: "power2.out",
-            overwrite: "auto",
-          });
-        });
-
-        card.addEventListener("mouseleave", () => {
-          gsap.to(card, {
-            scale: 1,
-            y: 0,
-            duration: 0.3,
-            ease: "power2.in",
-            overwrite: "auto",
-          });
-        });
-      });
-
-      // Button animations
-      tl.from(".hero-button", {
-        opacity: 0,
-        y: 20,
-        stagger: 0.1,
-        duration: 0.4,
-        ease: "back.out(1.7)",
-      }, "-=0.2");
-
-      // Technology tags animation
-      gsap.from(".tech-tag", {
-        scale: 0,
-        opacity: 0,
-        stagger: 0.05,
-        duration: 0.4,
-        ease: "back.out(1.7)",
-        scrollTrigger: {
-          trigger: ".skills-grid",
-          start: "top center+=100",
-        },
-      });
-
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
+  const handleCardHover = contextSafe((card: HTMLElement, isEntering: boolean) => {
+    gsap.to(card, {
+      scale: isEntering ? 1.05 : 1,
+      y: isEntering ? -10 : 0,
+      duration: 0.3,
+      ease: isEntering ? "power2.out" : "power2.in",
+      overwrite: "auto",
+    });
+  });
 
   return (
     <section
@@ -195,6 +174,8 @@ export function ThirdHero() {
               <div
                 key={skill.title}
                 className={`skill-card ${skill.color} rounded-2xl p-6 text-background`}
+                onMouseEnter={(e) => handleCardHover(e.currentTarget, true)}
+                onMouseLeave={(e) => handleCardHover(e.currentTarget, false)}
               >
                 <skill.icon className="w-12 h-12 mb-4" />
                 <h3 className="text-2xl font-bold mb-3 font-heading">

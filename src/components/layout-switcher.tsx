@@ -49,10 +49,10 @@ export default function LayoutSwitcher({
   const Icon = getIcon(section);
 
   return (
-    <div className="fixed right-4 top-1/2 -translate-y-1/2 flex flex-col items-center bg-background dark:bg-primary border border-border rounded-full shadow-lg z-50">
+    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center bg-background dark:bg-primary border border-border rounded-full shadow-lg z-50">
       {["first", "second", "third", "fourth"].map((layout, index) => (
-        <div key={layout} className="relative">
-          {index > 0 && <Separator className="my-1" />}
+        <div key={layout} className="relative flex items-center">
+          {index > 0 && <Separator orientation="vertical" className="h-6 mx-1" />}
           <Button
             variant={currentLayout === layout ? "default" : "ghost"}
             size="icon"

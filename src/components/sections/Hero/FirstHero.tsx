@@ -3,123 +3,114 @@ import { gsap } from "gsap";
 import { ArrowRight, Code, Github, Linkedin, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { useGSAP } from "@gsap/react";
 
 export function FirstHero() {
   const sectionRef = useRef(null);
   const floatingParticlesRef = useRef(null);
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Create floating particles
-      const particles = gsap.utils.toArray(".floating-particle");
-      particles.forEach((particle: any) => {
-        gsap.to(particle, {
-          x: "random(-100, 100)",
-          y: "random(-100, 100)",
-          rotation: "random(-180, 180)",
-          duration: "random(3, 6)",
-          repeat: -1,
-          yoyo: true,
-          ease: "sine.inOut",
-        });
+  useGSAP(() => {
+    // Create floating particles
+    const particles = gsap.utils.toArray(".floating-particle");
+    particles.forEach((particle: any) => {
+      gsap.to(particle, {
+        x: "random(-100, 100)",
+        y: "random(-100, 100)",
+        rotation: "random(-180, 180)",
+        duration: "random(3, 6)",
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
       });
+    });
 
-      // Main content animation timeline
-      const tl = gsap.timeline();
+    // Main content animation timeline
+    const tl = gsap.timeline();
 
-      // Fade in background
-      tl.from(".hero-bg", {
-        opacity: 0,
-        duration: 1,
-      });
+    // Fade in background
+    tl.from(".hero-bg", {
+      opacity: 0,
+      duration: 1,
+    });
 
-      // Animate status badge with bounce
-      tl.from(".status-badge", {
-        y: -50,
-        opacity: 0,
-        duration: 0.6,
-        ease: "bounce.out",
-      });
+    // Animate status badge with bounce
+    tl.from(".status-badge", {
+      y: -50,
+      opacity: 0,
+      duration: 0.6,
+      ease: "bounce.out",
+    });
 
-      // Animate code icon with rotation
-      tl.from(".code-icon", {
-        scale: 0,
-        rotation: 360,
-        opacity: 0,
-        duration: 0.8,
-        ease: "back.out(1.7)",
-      }, "-=0.3");
-      // Split and animate title text
-      const titleText = gsap.utils.toArray(".hero-title span");
-      tl.from(titleText, {
-        opacity: 0,
-        y: 50,
-        rotateX: -90,
-        stagger: 0.02,
-        duration: 0.8,
-        ease: "back.out(1.7)",
-      }, "-=0.4");
-      // Animate subtitle with wave effect
-      const subtitleText = gsap.utils.toArray(".hero-subtitle span");
-      tl.from(subtitleText, {
-        opacity: 0,
-        y: "random(-50, 50)", 
-        stagger: 0.03,
-        duration: 0.8,
-        ease: "power2.out",
-      }, "-=0.6");
-      // Animate description with words effect
-      const descriptionWords = gsap.utils.toArray(".hero-description span");
-      tl.from(descriptionWords, {
-        opacity: 0,
-        x: -20,
-        stagger: 0.05,
-        duration: 0.8,
-        ease: "power2.out",
-      }, "-=0.4");
+    // Animate code icon with rotation
+    tl.from(".code-icon", {
+      scale: 0,
+      rotation: 360,
+      opacity: 0,
+      duration: 0.8,
+      ease: "back.out(1.7)",
+    }, "-=0.3");
 
-      // Buttons animation
-      tl.from(".hero-button", {
-        y: 50,
-        opacity: 0,
-        stagger: 0.2,
-        duration: 0.6,
-        ease: "back.out(1.7)",
-      }, "-=0.4");
+    // Split and animate title text
+    const titleText = gsap.utils.toArray(".hero-title span");
+    tl.from(titleText, {
+      opacity: 0,
+      y: 50,
+      rotateX: -90,
+      stagger: 0.02,
+      duration: 0.8,
+      ease: "back.out(1.7)",
+    }, "-=0.4");
 
-      // Social icons animation with bounce
-      tl.from(".social-icon", {
-        scale: 0,
-        opacity: 0,
-        rotation: 360,
-        stagger: 0.2,
-        duration: 0.6,
-        ease: "back.out(1.7)",
-      }, "-=0.2");
+    // Animate subtitle with wave effect
+    const subtitleText = gsap.utils.toArray(".hero-subtitle span");
+    tl.from(subtitleText, {
+      opacity: 0,
+      y: "random(-50, 50)", 
+      stagger: 0.03,
+      duration: 0.8,
+      ease: "power2.out",
+    }, "-=0.6");
 
-      // Modify hover effects for buttons
-      gsap.utils.toArray(".hero-button").forEach((button: any) => {
-        button.addEventListener("mouseenter", () => {
-          gsap.to(button, {
-            scale: 1.05,
-            duration: 0.3,
-            ease: "power2.out",
-          });
-        });
-        
-        button.addEventListener("mouseleave", () => {
-          gsap.to(button, {
-            scale: 1,
-            duration: 0.3,
-            ease: "power2.in",
-          });
-        });
-      });
+    // Animate description with words effect
+    const descriptionWords = gsap.utils.toArray(".hero-description span");
+    tl.from(descriptionWords, {
+      opacity: 0,
+      x: -20,
+      stagger: 0.05,
+      duration: 0.8,
+      ease: "power2.out",
+    }, "-=0.4");
 
-    }, sectionRef);
+    // Buttons animation
+    tl.from(".hero-button", {
+      y: 50,
+      opacity: 0,
+      stagger: 0.2,
+      duration: 0.6,
+      ease: "back.out(1.7)",
+    }, "-=0.4");
 
-    return () => ctx.revert();
-  }, []);
+    // Social icons animation with bounce
+    tl.from(".social-icon", {
+      scale: 0,
+      opacity: 0,
+      rotation: 360,
+      stagger: 0.2,
+      duration: 0.6,
+      ease: "back.out(1.7)",
+    }, "-=0.2");
+  }, { scope: sectionRef }); // Scope all selectors to sectionRef
+
+  // Handle button hover animations separately with contextSafe
+  const { contextSafe } = useGSAP({ scope: sectionRef });
+
+  const handleButtonHover = contextSafe((button: HTMLElement, isEntering: boolean) => {
+    gsap.to(button, {
+      scale: isEntering ? 1.05 : 1,
+      duration: 0.3,
+      ease: isEntering ? "power2.out" : "power2.in",
+    });
+  });
 
   return (
     <section 
@@ -196,6 +187,8 @@ export function FirstHero() {
           <Button
             asChild
             className="hero-button group bg-secondary hover:bg-accent text-background"
+            onMouseEnter={(e) => handleButtonHover(e.currentTarget, true)}
+            onMouseLeave={(e) => handleButtonHover(e.currentTarget, false)}
           >
             <Link href="#projects" className="flex items-center">
               View My Work
@@ -206,6 +199,8 @@ export function FirstHero() {
             asChild
             variant="outline"
             className="hero-button group border-secondary text-secondary hover:bg-secondary hover:text-background dark:border-accent dark:text-accent dark:hover:bg-accent dark:hover:text-background"
+            onMouseEnter={(e) => handleButtonHover(e.currentTarget, true)}
+            onMouseLeave={(e) => handleButtonHover(e.currentTarget, false)}
           >
             <Link href="#contact" className="flex items-center">
               Contact Me

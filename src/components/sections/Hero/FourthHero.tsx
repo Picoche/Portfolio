@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { gsap } from "gsap";
 import {
   Code,
@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { useGSAP } from "@gsap/react";
 
 const skillCards = [
   {
@@ -45,77 +46,87 @@ export function FourthHero() {
   const cardsRef = useRef(null);
   const backgroundRef = useRef(null);
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Create a main timeline
-      const tl = gsap.timeline();
+  // Main animations
+  useGSAP(() => {
+    // Create a main timeline
+    const tl = gsap.timeline();
 
-      // Floating background animation
-      gsap.to(".floating-bg", {
-        backgroundPosition: "200% 50%",
-        duration: 20,
+    // Floating background animation
+    gsap.to(".floating-bg", {
+      backgroundPosition: "200% 50%",
+      duration: 20,
+      repeat: -1,
+      ease: "none",
+    });
+
+    // Text reveal animation with split text effect
+    const chars = gsap.utils.selector(textRef.current)(".animate-text");
+    tl.from(chars, {
+      opacity: 0,
+      y: 100,
+      rotateX: -90,
+      stagger: 0.02,
+      duration: 1,
+      ease: "back.out(1.7)",
+    });
+
+    // Status badge animation
+    tl.from(".status-badge", {
+      scale: 0,
+      opacity: 0,
+      duration: 0.5,
+      ease: "elastic.out(1, 0.5)",
+    }, "-=0.5");
+
+    // Skill cards stagger animation
+    const cards = gsap.utils.selector(cardsRef.current)(".skill-card");
+    tl.from(cards, {
+      opacity: 0,
+      scale: 0.8,
+      y: 100,
+      rotationY: 45,
+      stagger: 0.1,
+      duration: 0.8,
+      ease: "power3.out",
+    }, "-=0.3");
+
+    // Continuous floating animation for cards
+    cards.forEach((card, i) => {
+      gsap.to(card, {
+        y: "random(-10, 10)",
+        rotation: "random(-5, 5)",
+        duration: "random(2, 3)",
         repeat: -1,
-        ease: "none",
+        yoyo: true,
+        ease: "sine.inOut",
+        delay: i * 0.2,
       });
+    });
 
-      // Text reveal animation with split text effect
-      const chars = gsap.utils.selector(textRef.current)(".animate-text");
-      tl.from(chars, {
-        opacity: 0,
-        y: 100,
-        rotateX: -90,
-        stagger: 0.02,
-        duration: 1,
-        ease: "back.out(1.7)",
-      });
+    // Social icons animation
+    tl.from(".social-icon", {
+      scale: 0,
+      opacity: 0,
+      rotation: 360,
+      stagger: 0.2,
+      duration: 0.5,
+      ease: "back.out(1.7)",
+    }, "-=0.5");
 
-      // Status badge animation
-      tl.from(".status-badge", {
-        scale: 0,
-        opacity: 0,
-        duration: 0.5,
-        ease: "elastic.out(1, 0.5)",
-      }, "-=0.5");
+  }, { scope: sectionRef });
 
-      // Skill cards stagger animation
-      const cards = gsap.utils.selector(cardsRef.current)(".skill-card");
-      tl.from(cards, {
-        opacity: 0,
-        scale: 0.8,
-        y: 100,
-        rotationY: 45,
-        stagger: 0.1,
-        duration: 0.8,
-        ease: "power3.out",
-      }, "-=0.3");
+  // Handle card hover animations separately with contextSafe
+  const { contextSafe } = useGSAP({ scope: sectionRef });
 
-      // Continuous floating animation for cards
-      cards.forEach((card, i) => {
-        gsap.to(card, {
-          y: "random(-10, 10)",
-          rotation: "random(-5, 5)",
-          duration: "random(2, 3)",
-          repeat: -1,
-          yoyo: true,
-          ease: "sine.inOut",
-          delay: i * 0.2,
-        });
-      });
-
-      // Social icons animation
-      tl.from(".social-icon", {
-        scale: 0,
-        opacity: 0,
-        rotation: 360,
-        stagger: 0.2,
-        duration: 0.5,
-        ease: "back.out(1.7)",
-      }, "-=0.5");
-
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
+  const handleCardHover = contextSafe((card: HTMLElement, isEntering: boolean) => {
+    gsap.to(card, {
+      scale: isEntering ? 1.05 : 1,
+      y: isEntering ? -5 : 0,
+      duration: 0.3,
+      ease: isEntering ? "power2.out" : "power2.in",
+      overwrite: "auto",
+    });
+  });
 
   return (
     <section 
@@ -173,6 +184,8 @@ export function FourthHero() {
               <Button
                 asChild
                 className="group bg-secondary hover:bg-accent text-background transition-all duration-300"
+                onMouseEnter={(e) => handleCardHover(e.currentTarget, true)}
+                onMouseLeave={(e) => handleCardHover(e.currentTarget, false)}
               >
                 <Link href="#projects" className="flex items-center">
                   Explore My Work
@@ -183,6 +196,8 @@ export function FourthHero() {
                 asChild
                 variant="outline"
                 className="border-secondary text-secondary hover:bg-secondary hover:text-background dark:border-accent dark:text-accent dark:hover:bg-accent dark:hover:text-background transition-all duration-300"
+                onMouseEnter={(e) => handleCardHover(e.currentTarget, true)}
+                onMouseLeave={(e) => handleCardHover(e.currentTarget, false)}
               >
                 <Link href="#contact">Let&apos;s Connect</Link>
               </Button>
@@ -214,7 +229,9 @@ export function FourthHero() {
               {skillCards.map(card => (
                 <div
                   key={card.title}
-                  className={`skill-card bg-gradient-to-br ${card.gradient} p-6 rounded-xl text-background shadow-lg transform transition-transform duration-300 hover:scale-105`}
+                  className={`skill-card bg-gradient-to-br ${card.gradient} p-6 rounded-xl text-background shadow-lg transform transition-transform duration-300`}
+                  onMouseEnter={(e) => handleCardHover(e.currentTarget, true)}
+                  onMouseLeave={(e) => handleCardHover(e.currentTarget, false)}
                 >
                   <card.icon size={32} className="mb-4" />
                   <h3 className="text-xl font-bold mb-2 font-heading">

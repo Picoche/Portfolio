@@ -1,145 +1,140 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { gsap } from "gsap";
 import { Code, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import { useGSAP } from "@gsap/react";
 
 export function SecondHero() {
   const sectionRef = useRef(null);
   const imageRef = useRef(null);
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline();
+  // Main animations
+  useGSAP(() => {
+    const tl = gsap.timeline();
 
-      // Gradient background animation - faster
-      tl.from(".gradient-bg", {
-        opacity: 0,
-        scale: 1.2,
-        duration: 0.8,
-        ease: "power2.out",
-      });
+    // Gradient background animation - faster
+    tl.from(".gradient-bg", {
+      opacity: 0,
+      scale: 1.2,
+      duration: 0.8,
+      ease: "power2.out",
+    });
 
-      // Status badge animation - faster
-      tl.from(".status-badge", {
-        opacity: 0,
-        scale: 0,
-        duration: 0.4,
-        ease: "elastic.out(1, 0.5)",
-      }, "-=0.6");
+    // Status badge animation - faster
+    tl.from(".status-badge", {
+      opacity: 0,
+      scale: 0,
+      duration: 0.4,
+      ease: "elastic.out(1, 0.5)",
+    }, "-=0.6");
 
-      // Heading animations with split text - faster
-      const headingWords = gsap.utils.toArray(".heading-word");
-      tl.from(headingWords, {
-        opacity: 0,
-        y: 30,
-        rotateX: -45,
-        stagger: 0.08,
-        duration: 0.5,
-        ease: "back.out(1.7)",
-      }, "-=0.2");
+    // Heading animations with split text - faster
+    const headingWords = gsap.utils.toArray(".heading-word");
+    tl.from(headingWords, {
+      opacity: 0,
+      y: 30,
+      rotateX: -45,
+      stagger: 0.08,
+      duration: 0.5,
+      ease: "back.out(1.7)",
+    }, "-=0.2");
 
-      // Description paragraph reveal - faster
-      tl.from(".hero-description", {
-        opacity: 0,
-        y: 20,
-        duration: 0.5,
-        ease: "power2.out",
-      }, "-=0.3");
+    // Description paragraph reveal - faster
+    tl.from(".hero-description", {
+      opacity: 0,
+      y: 20,
+      duration: 0.5,
+      ease: "power2.out",
+    }, "-=0.3");
 
-      // Buttons stagger animation - faster
-      tl.from(".hero-button", {
-        opacity: 0,
-        x: -20,
-        stagger: 0.1,
-        duration: 0.4,
-        ease: "power2.out",
-      }, "-=0.2");
+    // Buttons stagger animation - faster
+    tl.from(".hero-button", {
+      opacity: 0,
+      x: -20,
+      stagger: 0.1,
+      duration: 0.4,
+      ease: "power2.out",
+    }, "-=0.2");
 
-      // Enhanced image reveal animation
-      tl.from(".image-wrapper", {
-        opacity: 0,
-        scale: 0.8,
-        duration: 0.8,
-        ease: "power2.out",
-      }, "-=0.4")
-      .from(".image-gradient-border", {
-        opacity: 0,
-        scale: 1.2,
-        duration: 0.6,
-        ease: "power2.out",
-      }, "-=0.6")
-      .from(".profile-image", {
-        scale: 1.4,
-        opacity: 0,
-        duration: 0.8,
-        ease: "power2.out",
-      }, "-=0.4");
+    // Enhanced image reveal animation
+    tl.from(".image-wrapper", {
+      opacity: 0,
+      scale: 0.8,
+      duration: 0.8,
+      ease: "power2.out",
+    }, "-=0.4")
+    .from(".image-gradient-border", {
+      opacity: 0,
+      scale: 1.2,
+      duration: 0.6,
+      ease: "power2.out",
+    }, "-=0.6")
+    .from(".profile-image", {
+      scale: 1.4,
+      opacity: 0,
+      duration: 0.8,
+      ease: "power2.out",
+    }, "-=0.4");
 
-      // Floating animation for the entire image container
-      gsap.to(".image-wrapper", {
-        y: 15,
-        duration: 2,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-      });
+    // Floating animation for the entire image container
+    gsap.to(".image-wrapper", {
+      y: 15,
+      duration: 2,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut",
+    });
 
-      // Rotating gradient border animation
-      gsap.to(".image-gradient-border", {
-        rotate: 360,
-        duration: 15,
-        repeat: -1,
-        ease: "none",
-      });
+    // Rotating gradient border animation
+    gsap.to(".image-gradient-border", {
+      rotate: 360,
+      duration: 15,
+      repeat: -1,
+      ease: "none",
+    });
 
-      // Floating code icon animation - faster and larger range
-      gsap.to(".floating-icon", {
-        y: 20,
-        duration: 1.5,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-      });
+    // Floating code icon animation - faster and larger range
+    gsap.to(".floating-icon", {
+      y: 20,
+      duration: 1.5,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut",
+    });
+  }, { scope: sectionRef });
 
-      // Mouse parallax for image
-      const moveImage = (e: MouseEvent) => {
-        const { clientX, clientY } = e;
-        const xPos = (clientX / window.innerWidth - 0.5) * 15;
-        const yPos = (clientY / window.innerHeight - 0.5) * 15;
+  // Handle mouse parallax separately with contextSafe
+  const { contextSafe } = useGSAP({ scope: sectionRef });
 
-        // Move image container
-        gsap.to(".parallax-image", {
-          x: xPos,
-          y: yPos,
-          duration: 1,
-          ease: "power2.out",
-        });
+  const handleMouseMove = contextSafe((e: MouseEvent) => {
+    const { clientX, clientY } = e;
+    const xPos = (clientX / window.innerWidth - 0.5) * 15;
+    const yPos = (clientY / window.innerHeight - 0.5) * 15;
 
-        // Move gradient border in opposite direction for depth effect
-        gsap.to(".image-gradient-border", {
-          x: -xPos * 0.5,
-          y: -yPos * 0.5,
-          duration: 1,
-          ease: "power2.out",
-        });
-      };
+    // Move image container
+    gsap.to(".parallax-image", {
+      x: xPos,
+      y: yPos,
+      duration: 1,
+      ease: "power2.out",
+    });
 
-      document.addEventListener("mousemove", moveImage);
-
-      return () => {
-        document.removeEventListener("mousemove", moveImage);
-      };
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
+    // Move gradient border in opposite direction for depth effect
+    gsap.to(".image-gradient-border", {
+      x: -xPos * 0.5,
+      y: -yPos * 0.5,
+      duration: 1,
+      ease: "power2.out",
+    });
+  });
 
   return (
     <section
       ref={sectionRef}
       className="min-h-screen flex items-center justify-center bg-background dark:bg-primary relative overflow-hidden theme-transition"
+      onMouseMove={(e) => handleMouseMove(e as unknown as MouseEvent)}
     >
       <div className="gradient-bg absolute inset-0 bg-gradient-to-br from-accent/10 via-transparent to-secondary/10 dark:from-accent/5 dark:to-secondary/5 pointer-events-none" />
 
