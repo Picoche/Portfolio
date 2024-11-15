@@ -14,8 +14,6 @@ const achievements = [
 
 export function ThirdAbout() {
   const sectionRef = useRef(null);
-  const imageRef = useRef(null);
-  const contentRef = useRef(null);
 
   useGSAP(() => {
     const tl = gsap.timeline();
@@ -37,7 +35,6 @@ export function ThirdAbout() {
 
     // Achievements counter animation
     gsap.utils.toArray(".achievement-number").forEach((number: any) => {
-      const target = parseInt(number.getAttribute("data-value"));
       gsap.from(number, {
         innerText: 0,
         duration: 2,
@@ -134,7 +131,7 @@ export function ThirdAbout() {
               
               {/* Achievement cards grid */}
               <div className="grid grid-cols-2 gap-4 mt-8">
-                {achievements.map((item, index) => (
+                {achievements.map(item => (
                   <div
                     key={item.label}
                     className="achievement-card bg-background dark:bg-primary shadow-lg rounded-xl p-4 border border-secondary/20 dark:border-accent/20"

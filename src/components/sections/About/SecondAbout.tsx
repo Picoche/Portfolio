@@ -58,7 +58,6 @@ export function SecondAbout() {
     // Stats counter animation
     const stats = gsap.utils.toArray(".stat-number");
     stats.forEach((stat: any) => {
-      const target = parseInt(stat.getAttribute("data-target"));
       tl.from(stat, {
         innerText: 0,
         duration: 2,

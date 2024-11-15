@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { gsap } from "gsap";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { Download, Mail, Code, Laptop, Server, Globe, Blocks, Gem } from "lucide-react";
+import { Download, Mail, Laptop, Server, Globe, Blocks} from "lucide-react";
 import { useGSAP } from "@gsap/react";
 
 const experienceCards = [
@@ -21,8 +21,6 @@ const techStack = [
 
 export function FourthAbout() {
   const sectionRef = useRef(null);
-  const imageRef = useRef(null);
-  const contentRef = useRef(null);
 
   useGSAP(() => {
     const tl = gsap.timeline();
@@ -72,7 +70,6 @@ export function FourthAbout() {
 
     // Animate numbers
     gsap.utils.toArray(".number-counter").forEach((counter: any) => {
-      const target = parseInt(counter.getAttribute("data-value"));
       gsap.from(counter, {
         innerText: 0,
         duration: 2,
