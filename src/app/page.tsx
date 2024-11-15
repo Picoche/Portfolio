@@ -2,12 +2,12 @@
 
 import { About } from "@/components/sections/About/AboutBase";
 import { Hero } from "@/components/sections/Hero/HeroBase";
-import { Projects } from "@/components/sections/Projects";
+import { Projects } from "@/components/sections/Projects/ProjectsBase";
 import { Skills } from "@/components/sections/Skills";
 import { Experience } from "@/components/sections/Experience";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { Contact } from "@/components/sections/Contact";
-import { Education } from "@/components/sections/Education";
+import { Education } from "@/components/sections/Education/EducationBase";
 
 export default function Home() {
   return (
