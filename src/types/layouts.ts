@@ -5,3 +5,4 @@ export type SectionType =
   | 'projects'
   | 'experience'
   | 'education'
+  | 'skills'

@@ -169,14 +169,14 @@ export function FourthEducation() {
           <div className="flex flex-col md:flex-row gap-4 mb-12">
             {educationData.map((education, index) => (
               <button
-                key={index}
-                className={`nav-item flex-1 p-6 rounded-xl border-2 transition-all duration-300 hover:shadow-lg ${
-                  activeIndex === index
-                    ? 'border-secondary dark:border-accent bg-white dark:bg-primary-dark shadow-lg'
-                    : 'border-secondary/20 dark:border-accent/20 hover:border-secondary/50 dark:hover:border-accent/50 bg-white/80 dark:bg-primary/80'
-                }`}
-                onClick={() => handleContentChange(index)}
-              >
+              key={index}
+              className={`nav-item flex-1 p-6 rounded-xl border-2 ${
+                activeIndex === index
+                  ? 'border-secondary dark:border-accent bg-white/90 dark:bg-primary-dark shadow-lg'
+                  : 'border-secondary/20 dark:border-accent/20 hover:border-secondary/50 dark:hover:border-accent/50 bg-white/80 dark:bg-primary-dark/80'
+              }`}
+              onClick={() => handleContentChange(index)}
+            >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-4">
                     <div className={`p-3 rounded-lg transition-colors duration-300 ${
