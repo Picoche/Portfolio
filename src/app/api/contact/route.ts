@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server'
 import { contactFormSchema } from '@/lib/validations/contact'
 import ContactEmail from '@/emails/contact-form'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+const resend = new Resend('api-key-here')
 
 export async function POST (req: Request) {
   try {
