@@ -2,7 +2,14 @@ import { useRef } from "react";
 import { gsap } from "gsap";
 import Image from "next/image";
 import Link from "next/link";
-import { ExternalLink, Github, ChevronRight, Code, Blocks, Globe } from "lucide-react";
+import {
+  ExternalLink,
+  Github,
+  ChevronRight,
+  Code,
+  Blocks,
+  Globe,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useGSAP } from "@gsap/react";
 
@@ -63,89 +70,104 @@ const projects = [
 export function ThirdProjects() {
   const sectionRef = useRef(null);
 
-  useGSAP(() => {
-    const tl = gsap.timeline();
+  useGSAP(
+    () => {
+      const tl = gsap.timeline();
 
-    // Background animations
-    tl.from(".pattern-bg", {
-      opacity: 0,
-      duration: 1,
-      ease: "power2.out",
-    });
-
-    // Section title animation
-    tl.from(".section-title", {
-      y: 50,
-      opacity: 0,
-      duration: 0.8,
-      ease: "back.out(1.7)",
-    }, "-=0.5");
-
-    // Filter buttons animation
-    tl.from(".filter-button", {
-      y: 30,
-      opacity: 0,
-      stagger: 0.1,
-      duration: 0.5,
-      ease: "back.out(1.7)",
-    }, "-=0.5");
-
-    // Project cards stagger animation
-    tl.from(".project-card", {
-      opacity: 0,
-      y: 100,
-      stagger: {
-        each: 0.2,
-        from: "random",
-      },
-      duration: 0.8,
-      ease: "power4.out",
-    }, "-=0.3");
-
-    // Stats counter animation
-    gsap.utils.toArray(".stat-value").forEach((stat: any) => {
-      const value = stat.getAttribute("data-value");
-      gsap.from(stat, {
-        innerText: 0,
-        duration: 2,
-        snap: { innerText: 1 },
+      // Background animations
+      tl.from(".pattern-bg", {
+        opacity: 0,
+        duration: 1,
         ease: "power2.out",
-        scrollTrigger: {
-          trigger: stat,
-          start: "top center+=100",
+      });
+
+      // Section title animation
+      tl.from(
+        ".section-title",
+        {
+          y: 50,
+          opacity: 0,
+          duration: 0.8,
+          ease: "back.out(1.7)",
+        },
+        "-=0.5"
+      );
+
+      // Filter buttons animation
+      tl.from(
+        ".filter-button",
+        {
+          y: 30,
+          opacity: 0,
+          stagger: 0.1,
+          duration: 0.5,
+          ease: "back.out(1.7)",
+        },
+        "-=0.5"
+      );
+
+      // Project cards stagger animation
+      tl.from(
+        ".project-card",
+        {
+          opacity: 0,
+          y: 100,
+          stagger: {
+            each: 0.2,
+            from: "random",
+          },
+          duration: 0.8,
+          ease: "power4.out",
+        },
+        "-=0.3"
+      );
+
+      // Stats counter animation
+      gsap.utils.toArray(".stat-value").forEach((stat: any) => {
+        gsap.from(stat, {
+          innerText: 0,
+          duration: 2,
+          snap: { innerText: 1 },
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: stat,
+            start: "top center+=100",
+          },
+        });
+      });
+
+      // Continuous animations
+      gsap.to(".floating-icon", {
+        y: -10,
+        duration: 2,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+        stagger: {
+          each: 0.5,
+          from: "random",
         },
       });
-    });
-
-    // Continuous animations
-    gsap.to(".floating-icon", {
-      y: -10,
-      duration: 2,
-      repeat: -1,
-      yoyo: true,
-      ease: "sine.inOut",
-      stagger: {
-        each: 0.5,
-        from: "random",
-      },
-    });
-
-  }, { scope: sectionRef });
+    },
+    { scope: sectionRef }
+  );
 
   // Handle hover animations
   const { contextSafe } = useGSAP({ scope: sectionRef });
 
-  const handleHover = contextSafe((element: HTMLElement, isEntering: boolean) => {
-    gsap.to(element, {
-      scale: isEntering ? 1.02 : 1,
-      y: isEntering ? -5 : 0,
-      duration: 0.4,
-      ease: isEntering ? "power2.out" : "power2.in",
-    });
-  });
+  const handleHover = contextSafe(
+    (element: HTMLElement, isEntering: boolean) => {
+      gsap.to(element, {
+        scale: isEntering ? 1.02 : 1,
+        y: isEntering ? -5 : 0,
+        duration: 0.4,
+        ease: isEntering ? "power2.out" : "power2.in",
+      });
+    }
+  );
 
   return (
-    <section 
+    <section
       ref={sectionRef}
       className="py-20 bg-background dark:bg-primary theme-transition relative overflow-hidden"
     >
@@ -177,7 +199,7 @@ export function ThirdProjects() {
             <div
               key={project.title}
               className={`project-card relative ${
-                project.featured ? 'md:col-span-2 lg:col-span-2' : ''
+                project.featured ? "md:col-span-2 lg:col-span-2" : ""
               }`}
             >
               <div
@@ -214,7 +236,10 @@ export function ThirdProjects() {
                   <div className="grid grid-cols-3 gap-4">
                     {Object.entries(project.stats).map(([key, value]) => (
                       <div key={key} className="text-center">
-                        <div className="stat-value text-xl font-bold text-secondary dark:text-accent" data-value={value}>
+                        <div
+                          className="stat-value text-xl font-bold text-secondary dark:text-accent"
+                          data-value={value}
+                        >
                           {value}
                         </div>
                         <div className="text-sm text-primary/60 dark:text-background/60 capitalize">
@@ -277,4 +302,4 @@ export function ThirdProjects() {
       </div>
     </section>
   );
-} 
+}

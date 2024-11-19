@@ -2,7 +2,14 @@ import { useRef, useState } from "react";
 import { gsap } from "gsap";
 import Image from "next/image";
 import Link from "next/link";
-import { ExternalLink, Github, ChevronRight, Code, Blocks, Globe } from "lucide-react";
+import {
+  ExternalLink,
+  Github,
+  ChevronRight,
+  Code,
+  Blocks,
+  Globe,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useGSAP } from "@gsap/react";
 
@@ -10,7 +17,8 @@ const projects = [
   {
     title: "E-commerce Platform",
     description: "Next-gen shopping experience",
-    longDescription: "A comprehensive e-commerce solution with modern features including real-time inventory, AI-powered recommendations, and seamless payment integration.",
+    longDescription:
+      "A comprehensive e-commerce solution with modern features including real-time inventory, AI-powered recommendations, and seamless payment integration.",
     image: "/ecommerce.jpg",
     category: "Full Stack",
     featured: true,
@@ -28,7 +36,8 @@ const projects = [
   {
     title: "Task Management App",
     description: "Smart team collaboration",
-    longDescription: "An intuitive task management platform with real-time updates, AI task prioritization, and team analytics dashboard.",
+    longDescription:
+      "An intuitive task management platform with real-time updates, AI task prioritization, and team analytics dashboard.",
     image: "/ecommerce.jpg",
     category: "Web App",
     featured: false,
@@ -46,7 +55,8 @@ const projects = [
   {
     title: "AI-Powered Chatbot",
     description: "Intelligent support automation",
-    longDescription: "Advanced customer support automation using natural language processing and machine learning for personalized responses.",
+    longDescription:
+      "Advanced customer support automation using natural language processing and machine learning for personalized responses.",
     image: "/ecommerce.jpg",
     category: "AI/ML",
     featured: true,
@@ -67,74 +77,77 @@ export function FourthProjects() {
   const sectionRef = useRef(null);
   const [activeProject, setActiveProject] = useState<number | null>(null);
 
-  useGSAP(() => {
-    const tl = gsap.timeline();
+  useGSAP(
+    () => {
+      const tl = gsap.timeline();
 
-    // Background animations
-    tl.from(".pattern-bg", {
-      opacity: 0,
-      duration: 1,
-      ease: "power2.out",
-    });
-
-    // Title animations
-    tl.from(".section-title", {
-      opacity: 0,
-      y: 30,
-      duration: 0.8,
-      ease: "back.out(1.7)",
-    });
-
-    // Project cards stagger animation
-    tl.from(".project-card", {
-      opacity: 0,
-      y: 50,
-      stagger: 0.2,
-      duration: 0.8,
-      ease: "power2.out",
-    });
-
-    // Metrics counter animation
-    gsap.utils.toArray(".metric-value").forEach((value: any) => {
-      const metric = value.getAttribute("data-value");
-      gsap.from(value, {
-        innerText: 0,
-        duration: 2,
-        snap: { innerText: 1 },
+      // Background animations
+      tl.from(".pattern-bg", {
+        opacity: 0,
+        duration: 1,
         ease: "power2.out",
-        scrollTrigger: {
-          trigger: value,
-          start: "top center+=100",
+      });
+
+      // Title animations
+      tl.from(".section-title", {
+        opacity: 0,
+        y: 30,
+        duration: 0.8,
+        ease: "back.out(1.7)",
+      });
+
+      // Project cards stagger animation
+      tl.from(".project-card", {
+        opacity: 0,
+        y: 50,
+        stagger: 0.2,
+        duration: 0.8,
+        ease: "power2.out",
+      });
+
+      // Metrics counter animation
+      gsap.utils.toArray(".metric-value").forEach((value: any) => {
+        gsap.from(value, {
+          innerText: 0,
+          duration: 2,
+          snap: { innerText: 1 },
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: value,
+            start: "top center+=100",
+          },
+        });
+      });
+
+      // Floating icons animation
+      gsap.to(".floating-icon", {
+        y: -10,
+        duration: 2,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+        stagger: {
+          each: 0.5,
+          from: "random",
         },
       });
-    });
-
-    // Floating icons animation
-    gsap.to(".floating-icon", {
-      y: -10,
-      duration: 2,
-      repeat: -1,
-      yoyo: true,
-      ease: "sine.inOut",
-      stagger: {
-        each: 0.5,
-        from: "random",
-      },
-    });
-
-  }, { scope: sectionRef });
+    },
+    { scope: sectionRef }
+  );
 
   // Handle hover and click animations
   const { contextSafe } = useGSAP({ scope: sectionRef });
 
-  const handleHover = contextSafe((element: HTMLElement, isEntering: boolean) => {
-    gsap.to(element, {
-      scale: isEntering ? 1.02 : 1,
-      y: isEntering ? -5 : 0,
-      duration: 0.4,
-      ease: isEntering ? "power2.out" : "power2.in",
-    });
-  });
+  const handleHover = contextSafe(
+    (element: HTMLElement, isEntering: boolean) => {
+      gsap.to(element, {
+        scale: isEntering ? 1.02 : 1,
+        y: isEntering ? -5 : 0,
+        duration: 0.4,
+        ease: isEntering ? "power2.out" : "power2.in",
+      });
+    }
+  );
 
   const handleProjectClick = contextSafe((index: number) => {
     if (activeProject === index) {
@@ -156,7 +169,7 @@ export function FourthProjects() {
   });
 
   return (
-    <section 
+    <section
       ref={sectionRef}
       className="py-20 bg-background dark:bg-primary theme-transition relative overflow-hidden"
     >
@@ -172,7 +185,8 @@ export function FourthProjects() {
             Featured Projects
           </h2>
           <p className="text-lg text-primary/80 dark:text-background/80 max-w-2xl mx-auto">
-            A showcase of my latest work combining innovative design with cutting-edge technology
+            A showcase of my latest work combining innovative design with
+            cutting-edge technology
           </p>
         </div>
 
@@ -181,7 +195,9 @@ export function FourthProjects() {
             <div
               key={project.title}
               className={`project-card project-card-${index} cursor-pointer ${
-                activeProject !== null && activeProject !== index ? 'opacity-50' : ''
+                activeProject !== null && activeProject !== index
+                  ? "opacity-50"
+                  : ""
               }`}
               onClick={() => handleProjectClick(index)}
             >
@@ -219,13 +235,18 @@ export function FourthProjects() {
                     </div>
 
                     <p className="text-primary/80 dark:text-background/80 mb-6">
-                      {activeProject === index ? project.longDescription : project.description}
+                      {activeProject === index
+                        ? project.longDescription
+                        : project.description}
                     </p>
 
                     <div className="grid grid-cols-3 gap-4 mb-6">
                       {Object.entries(project.metrics).map(([key, value]) => (
                         <div key={key} className="text-center">
-                          <div className="metric-value text-xl font-bold text-secondary dark:text-accent" data-value={value}>
+                          <div
+                            className="metric-value text-xl font-bold text-secondary dark:text-accent"
+                            data-value={value}
+                          >
                             {value}
                           </div>
                           <div className="text-sm text-primary/60 dark:text-background/60 capitalize">
@@ -289,4 +310,4 @@ export function FourthProjects() {
       </div>
     </section>
   );
-} 
+}

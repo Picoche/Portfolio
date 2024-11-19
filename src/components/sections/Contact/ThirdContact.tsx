@@ -20,21 +20,11 @@ import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
 import { z } from "zod";
 import { useContactForm } from "@/hooks/use-contact-form";
+import { contactFormSchema as schema } from "../../../lib/validations/contact";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const contactFormSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.string().email("Invalid email address"),
-  subject: z.string().min(5, "Subject must be at least 5 characters"),
-  message: z.string().min(20, "Message must be at least 20 characters"),
-});
-
-type ContactForm = z.infer<typeof contactFormSchema>;
-
-interface FormErrors {
-  [key: string]: string;
-}
+type ContactForm = z.infer<typeof schema>;
 
 const contactInfo = {
   email: "contact@example.com",
@@ -79,9 +69,7 @@ export function ThirdContact() {
     register,
     formState: { errors },
     trigger,
-    getValues,
   } = form;
-  const { toast } = useToast();
 
   useGSAP(
     () => {
@@ -174,7 +162,9 @@ export function ThirdContact() {
   );
 
   const validateStep = async (step: number) => {
-    const currentFields = steps[step].fields as Array<keyof ContactForm>;
+    const currentFields = steps[step].fields as Array<
+      keyof (typeof schema)["shape"]
+    >;
     const result = await trigger(currentFields);
     return result;
   };
