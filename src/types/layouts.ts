@@ -6,3 +6,5 @@ export type SectionType =
   | 'experience'
   | 'education'
   | 'skills'
+  | 'testimonials'
+  | 'contact'

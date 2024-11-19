@@ -1,6 +1,15 @@
 import { useRef, useState } from "react";
 import { gsap } from "gsap";
-import { GraduationCap, Award, Book, Star, Users, Trophy, Brain, MapPin, ChevronRight } from "lucide-react";
+import {
+  GraduationCap,
+  Book,
+  Star,
+  Users,
+  Trophy,
+  Brain,
+  MapPin,
+  ChevronRight,
+} from "lucide-react";
 import { useGSAP } from "@gsap/react";
 
 const educationData = [
@@ -14,21 +23,22 @@ const educationData = [
     achievements: [
       { icon: Trophy, text: "Department Honors" },
       { icon: Brain, text: "2 Research Publications" },
-      { icon: Users, text: "AI Research Group Lead" }
+      { icon: Users, text: "AI Research Group Lead" },
     ],
     keySkills: [
       "Deep Learning",
       "Neural Networks",
       "Natural Language Processing",
       "Computer Vision",
-      "Research Methods"
+      "Research Methods",
     ],
-    description: "Conducted groundbreaking research in AI applications, focusing on deep learning architectures and natural language understanding.",
+    description:
+      "Conducted groundbreaking research in AI applications, focusing on deep learning architectures and natural language understanding.",
     highlights: [
       "Led a team of 5 researchers in developing novel NLP algorithms",
       "Published papers in top-tier conferences with 100+ citations",
-      "Developed AI models achieving 95%+ accuracy in image recognition"
-    ]
+      "Developed AI models achieving 95%+ accuracy in image recognition",
+    ],
   },
   {
     year: "2018",
@@ -40,91 +50,102 @@ const educationData = [
     achievements: [
       { icon: Star, text: "Dean's List All Semesters" },
       { icon: Trophy, text: "Hackathon Champion" },
-      { icon: Users, text: "Club President" }
+      { icon: Users, text: "Club President" },
     ],
     keySkills: [
       "Software Architecture",
       "Data Structures",
       "Algorithms",
       "Web Development",
-      "Database Design"
+      "Database Design",
     ],
-    description: "Built a strong foundation in software engineering principles while leading multiple innovative projects.",
+    description:
+      "Built a strong foundation in software engineering principles while leading multiple innovative projects.",
     highlights: [
       "Developed full-stack applications used by 1000+ students",
       "Led winning team in MIT's annual hackathon",
-      "Mentored 20+ junior students in programming"
-    ]
-  }
+      "Mentored 20+ junior students in programming",
+    ],
+  },
 ];
 
 export function FourthEducation() {
   const sectionRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState<number>(0);
 
-  useGSAP(() => {
-    const tl = gsap.timeline();
+  useGSAP(
+    () => {
+      const tl = gsap.timeline();
 
-    // Background pattern animation
-    tl.from(".pattern-bg", {
-      opacity: 0,
-      duration: 1,
-      ease: "power2.out",
-    });
-
-    // Title animation
-    tl.from(".section-title", {
-      opacity: 0,
-      y: 30,
-      duration: 0.8,
-      ease: "back.out(1.7)",
-    });
-
-    // Navigation animation
-    tl.from(".nav-item", {
-      opacity: 0,
-      x: -30,
-      stagger: 0.2,
-      duration: 0.6,
-      ease: "power2.out",
-    }, "-=0.4");
-
-    // Content animations
-    tl.from(".content-section", {
-      opacity: 0,
-      y: 30,
-      duration: 0.6,
-      ease: "power2.out",
-    }, "-=0.2");
-
-    // Stats counter animation
-    gsap.utils.toArray(".stat-number").forEach((stat: any) => {
-      gsap.from(stat, {
-        innerText: 0,
-        duration: 2,
-        snap: { innerText: 1 },
+      // Background pattern animation
+      tl.from(".pattern-bg", {
+        opacity: 0,
+        duration: 1,
         ease: "power2.out",
-        scrollTrigger: {
-          trigger: stat,
-          start: "top center+=100",
+      });
+
+      // Title animation
+      tl.from(".section-title", {
+        opacity: 0,
+        y: 30,
+        duration: 0.8,
+        ease: "back.out(1.7)",
+      });
+
+      // Navigation animation
+      tl.from(
+        ".nav-item",
+        {
+          opacity: 0,
+          x: -30,
+          stagger: 0.2,
+          duration: 0.6,
+          ease: "power2.out",
+        },
+        "-=0.4"
+      );
+
+      // Content animations
+      tl.from(
+        ".content-section",
+        {
+          opacity: 0,
+          y: 30,
+          duration: 0.6,
+          ease: "power2.out",
+        },
+        "-=0.2"
+      );
+
+      // Stats counter animation
+      gsap.utils.toArray(".stat-number").forEach((stat: any) => {
+        gsap.from(stat, {
+          innerText: 0,
+          duration: 2,
+          snap: { innerText: 1 },
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: stat,
+            start: "top center+=100",
+          },
+        });
+      });
+
+      // Floating icons animation
+      gsap.to(".floating-icon", {
+        y: -5,
+        duration: 2,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+        stagger: {
+          each: 0.5,
+          from: "random",
         },
       });
-    });
-
-    // Floating icons animation
-    gsap.to(".floating-icon", {
-      y: -5,
-      duration: 2,
-      repeat: -1,
-      yoyo: true,
-      ease: "sine.inOut",
-      stagger: {
-        each: 0.5,
-        from: "random",
-      },
-    });
-
-  }, { scope: sectionRef });
+    },
+    { scope: sectionRef }
+  );
 
   // Handle content change animation
   const { contextSafe } = useGSAP({ scope: sectionRef });
@@ -144,12 +165,12 @@ export function FourthEducation() {
           duration: 0.5,
           ease: "power2.out",
         });
-      }
+      },
     });
   });
 
   return (
-    <section 
+    <section
       ref={sectionRef}
       className="py-20 bg-background dark:bg-primary theme-transition relative overflow-hidden"
     >
@@ -169,43 +190,51 @@ export function FourthEducation() {
           <div className="flex flex-col md:flex-row gap-4 mb-12">
             {educationData.map((education, index) => (
               <button
-              key={index}
-              className={`nav-item flex-1 p-6 rounded-xl border-2 ${
-                activeIndex === index
-                  ? 'border-secondary dark:border-accent bg-white/90 dark:bg-primary-dark shadow-lg'
-                  : 'border-secondary/20 dark:border-accent/20 hover:border-secondary/50 dark:hover:border-accent/50 bg-white/80 dark:bg-primary-dark/80'
-              }`}
-              onClick={() => handleContentChange(index)}
-            >
+                key={index}
+                className={`nav-item flex-1 p-6 rounded-xl border-2 ${
+                  activeIndex === index
+                    ? "border-secondary dark:border-accent bg-white/90 dark:bg-primary-dark shadow-lg"
+                    : "border-secondary/20 dark:border-accent/20 hover:border-secondary/50 dark:hover:border-accent/50 bg-white/80 dark:bg-primary-dark/80"
+                }`}
+                onClick={() => handleContentChange(index)}
+              >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-4">
-                    <div className={`p-3 rounded-lg transition-colors duration-300 ${
-                      activeIndex === index
-                        ? 'bg-secondary/10 dark:bg-accent/10'
-                        : 'bg-secondary/5 dark:bg-accent/5'
-                    }`}>
-                      <GraduationCap className={`w-6 h-6 transition-colors duration-300 ${
+                    <div
+                      className={`p-3 rounded-lg transition-colors duration-300 ${
                         activeIndex === index
-                          ? 'text-secondary dark:text-accent'
-                          : 'text-secondary/70 dark:text-accent/70'
-                      }`} />
+                          ? "bg-secondary/10 dark:bg-accent/10"
+                          : "bg-secondary/5 dark:bg-accent/5"
+                      }`}
+                    >
+                      <GraduationCap
+                        className={`w-6 h-6 transition-colors duration-300 ${
+                          activeIndex === index
+                            ? "text-secondary dark:text-accent"
+                            : "text-secondary/70 dark:text-accent/70"
+                        }`}
+                      />
                     </div>
                     <div className="text-left">
-                      <p className={`font-semibold text-lg mb-1 transition-colors duration-300 ${
-                        activeIndex === index
-                          ? 'text-primary dark:text-background'
-                          : 'text-primary/80 dark:text-background/80'
-                      }`}>
-                        {education.degree.split(' ').slice(-2).join(' ')}
+                      <p
+                        className={`font-semibold text-lg mb-1 transition-colors duration-300 ${
+                          activeIndex === index
+                            ? "text-primary dark:text-background"
+                            : "text-primary/80 dark:text-background/80"
+                        }`}
+                      >
+                        {education.degree.split(" ").slice(-2).join(" ")}
                       </p>
                       <p className="text-sm text-primary/60 dark:text-background/60">
                         {education.institution} • {education.year}
                       </p>
                     </div>
                   </div>
-                  <ChevronRight className={`w-5 h-5 text-secondary dark:text-accent transition-transform duration-300 ${
-                    activeIndex === index ? 'rotate-90' : ''
-                  }`} />
+                  <ChevronRight
+                    className={`w-5 h-5 text-secondary dark:text-accent transition-transform duration-300 ${
+                      activeIndex === index ? "rotate-90" : ""
+                    }`}
+                  />
                 </div>
               </button>
             ))}
@@ -265,17 +294,19 @@ export function FourthEducation() {
                     Key Achievements
                   </h4>
                   <div className="grid gap-4">
-                    {educationData[activeIndex].achievements.map((achievement, i) => (
-                      <div
-                        key={i}
-                        className="flex items-center gap-3 p-3 rounded-lg bg-secondary/5 dark:bg-accent/5"
-                      >
-                        <achievement.icon className="w-5 h-5 text-secondary dark:text-accent" />
-                        <span className="text-primary/80 dark:text-background/80">
-                          {achievement.text}
-                        </span>
-                      </div>
-                    ))}
+                    {educationData[activeIndex].achievements.map(
+                      (achievement, i) => (
+                        <div
+                          key={i}
+                          className="flex items-center gap-3 p-3 rounded-lg bg-secondary/5 dark:bg-accent/5"
+                        >
+                          <achievement.icon className="w-5 h-5 text-secondary dark:text-accent" />
+                          <span className="text-primary/80 dark:text-background/80">
+                            {achievement.text}
+                          </span>
+                        </div>
+                      )
+                    )}
                   </div>
                 </div>
 
@@ -303,4 +334,4 @@ export function FourthEducation() {
       </div>
     </section>
   );
-} 
+}

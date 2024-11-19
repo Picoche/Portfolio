@@ -91,6 +91,7 @@ Key Conventions
 5. Implement proper loading states.
 6. Follow accessibility guidelines.
 7. Maintain consistent component structure.
+8. When generating mockup data, use extensive, realistic values and avoid using Lorem Ipsum.
 
 API Documentation
 - Next.js: https://nextjs.org/docs

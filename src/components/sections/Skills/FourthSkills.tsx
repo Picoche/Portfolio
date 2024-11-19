@@ -24,14 +24,21 @@ const skillsData: SkillCategory[] = [
   {
     name: "Frontend",
     icon: Code,
-    description: "Creating responsive and interactive user interfaces with modern web technologies",
+    description:
+      "Creating responsive and interactive user interfaces with modern web technologies",
     mainSkills: [
       { name: "React/Next.js", level: "Expert", experience: "4+ years" },
       { name: "TypeScript", level: "Expert", experience: "3+ years" },
       { name: "Tailwind CSS", level: "Expert", experience: "3+ years" },
       { name: "GSAP", level: "Advanced", experience: "2+ years" },
     ],
-    relatedTech: ["Redux", "Framer Motion", "Webpack", "Jest", "React Testing Library"],
+    relatedTech: [
+      "Redux",
+      "Framer Motion",
+      "Webpack",
+      "Jest",
+      "React Testing Library",
+    ],
     metrics: {
       projects: 30,
       experience: "4+ years",
@@ -91,52 +98,54 @@ const skillsData: SkillCategory[] = [
   },
 ];
 
-const levelColors = {
-  Expert: "text-secondary dark:text-accent",
-  Advanced: "text-secondary/80 dark:text-accent/80",
-  Intermediate: "text-secondary/60 dark:text-accent/60",
-};
-
 export function FourthSkills() {
   const sectionRef = useRef(null);
   const [activeCard, setActiveCard] = useState<number | null>(null);
 
-  useGSAP(() => {
-    const tl = gsap.timeline();
+  useGSAP(
+    () => {
+      const tl = gsap.timeline({
+        defaults: {
+          ease: "power2.out",
+        },
+      });
 
-    // Title animation
-    tl.from(".section-title", {
-      opacity: 0,
-      y: 30,
-      duration: 0.6,
-      ease: "back.out(1.7)",
-    });
+      tl.from(".section-title", {
+        y: 20,
+        opacity: 0,
+        duration: 0.6,
+      });
 
-    // Cards stagger animation
-    tl.from(".skill-card", {
-      opacity: 0,
-      y: 50,
-      stagger: 0.2,
-      duration: 0.8,
-      ease: "power2.out",
-    });
+      tl.from(
+        ".skill-card",
+        {
+          opacity: 0,
+          scale: 0.8,
+          duration: 0.6,
+          stagger: {
+            amount: 0.4,
+            grid: [2, 2],
+            from: "edges",
+          },
+        },
+        "-=0.2"
+      );
 
-    // Floating icons animation
-    gsap.to(".floating-icon", {
-      y: -5,
-      duration: 2,
-      repeat: -1,
-      yoyo: true,
-      ease: "sine.inOut",
-      stagger: {
-        each: 0.5,
-        from: "random",
-      },
-    });
+      gsap.to(".floating-icon", {
+        y: -3,
+        duration: 1.5,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+        stagger: {
+          each: 0.2,
+          from: "random",
+        },
+      });
+    },
+    { scope: sectionRef }
+  );
 
-  }, { scope: sectionRef });
-
-  // Handle card interactions
   const { contextSafe } = useGSAP({ scope: sectionRef });
 
   const handleCardClick = contextSafe((index: number) => {
@@ -145,19 +154,22 @@ export function FourthSkills() {
       gsap.to(".skill-card", {
         scale: 1,
         opacity: 1,
-        duration: 0.4,
+        duration: 0.3,
+        ease: "power2.out",
       });
     } else {
       setActiveCard(index);
       gsap.to(".skill-card", {
         scale: 0.95,
         opacity: 0.5,
-        duration: 0.4,
+        duration: 0.3,
+        ease: "power2.out",
       });
       gsap.to(`.skill-card-${index}`, {
         scale: 1,
         opacity: 1,
-        duration: 0.4,
+        duration: 0.3,
+        ease: "power2.out",
       });
     }
   });
@@ -175,12 +187,14 @@ export function FourthSkills() {
           Skills & Expertise
         </h2>
 
-        <div className="skills-grid grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {skillsData.map((category, index) => (
             <div
               key={index}
-              className={`skill-card skill-card-${index} bg-white dark:bg-primary-dark rounded-2xl p-8 shadow-lg border border-secondary/20 dark:border-accent/20 cursor-pointer transition-all duration-300 ${
-                activeCard !== null && activeCard !== index ? 'opacity-50 scale-95' : ''
+              className={`skill-card skill-card-${index} bg-white dark:bg-primary-dark rounded-2xl p-8 shadow-lg border border-secondary/20 dark:border-accent/20 cursor-pointer ${
+                activeCard !== null && activeCard !== index
+                  ? "opacity-50 scale-95"
+                  : ""
               }`}
               onClick={() => handleCardClick(index)}
             >
@@ -198,71 +212,67 @@ export function FourthSkills() {
                 </div>
               </div>
 
-              <div className="space-y-6">
-                {/* Main skills */}
-                <div className="grid grid-cols-2 gap-4">
-                  {category.mainSkills.map((skill, skillIndex) => (
-                    <div key={skillIndex} className="space-y-1">
-                      <h4 className="font-medium text-primary dark:text-background">
-                        {skill.name}
-                      </h4>
-                      <div className="flex items-center gap-2">
-                        <span className={`text-sm ${levelColors[skill.level]}`}>
-                          {skill.level}
-                        </span>
-                        <span className="text-xs text-primary/40 dark:text-background/40">
-                          • {skill.experience}
-                        </span>
-                      </div>
+              {/* Main skills */}
+              <div className="grid grid-cols-2 gap-4">
+                {category.mainSkills.map((skill, skillIndex) => (
+                  <div key={skillIndex}>
+                    <h4 className="font-medium text-primary dark:text-background">
+                      {skill.name}
+                    </h4>
+                    <div className="flex items-center gap-2 text-primary/60 dark:text-background/60">
+                      <span className="text-secondary dark:text-accent">
+                        {skill.level}
+                      </span>
+                      <span>• {skill.experience}</span>
                     </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Related technologies */}
+              <div className="mt-6">
+                <h4 className="font-medium text-primary dark:text-background mb-2">
+                  Related Technologies
+                </h4>
+                <div className="flex flex-wrap gap-2">
+                  {category.relatedTech.map((tech, techIndex) => (
+                    <span
+                      key={techIndex}
+                      className="px-2 py-1 text-xs rounded-full bg-secondary/10 dark:bg-accent/10 text-secondary dark:text-accent"
+                    >
+                      {tech}
+                    </span>
                   ))}
                 </div>
+              </div>
 
-                {/* Related technologies */}
-                <div>
-                  <h4 className="text-sm font-medium text-primary/60 dark:text-background/60 mb-2">
-                    Related Technologies
-                  </h4>
-                  <div className="flex flex-wrap gap-2">
-                    {category.relatedTech.map((tech, techIndex) => (
-                      <span
-                        key={techIndex}
-                        className="px-2 py-1 text-xs rounded-full bg-secondary/5 dark:bg-accent/5 text-secondary dark:text-accent"
-                      >
-                        {tech}
-                      </span>
-                    ))}
+              {/* Metrics */}
+              <div className="grid grid-cols-3 gap-4 mt-6 pt-4 border-t border-secondary/10 dark:border-accent/10">
+                <div className="text-center">
+                  <div className="metric-number text-xl font-bold text-secondary dark:text-accent">
+                    {category.metrics.projects}+
+                  </div>
+                  <div className="text-xs text-primary/60 dark:text-background/60">
+                    Projects
                   </div>
                 </div>
-
-                {/* Metrics */}
-                <div className="grid grid-cols-3 gap-4 pt-4 border-t border-secondary/10 dark:border-accent/10">
-                  <div className="text-center">
-                    <div className="metric-number text-xl font-bold text-secondary dark:text-accent">
-                      {category.metrics.projects}+
-                    </div>
-                    <div className="text-xs text-primary/60 dark:text-background/60">
-                      Projects
-                    </div>
+                <div className="text-center">
+                  <div className="text-xl font-bold text-secondary dark:text-accent">
+                    {category.metrics.experience}
                   </div>
-                  <div className="text-center">
-                    <div className="text-xl font-bold text-secondary dark:text-accent">
-                      {category.metrics.experience}
-                    </div>
-                    <div className="text-xs text-primary/60 dark:text-background/60">
-                      Experience
-                    </div>
+                  <div className="text-xs text-primary/60 dark:text-background/60">
+                    Experience
                   </div>
-                  <div className="text-center">
-                    <div className="flex items-center justify-center gap-1">
-                      <Star className="w-4 h-4 text-secondary dark:text-accent" />
-                      <span className="metric-number text-xl font-bold text-secondary dark:text-accent">
-                        {category.metrics.rating}
-                      </span>
-                    </div>
-                    <div className="text-xs text-primary/60 dark:text-background/60">
-                      Rating
-                    </div>
+                </div>
+                <div className="text-center">
+                  <div className="flex items-center justify-center gap-1">
+                    <Star className="w-4 h-4 text-secondary dark:text-accent" />
+                    <span className="metric-number text-xl font-bold text-secondary dark:text-accent">
+                      {category.metrics.rating}
+                    </span>
+                  </div>
+                  <div className="text-xs text-primary/60 dark:text-background/60">
+                    Rating
                   </div>
                 </div>
               </div>
@@ -272,4 +282,4 @@ export function FourthSkills() {
       </div>
     </section>
   );
-} 
+}
