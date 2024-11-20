@@ -103,7 +103,6 @@ export function FourthExperience() {
 
       // Stats counter animation
       gsap.utils.toArray(".stat-number").forEach((stat: any) => {
-        const targetNumber = parseInt(stat.getAttribute('data-value') || '0', 10);
         gsap.from(stat, {
           textContent: 0,
           duration: 2,
