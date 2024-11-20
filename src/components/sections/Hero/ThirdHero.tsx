@@ -141,7 +141,7 @@ export function ThirdHero() {
   return (
     <section
       ref={sectionRef}
-      className="min-h-screen flex items-center justify-center bg-background dark:bg-primary relative overflow-hidden theme-transition"
+      className="min-h-screen flex items-center justify-center bg-background dark:bg-primary relative overflow-hidden py-20 sm:py-32 theme-transition"
     >
       {/* Grid pattern background */}
       <div className="absolute inset-0 bg-grid-pattern opacity-5" />
@@ -149,44 +149,44 @@ export function ThirdHero() {
       {/* Gradient overlay */}
       <div className="gradient-overlay absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-secondary/5" />
 
-      <div className="container mx-auto px-4 py-16 relative z-10">
-        <div className="space-y-12">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
+        <div className="space-y-8 sm:space-y-12">
           {/* Header section */}
-          <div className="text-center max-w-3xl mx-auto">
-            <span className="status-badge inline-block px-4 py-2 rounded-full bg-secondary/10 dark:bg-secondary/20 text-secondary dark:text-accent text-sm font-medium mb-6">
+          <div className="text-center max-w-3xl mx-auto px-4">
+            <span className="status-badge inline-block px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-secondary/10 dark:bg-secondary/20 text-secondary dark:text-accent text-sm font-medium mb-4 sm:mb-6">
               Full Stack Developer
             </span>
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 font-heading">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6 font-heading">
               {"John Doe".split(" ").map((word, i) => (
-                <span key={i} className="heading-word inline-block mr-4 bg-gradient-to-r from-primary via-secondary to-accent dark:from-background dark:via-accent dark:to-secondary bg-clip-text text-transparent">
+                <span key={i} className="heading-word inline-block mr-3 sm:mr-4 bg-gradient-to-r from-primary via-secondary to-accent dark:from-background dark:via-accent dark:to-secondary bg-clip-text text-transparent">
                   {word}
                 </span>
               ))}
             </h1>
-            <p className="hero-description text-lg md:text-xl text-primary/80 dark:text-background/80 font-body">
+            <p className="hero-description text-base sm:text-lg md:text-xl text-primary/80 dark:text-background/80 font-body">
               Transforming complex problems into elegant solutions through code
             </p>
           </div>
 
           {/* Skills grid */}
-          <div ref={gridRef} className="skills-grid grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+          <div ref={gridRef} className="skills-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 px-4">
             {skills.map((skill) => (
               <div
                 key={skill.title}
-                className={`skill-card ${skill.color} rounded-2xl p-6 text-background`}
+                className={`skill-card ${skill.color} rounded-2xl p-4 sm:p-6 text-background`}
                 onMouseEnter={(e) => handleCardHover(e.currentTarget, true)}
                 onMouseLeave={(e) => handleCardHover(e.currentTarget, false)}
               >
-                <skill.icon className="w-12 h-12 mb-4" />
-                <h3 className="text-2xl font-bold mb-3 font-heading">
+                <skill.icon className="w-8 h-8 sm:w-12 sm:h-12 mb-3 sm:mb-4" />
+                <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 font-heading">
                   {skill.title}
                 </h3>
-                <p className="font-body mb-4">{skill.description}</p>
-                <div className="flex flex-wrap gap-2">
+                <p className="font-body text-sm sm:text-base mb-3 sm:mb-4">{skill.description}</p>
+                <div className="flex flex-wrap gap-1.5 sm:gap-2">
                   {skill.technologies.map((tech) => (
                     <span
                       key={tech}
-                      className="tech-tag px-3 py-1 bg-background/10 rounded-full text-sm font-medium"
+                      className="tech-tag px-2 sm:px-3 py-1 bg-background/10 rounded-full text-xs sm:text-sm font-medium"
                     >
                       {tech}
                     </span>
@@ -197,7 +197,7 @@ export function ThirdHero() {
           </div>
 
           {/* CTA section */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-12">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mt-8 sm:mt-12 px-4">
             <Button
               asChild
               className="hero-button group bg-secondary hover:bg-accent text-background"

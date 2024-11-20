@@ -131,7 +131,7 @@ export function FourthHero() {
   return (
     <section 
       ref={sectionRef} 
-      className="min-h-screen flex items-center justify-center bg-background dark:bg-primary relative overflow-hidden theme-transition"
+      className="min-h-screen flex items-center justify-center bg-background dark:bg-primary relative overflow-hidden py-20 sm:py-32 theme-transition"
     >
       {/* Animated gradient background */}
       <div 
@@ -152,16 +152,16 @@ export function FourthHero() {
         }}
       />
 
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12">
           {/* Left Column - Introduction */}
-          <div ref={textRef} className="lg:w-1/2 space-y-6">
-            <span className="status-badge inline-flex items-center px-3 py-1 text-sm font-medium rounded-full bg-secondary/10 text-secondary dark:bg-accent/10 dark:text-accent">
+          <div ref={textRef} className="lg:w-1/2 space-y-4 sm:space-y-6 text-center lg:text-left">
+            <span className="status-badge inline-flex items-center px-3 sm:px-4 py-1.5 text-sm font-medium rounded-full bg-secondary/10 text-secondary dark:bg-accent/10 dark:text-accent">
               <span className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse" />
               Open to opportunities
             </span>
 
-            <h1 className="text-4xl lg:text-6xl font-bold font-heading">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold font-heading">
               <span className="text-primary dark:text-background animate-text">
                 Hello, I&apos;m{" "}
               </span>
@@ -170,17 +170,17 @@ export function FourthHero() {
               </span>
             </h1>
 
-            <h2 className="text-xl lg:text-2xl text-secondary dark:text-accent font-accent">
+            <h2 className="text-lg sm:text-xl lg:text-2xl text-secondary dark:text-accent font-accent">
               Full Stack Developer & DevOps Engineer
             </h2>
 
-            <p className="text-primary/80 dark:text-background/80 font-body text-lg">
+            <p className="text-base sm:text-lg text-primary/80 dark:text-background/80 font-body max-w-xl mx-auto lg:mx-0">
               Specializing in building exceptional digital experiences that
               combine elegant frontend designs with robust backend
               architectures.
             </p>
 
-            <div className="flex gap-4 pt-4">
+            <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-3 sm:gap-4 pt-2 sm:pt-4">
               <Button
                 asChild
                 className="group bg-secondary hover:bg-accent text-background transition-all duration-300"
@@ -203,7 +203,7 @@ export function FourthHero() {
               </Button>
             </div>
 
-            <div className="flex gap-4 pt-4">
+            <div className="flex justify-center lg:justify-start gap-4 pt-2 sm:pt-4">
               <Link
                 href="https://github.com"
                 target="_blank"
@@ -224,22 +224,22 @@ export function FourthHero() {
           </div>
 
           {/* Right Column - Skill Cards */}
-          <div ref={cardsRef} className="lg:w-1/2">
-            <div className="grid grid-cols-2 gap-4">
+          <div ref={cardsRef} className="lg:w-1/2 w-full max-w-lg lg:max-w-none mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               {skillCards.map(card => (
                 <div
                   key={card.title}
-                  className={`skill-card bg-gradient-to-br ${card.gradient} p-6 rounded-xl text-background shadow-lg transform transition-transform duration-300`}
+                  className={`skill-card bg-gradient-to-br ${card.gradient} p-4 sm:p-6 rounded-xl text-background shadow-lg transform transition-transform duration-300`}
                   onMouseEnter={(e) => handleCardHover(e.currentTarget, true)}
                   onMouseLeave={(e) => handleCardHover(e.currentTarget, false)}
                 >
-                  <card.icon size={32} className="mb-4" />
-                  <h3 className="text-xl font-bold mb-2 font-heading">
+                  <card.icon size={24} className="mb-3 sm:mb-4" />
+                  <h3 className="text-lg sm:text-xl font-bold mb-2 font-heading">
                     {card.title}
                   </h3>
                   <div className="space-y-1">
                     {card.skills.map((skill) => (
-                      <p key={skill} className="font-body text-sm">
+                      <p key={skill} className="font-body text-xs sm:text-sm">
                         {skill}
                       </p>
                     ))}

@@ -133,39 +133,39 @@ export function SecondHero() {
   return (
     <section
       ref={sectionRef}
-      className="min-h-screen flex items-center justify-center bg-background dark:bg-primary relative overflow-hidden theme-transition"
+      className="min-h-screen flex items-center justify-center bg-background dark:bg-primary relative overflow-hidden py-20 sm:py-32 theme-transition"
       onMouseMove={(e) => handleMouseMove(e as unknown as MouseEvent)}
     >
       <div className="gradient-bg absolute inset-0 bg-gradient-to-br from-accent/10 via-transparent to-secondary/10 dark:from-accent/5 dark:to-secondary/5 pointer-events-none" />
 
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div className="text-left space-y-6">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          <div className="text-left space-y-6 max-w-xl mx-auto lg:mx-0">
             <div className="inline-block">
-              <span className="status-badge px-4 py-2 rounded-full bg-secondary/10 dark:bg-secondary/20 text-secondary dark:text-accent text-sm font-medium">
+              <span className="status-badge px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-secondary/10 dark:bg-secondary/20 text-secondary dark:text-accent text-sm font-medium">
                 Available for work
               </span>
             </div>
 
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold font-heading text-primary dark:text-background">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-heading text-primary dark:text-background">
               {"Crafting Digital".split(" ").map((word, i) => (
-                <span key={i} className="heading-word inline-block mr-4">
+                <span key={i} className="heading-word inline-block mr-3 sm:mr-4">
                   {word}
                 </span>
               ))}
               <br />
-              <span className="heading-word inline-block text-secondary dark:text-accent">
+              <span className="heading-word inline-block text-secondary dark:text-accent mt-2">
                 Experiences
               </span>
             </h1>
 
-            <p className="hero-description text-lg text-primary/80 dark:text-background/80 font-body max-w-md">
+            <p className="hero-description text-base sm:text-lg text-primary/80 dark:text-background/80 font-body max-w-md">
               Full-stack developer specializing in building exceptional digital
               experiences. Currently focused on creating accessible,
               human-centered products.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
               <Button
                 asChild
                 className="hero-button bg-primary hover:bg-secondary text-background dark:bg-background dark:text-primary dark:hover:bg-accent dark:hover:text-background"
@@ -185,11 +185,11 @@ export function SecondHero() {
             </div>
           </div>
 
-          <div className="parallax-wrapper relative">
+          <div className="parallax-wrapper relative mt-8 lg:mt-0">
             <div className="decorative-blur absolute -inset-4 bg-gradient-to-r from-secondary to-accent opacity-30 blur-3xl dark:opacity-20" />
 
             <div ref={imageRef} className="relative">
-              <div className="image-wrapper w-full aspect-square max-w-md mx-auto">
+              <div className="image-wrapper w-full aspect-square max-w-sm sm:max-w-md mx-auto">
                 {/* Rotating gradient border with dark mode support */}
                 <div className="image-gradient-border absolute inset-0 bg-gradient-to-r from-secondary via-accent to-secondary dark:from-accent dark:via-secondary dark:to-accent rounded-2xl opacity-50" />
                 
