@@ -103,6 +103,7 @@ export function FourthExperience() {
 
       // Stats counter animation
       gsap.utils.toArray(".stat-number").forEach((stat: any) => {
+        const targetNumber = parseInt(stat.getAttribute('data-value') || '0', 10);
         gsap.from(stat, {
           textContent: 0,
           duration: 2,
@@ -159,13 +160,13 @@ export function FourthExperience() {
       // Floating elements animation
       gsap.to(".floating-element", {
         y: -10,
-        duration: "random(2, 3)",
+        duration: 2.5,
         repeat: -1,
         yoyo: true,
         ease: "sine.inOut",
         stagger: {
           each: 0.2,
-          from: "random",
+          from: 0,
         },
       });
     },
@@ -185,6 +186,10 @@ export function FourthExperience() {
             <div
               key={i}
               className="floating-element w-4 h-4 rounded-full bg-secondary/20 dark:bg-accent/20"
+              style={{ 
+                animationDelay: `${i * 0.1}s`,
+                transform: `translateY(${Math.floor(i % 3) * 10}px)`
+              }}
             />
           ))}
         </div>
@@ -259,7 +264,10 @@ export function FourthExperience() {
                   {/* Stats grid */}
                   <div className="grid grid-cols-3 gap-4">
                     <div className="stat-card p-4 rounded-xl bg-secondary/5 dark:bg-accent/5">
-                      <div className="stat-number text-3xl font-bold text-secondary dark:text-accent">
+                      <div 
+                        className="stat-number text-3xl font-bold text-secondary dark:text-accent"
+                        data-value={experience.stats.projects}
+                      >
                         {experience.stats.projects}
                       </div>
                       <div className="text-sm text-primary/60 dark:text-background/60">
@@ -267,7 +275,10 @@ export function FourthExperience() {
                       </div>
                     </div>
                     <div className="stat-card p-4 rounded-xl bg-secondary/5 dark:bg-accent/5">
-                      <div className="stat-number text-3xl font-bold text-secondary dark:text-accent">
+                      <div 
+                        className="stat-number text-3xl font-bold text-secondary dark:text-accent"
+                        data-value={experience.stats.teamSize}
+                      >
                         {experience.stats.teamSize}
                       </div>
                       <div className="text-sm text-primary/60 dark:text-background/60">

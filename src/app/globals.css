@@ -164,3 +164,24 @@ body {
 .animate-gradient-xy {
   animation: gradient-xy 15s ease infinite;
 }
+
+.mapboxgl-map {
+  @apply font-sans;
+}
+
+.mapboxgl-ctrl-logo {
+  @apply hidden !important;
+}
+
+.mapboxgl-ctrl-bottom-right {
+  @apply hidden;
+}
+
+/* Dark mode styles for the map */
+.dark .mapboxgl-map {
+  filter: brightness(0.8) invert(1) contrast(1.2) hue-rotate(180deg) saturate(0.8);
+}
+
+.dark .mapboxgl-marker {
+  filter: invert(1) hue-rotate(180deg);
+}

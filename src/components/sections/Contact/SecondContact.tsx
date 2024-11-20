@@ -17,11 +17,13 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 import { useContactForm } from "@/hooks/use-contact-form";
+import { Map } from "@/components/ui/map";
 
 const contactInfo = {
   email: "contact@example.com",
   phone: "+1 (555) 123-4567",
   location: "San Francisco, CA",
+  coordinates: [-122.4194, 37.7749] as [number, number],
   availability: {
     days: "Monday - Friday",
     hours: "9:00 AM - 6:00 PM",
@@ -356,14 +358,16 @@ export function SecondContact() {
               </div>
             </div>
 
-            {/* Map placeholder - To be replaced with actual map integration */}
+            {/* Map integration (Make sure to set the MAPBOX_TOKEN in your .env.local file) */}
             <div
               ref={mapRef}
-              className="h-[300px] bg-secondary/10 dark:bg-accent/10 rounded-2xl overflow-hidden"
+              className="h-[300px] sm:h-[400px] rounded-2xl overflow-hidden shadow-lg border border-secondary/20 dark:border-accent/20"
             >
-              <div className="w-full h-full flex items-center justify-center text-primary/60 dark:text-background/60">
-                Map Integration Coming Soon
-              </div>
+              <Map 
+                center={contactInfo.coordinates}
+                zoom={13}
+                markerColor="var(--secondary)"
+              />
             </div>
           </div>
         </div>
