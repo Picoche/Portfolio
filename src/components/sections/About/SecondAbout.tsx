@@ -82,7 +82,7 @@ export function SecondAbout() {
   return (
     <section 
       ref={sectionRef}
-      className="py-20 bg-background dark:bg-primary theme-transition"
+      className="py-20 bg-slate-100"
     >
       {/* Gradient background */}
       <div className="gradient-bg absolute inset-0 bg-gradient-to-br from-secondary/10 via-transparent to-accent/10 dark:from-accent/5 dark:to-secondary/5" />

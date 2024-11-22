@@ -178,7 +178,7 @@ export function ThirdContact() {
   return (
     <section
       ref={sectionRef}
-      className="py-20 bg-background dark:bg-primary theme-transition relative overflow-hidden min-h-screen"
+      className="py-20 bg-slate-100 relative overflow-hidden min-h-screen"
     >
       {/* Background pattern */}
       <div className="pattern-bg absolute inset-0">

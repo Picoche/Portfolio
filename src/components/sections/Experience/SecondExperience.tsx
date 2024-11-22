@@ -152,7 +152,7 @@ export function SecondExperience() {
   return (
     <section
       ref={sectionRef}
-      className="py-20 bg-background dark:bg-primary theme-transition relative overflow-hidden"
+      className="py-20 bg-slate-100 relative overflow-hidden"
     >
       {/* Background pattern */}
       <div className="pattern-bg absolute inset-0 bg-grid-pattern opacity-5" />

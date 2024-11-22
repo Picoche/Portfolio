@@ -131,7 +131,7 @@ export function FourthHero() {
   return (
     <section 
       ref={sectionRef} 
-      className="min-h-screen flex items-center justify-center bg-background dark:bg-primary relative overflow-hidden py-20 sm:py-32 theme-transition"
+      className="min-h-screen flex items-center justify-center bg-slate-100 relative overflow-hidden py-20 sm:py-32 theme-transition"
     >
       {/* Animated gradient background */}
       <div 

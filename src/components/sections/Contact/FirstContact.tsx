@@ -70,7 +70,7 @@ export function FirstContact() {
   return (
     <section
       ref={sectionRef}
-      className="py-20 bg-background dark:bg-primary theme-transition"
+      className="py-20 bg-slate-100"
     >
       <div className="container mx-auto px-4">
         <h2 className="section-title text-4xl md:text-5xl font-bold text-center mb-16 text-primary dark:text-background">

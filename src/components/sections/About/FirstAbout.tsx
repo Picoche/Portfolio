@@ -82,7 +82,7 @@ export function FirstAbout() {
   return (
     <section 
       ref={sectionRef}
-      className="py-20 bg-background dark:bg-primary theme-transition"
+      className="py-20 bg-slate-100"
     >
       <div className="container mx-auto px-4">
         <h2 className="about-heading text-3xl md:text-4xl font-bold mb-12 heading-gradient text-center theme-transition">

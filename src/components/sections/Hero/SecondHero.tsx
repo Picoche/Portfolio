@@ -133,7 +133,7 @@ export function SecondHero() {
   return (
     <section
       ref={sectionRef}
-      className="min-h-screen flex items-center justify-center bg-background dark:bg-primary relative overflow-hidden py-20 sm:py-32 theme-transition"
+      className="min-h-screen flex items-center justify-center bg-slate-100 relative overflow-hidden py-20 sm:py-32"
       onMouseMove={(e) => handleMouseMove(e as unknown as MouseEvent)}
     >
       <div className="gradient-bg absolute inset-0 bg-gradient-to-br from-accent/10 via-transparent to-secondary/10 dark:from-accent/5 dark:to-secondary/5 pointer-events-none" />

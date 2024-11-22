@@ -17,7 +17,6 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 import { useContactForm } from "@/hooks/use-contact-form";
-import { Map } from "@/components/ui/map";
 
 const contactInfo = {
   email: "contact@example.com",
@@ -45,7 +44,6 @@ const quickLinks = [
 
 export function SecondContact() {
   const sectionRef = useRef(null);
-  const mapRef = useRef(null);
   const [activeQuickLink, setActiveQuickLink] = useState<number | null>(null);
   const { form, isSubmitting, onSubmit } = useContactForm();
   const {
@@ -117,7 +115,7 @@ export function SecondContact() {
   return (
     <section
       ref={sectionRef}
-      className="py-20 bg-background dark:bg-primary theme-transition relative overflow-hidden min-h-screen"
+      className="py-20 bg-slate-100 relative overflow-hidden min-h-screen"
     >
       {/* Background pattern */}
       <div className="pattern-bg absolute inset-0">
@@ -356,18 +354,6 @@ export function SecondContact() {
                   </div>
                 </div>
               </div>
-            </div>
-
-            {/* Map integration (Make sure to set the MAPBOX_TOKEN in your .env.local file) */}
-            <div
-              ref={mapRef}
-              className="h-[300px] sm:h-[400px] rounded-2xl overflow-hidden shadow-lg border border-secondary/20 dark:border-accent/20"
-            >
-              <Map 
-                center={contactInfo.coordinates}
-                zoom={13}
-                markerColor="var(--secondary)"
-              />
             </div>
           </div>
         </div>
