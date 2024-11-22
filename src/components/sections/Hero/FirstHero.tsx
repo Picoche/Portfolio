@@ -4,27 +4,22 @@ import { ArrowRight, Code, Github, Linkedin, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { useGSAP } from "@gsap/react";
+import { useReducedMotion } from "@/hooks/use-reduced-motion";
 
 export function FirstHero() {
-  const sectionRef = useRef(null);
-  const floatingParticlesRef = useRef(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const floatingParticlesRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const prefersReducedMotion = useReducedMotion();
 
   useGSAP(() => {
-    // Create floating particles
-    const particles = gsap.utils.toArray(".floating-particle");
-    particles.forEach((particle: any) => {
-      gsap.to(particle, {
-        x: "random(-100, 100)",
-        y: "random(-100, 100)",
-        rotation: "random(-180, 180)",
-        duration: "random(3, 6)",
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-      });
-    });
+    if (prefersReducedMotion) return; // Skip animations if user prefers reduced motion
 
-    // Main content animation timeline
+    const section = sectionRef.current;
+    const content = contentRef.current;
+    if (!section || !content) return;
+
+    // Create a single timeline for initial animations
     const tl = gsap.timeline();
 
     // Fade in background
@@ -39,7 +34,7 @@ export function FirstHero() {
       opacity: 0,
       duration: 0.6,
       ease: "bounce.out",
-    });
+    }, "-=0.5");
 
     // Animate code icon with rotation
     tl.from(".code-icon", {
@@ -51,7 +46,7 @@ export function FirstHero() {
     }, "-=0.3");
 
     // Split and animate title text
-    const titleText = gsap.utils.toArray(".hero-title span");
+    const titleText = section.querySelectorAll(".hero-title span");
     tl.from(titleText, {
       opacity: 0,
       y: 50,
@@ -62,7 +57,7 @@ export function FirstHero() {
     }, "-=0.4");
 
     // Animate subtitle with wave effect
-    const subtitleText = gsap.utils.toArray(".hero-subtitle span");
+    const subtitleText = section.querySelectorAll(".hero-subtitle span");
     tl.from(subtitleText, {
       opacity: 0,
       y: "random(-50, 50)", 
@@ -72,7 +67,7 @@ export function FirstHero() {
     }, "-=0.6");
 
     // Animate description with words effect
-    const descriptionWords = gsap.utils.toArray(".hero-description span");
+    const descriptionWords = section.querySelectorAll(".hero-description span");
     tl.from(descriptionWords, {
       opacity: 0,
       x: -20,
@@ -99,7 +94,49 @@ export function FirstHero() {
       duration: 0.6,
       ease: "back.out(1.7)",
     }, "-=0.2");
-  }, { scope: sectionRef }); // Scope all selectors to sectionRef
+
+    // Create floating particles
+    const particles = gsap.utils.toArray(".floating-particle");
+    particles.forEach((particle: any) => {
+      gsap.to(particle, {
+        x: "random(-100, 100)",
+        y: "random(-100, 100)",
+        rotation: "random(-180, 180)",
+        duration: "random(3, 6)",
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
+    });
+
+    // Scroll-triggered animations
+    gsap.to(content, {
+      y: 100,
+      opacity: 0,
+      ease: "power2.in",
+      scrollTrigger: {
+        trigger: section,
+        start: "top top",
+        end: "bottom top",
+        scrub: true,
+      },
+    });
+
+    gsap.from(".floating-particle", {
+      scale: 0,
+      opacity: 0,
+      stagger: 0.1,
+      duration: 1,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: section,
+        start: "top bottom",
+        end: "center center",
+        scrub: true,
+      },
+    });
+
+  }, { scope: sectionRef });
 
   // Handle button hover animations separately with contextSafe
   const { contextSafe } = useGSAP({ scope: sectionRef });
@@ -111,6 +148,7 @@ export function FirstHero() {
       ease: isEntering ? "power2.out" : "power2.in",
     });
   });
+
 
   return (
     <section 
