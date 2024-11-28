@@ -123,7 +123,7 @@ export function FirstHero() {
           {[...Array(50)].map((_, i) => (
             <div
               key={i}
-              className="floating-particle absolute bg-accent/10 dark:bg-background opacity-10 rounded-full"
+              className="floating-particle absolute bg-secondary dark:bg-background opacity-10 rounded-full"
               style={{
                 width: Math.random() * 20 + 10,
                 height: Math.random() * 20 + 10,
