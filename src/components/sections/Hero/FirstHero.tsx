@@ -8,7 +8,6 @@ import { useGSAP } from "@gsap/react";
 export function FirstHero() {
   const sectionRef = useRef<HTMLElement>(null);
   const floatingParticlesRef = useRef<HTMLDivElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
     const tl = gsap.timeline();
