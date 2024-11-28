@@ -1,9 +1,13 @@
 import { useRef } from "react";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowRight, Code, Github, Linkedin, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { useGSAP } from "@gsap/react";
+
+// Register ScrollTrigger plugin
+gsap.registerPlugin(ScrollTrigger);
 
 export function FirstHero() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -174,7 +178,7 @@ export function FirstHero() {
             <span className="w-2 h-2 bg-green-400 dark:bg-green-500 rounded-full mr-2 animate-pulse" />
             Ready for new opportunities
           </span>
-          <Code className="code-icon w-16 h-16 mx-auto text-secondary dark:text-primary mt-4" />
+          <Code className="code-icon w-16 h-16 mx-auto text-secondary dark:text-secondary-dark mt-4" />
         </div>
 
         <h1 className="hero-title text-4xl md:text-6xl lg:text-7xl font-bold mb-4 font-heading text-primary dark:text-primary-dark">
@@ -205,7 +209,7 @@ export function FirstHero() {
           ))}
         </h2>
 
-        <p className="hero-description text-base md:text-lg lg:text-xl mb-8 max-w-2xl mx-auto text-primary/80 dark:text-slate-50/90 font-body transition-colors duration-200">
+        <p className="hero-description text-base md:text-lg lg:text-xl mb-8 max-w-2xl mx-auto text-primary/80 dark:text-primary-dark/90 font-body">
           {/* Split description into spans */}
           {"Transforming ideas into elegant, efficient, and scalable web solutions with modern technologies and best practices"
             .split(" ")
@@ -219,7 +223,7 @@ export function FirstHero() {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Button
             asChild
-            className="hero-button group bg-secondary hover:bg-accent text-background dark:bg-primary dark:hover:bg-accent dark:text-background transition-colors duration-200"
+            className="hero-button group bg-secondary hover:bg-accent text-background dark:bg-primary-dark dark:hover:bg-accent-dark dark:text-background-dark"
             onMouseEnter={(e) => handleButtonHover(e.currentTarget, true)}
             onMouseLeave={(e) => handleButtonHover(e.currentTarget, false)}
           >
@@ -231,13 +235,13 @@ export function FirstHero() {
           <Button
             asChild
             variant="outline"
-            className="hero-button group border-secondary text-secondary hover:bg-secondary hover:text-background dark:border-primary dark:text-primary dark:hover:bg-primary dark:hover:text-background transition-colors duration-200"
+            className="hero-button group bg-secondary hover:bg-accent text-background dark:bg-primary-dark dark:hover:bg-accent-dark dark:text-background-dark"
             onMouseEnter={(e) => handleButtonHover(e.currentTarget, true)}
             onMouseLeave={(e) => handleButtonHover(e.currentTarget, false)}
           >
             <Link href="#contact" className="flex items-center">
               Contact Me
-              <ExternalLink className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-200" />
+              <ExternalLink className="ml-2 h-4 w-4 group-hover:translate-x-1" />
             </Link>
           </Button>
         </div>
@@ -247,7 +251,7 @@ export function FirstHero() {
             href="https://github.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="social-icon text-primary dark:text-primary hover:text-secondary dark:hover:text-accent transition-colors duration-200"
+            className="social-icon text-primary dark:text-primary-dark hover:text-secondary dark:hover:text-accent-dark"
           >
             <Github className="w-6 h-6" />
             <span className="sr-only">GitHub</span>
@@ -256,7 +260,7 @@ export function FirstHero() {
             href="https://linkedin.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="social-icon text-primary dark:text-primary hover:text-secondary dark:hover:text-accent transition-colors duration-200"
+            className="social-icon text-primary dark:text-primary-dark hover:text-secondary dark:hover:text-accent-dark"
           >
             <Linkedin className="w-6 h-6" />
             <span className="sr-only">LinkedIn</span>
