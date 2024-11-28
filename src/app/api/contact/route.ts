@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server'
 import { contactFormSchema } from '@/lib/validations/contact'
 import ContactEmail from '@/emails/contact-form'
 
-const resend = new Resend('api-key-here')
+const resend = new Resend(process.env.RESEND_API_KEY)
 
 export async function POST (req: Request) {
   try {
@@ -16,7 +16,7 @@ export async function POST (req: Request) {
 
     const data = await resend.emails.send({
       from: 'Contact Form <onboarding@resend.dev>',
-      to: ['your-email@example.com'], // Replace with your email
+      to: ['hombert.fabien@gmail.com'], // Replace with your own email
       subject: `New Contact Form Submission: ${subject}`,
       replyTo: email,
       react: ContactEmail({

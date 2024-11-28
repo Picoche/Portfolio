@@ -178,11 +178,11 @@ export function ThirdContact() {
   return (
     <section
       ref={sectionRef}
-      className="py-20 bg-slate-100 relative overflow-hidden min-h-screen"
+      className="py-20 bg-background dark:bg-background-dark relative overflow-hidden min-h-screen"
     >
       {/* Background pattern */}
       <div className="pattern-bg absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 to-accent/5" />
+        <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 to-accent/5 dark:from-accent/5 dark:to-secondary/5" />
         <div className="grid grid-cols-12 gap-8 opacity-10 rotate-12 scale-150">
           {Array.from({ length: 50 }).map((_, i) => (
             <div
@@ -195,7 +195,7 @@ export function ThirdContact() {
 
       <div className="container mx-auto px-4 relative z-10">
         <h2 className="section-title text-5xl md:text-7xl font-bold text-center mb-16">
-          <span className="bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-secondary to-accent dark:from-accent dark:to-secondary bg-clip-text text-transparent">
             Get in Touch
           </span>
         </h2>
@@ -210,23 +210,22 @@ export function ThirdContact() {
                   key={index}
                   className={cn(
                     "step-item flex flex-col items-center gap-2",
-                    "transition-all duration-300",
                     currentStep === index
                       ? "text-secondary dark:text-accent scale-110"
                       : currentStep > index
                       ? "text-green-500 dark:text-green-400"
-                      : "text-primary/40 dark:text-background/40"
+                      : "text-primary/40 dark:text-slate-50/40"
                   )}
                 >
                   <div
                     className={cn(
                       "w-12 h-12 rounded-full flex items-center justify-center",
-                      "border-2 transition-colors duration-300",
+                      "border-2",
                       currentStep === index
                         ? "border-secondary dark:border-accent"
                         : currentStep > index
                         ? "border-green-500 dark:border-green-400"
-                        : "border-primary/40 dark:border-background/40"
+                        : "border-primary/40 dark:border-slate-50/40"
                     )}
                   >
                     {currentStep > index ? (
@@ -241,9 +240,9 @@ export function ThirdContact() {
             })}
           </div>
           <div className="relative mt-4">
-            <div className="absolute top-0 left-0 w-full h-1 bg-primary/10 dark:bg-background/10 rounded-full" />
+            <div className="absolute top-0 left-0 w-full h-1 bg-primary/10 dark:bg-slate-50/10 rounded-full" />
             <div
-              className="absolute top-0 left-0 h-1 bg-secondary dark:bg-accent rounded-full transition-all duration-300"
+              className="absolute top-0 left-0 h-1 bg-secondary dark:bg-accent rounded-full"
               style={{
                 width: `${((currentStep + 1) / steps.length) * 100}%`,
               }}
@@ -254,7 +253,7 @@ export function ThirdContact() {
         {/* Form card */}
         <div
           ref={formRef}
-          className="form-card max-w-3xl mx-auto bg-white/80 dark:bg-primary-dark/80 backdrop-blur-lg rounded-2xl p-8 shadow-lg border border-secondary/20 dark:border-accent/20"
+          className="form-card max-w-3xl mx-auto bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg rounded-2xl p-8 shadow-lg border border-secondary/20 dark:border-accent/20"
         >
           <form onSubmit={onSubmit} className="space-y-6">
             {/* Step content */}
@@ -264,7 +263,7 @@ export function ThirdContact() {
                   <div className="space-y-2">
                     <label
                       htmlFor="name"
-                      className="text-sm text-primary/60 dark:text-background/60"
+                      className="text-sm text-primary/60 dark:text-slate-50/60"
                     >
                       Your Name
                     </label>
@@ -275,7 +274,7 @@ export function ThirdContact() {
                       className={cn(
                         "bg-secondary/5 dark:bg-accent/5 border-secondary/20 dark:border-accent/20",
                         errors.name &&
-                          "border-red-500 dark:border-red-400 focus-visible:ring-red-500"
+                          "border-red-500 dark:border-red-400"
                       )}
                     />
                     {errors.name && (
@@ -289,7 +288,7 @@ export function ThirdContact() {
                   <div className="space-y-2">
                     <label
                       htmlFor="email"
-                      className="text-sm text-primary/60 dark:text-background/60"
+                      className="text-sm text-primary/60 dark:text-slate-50/60"
                     >
                       Your Email
                     </label>
@@ -301,7 +300,7 @@ export function ThirdContact() {
                       className={cn(
                         "bg-secondary/5 dark:bg-accent/5 border-secondary/20 dark:border-accent/20",
                         errors.email &&
-                          "border-red-500 dark:border-red-400 focus-visible:ring-red-500"
+                          "border-red-500 dark:border-red-400"
                       )}
                     />
                     {errors.email && (
@@ -318,7 +317,7 @@ export function ThirdContact() {
                 <div className="space-y-2">
                   <label
                     htmlFor="subject"
-                    className="text-sm text-primary/60 dark:text-background/60"
+                    className="text-sm text-primary/60 dark:text-slate-50/60"
                   >
                     Subject
                   </label>
@@ -329,7 +328,7 @@ export function ThirdContact() {
                     className={cn(
                       "bg-secondary/5 dark:bg-accent/5 border-secondary/20 dark:border-accent/20",
                       errors.subject &&
-                        "border-red-500 dark:border-red-400 focus-visible:ring-red-500"
+                        "border-red-500 dark:border-red-400"
                     )}
                   />
                   {errors.subject && (
@@ -345,7 +344,7 @@ export function ThirdContact() {
                 <div className="space-y-2">
                   <label
                     htmlFor="message"
-                    className="text-sm text-primary/60 dark:text-background/60"
+                    className="text-sm text-primary/60 dark:text-slate-50/60"
                   >
                     Message
                   </label>
@@ -356,7 +355,7 @@ export function ThirdContact() {
                     className={cn(
                       "min-h-[200px] bg-secondary/5 dark:bg-accent/5 border-secondary/20 dark:border-accent/20",
                       errors.message &&
-                        "border-red-500 dark:border-red-400 focus-visible:ring-red-500"
+                        "border-red-500 dark:border-red-400"
                     )}
                   />
                   {errors.message && (
@@ -376,9 +375,9 @@ export function ThirdContact() {
                 variant="outline"
                 onClick={handlePrevious}
                 disabled={currentStep === 0}
-                className="group"
+                className="group hover:bg-secondary/5 dark:hover:bg-accent/5"
               >
-                <ArrowRight className="w-4 h-4 mr-2 rotate-180 transition-transform group-hover:-translate-x-1" />
+                <ArrowRight className="w-4 h-4 mr-2 rotate-180 group-hover:-translate-x-1" />
                 Previous
               </Button>
 
@@ -386,28 +385,23 @@ export function ThirdContact() {
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="group bg-gradient-to-r from-secondary to-accent"
+                  className="group bg-gradient-to-r from-secondary to-accent hover:from-accent hover:to-secondary dark:from-accent dark:to-secondary dark:hover:from-secondary dark:hover:to-accent"
                 >
                   {isSubmitting ? (
-                    <>
-                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                      Sending...
-                    </>
+                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
                   ) : (
-                    <>
-                      Send Message
-                      <Send className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
-                    </>
+                    <Send className="w-4 h-4 ml-2" />
                   )}
+                  {isSubmitting ? "Sending..." : "Send Message"}
                 </Button>
               ) : (
                 <Button
                   type="button"
                   onClick={handleNext}
-                  className="group bg-gradient-to-r from-secondary to-accent"
+                  className="group bg-gradient-to-r from-secondary to-accent hover:from-accent hover:to-secondary dark:from-accent dark:to-secondary dark:hover:from-secondary dark:hover:to-accent"
                 >
                   Next
-                  <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
+                  <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
               )}
             </div>
@@ -416,38 +410,38 @@ export function ThirdContact() {
 
         {/* Contact info cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto mt-12">
-          <div className="bg-white/80 dark:bg-primary-dark/80 backdrop-blur-lg rounded-xl p-6 shadow-lg border border-secondary/20 dark:border-accent/20">
+          <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg rounded-xl p-6 shadow-lg border border-secondary/20 dark:border-accent/20">
             <Mail className="w-6 h-6 text-secondary dark:text-accent mb-4" />
-            <h3 className="font-semibold text-primary dark:text-background mb-2">
+            <h3 className="font-semibold text-primary dark:text-slate-50 mb-2">
               Email
             </h3>
             <a
               href={`mailto:${contactInfo.email}`}
-              className="text-primary/80 dark:text-background/80 hover:text-secondary dark:hover:text-accent transition-colors"
+              className="text-primary/80 dark:text-slate-50/80 hover:text-secondary dark:hover:text-accent"
             >
               {contactInfo.email}
             </a>
           </div>
 
-          <div className="bg-white/80 dark:bg-primary-dark/80 backdrop-blur-lg rounded-xl p-6 shadow-lg border border-secondary/20 dark:border-accent/20">
+          <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg rounded-xl p-6 shadow-lg border border-secondary/20 dark:border-accent/20">
             <Phone className="w-6 h-6 text-secondary dark:text-accent mb-4" />
-            <h3 className="font-semibold text-primary dark:text-background mb-2">
+            <h3 className="font-semibold text-primary dark:text-slate-50 mb-2">
               Phone
             </h3>
             <a
               href={`tel:${contactInfo.phone}`}
-              className="text-primary/80 dark:text-background/80 hover:text-secondary dark:hover:text-accent transition-colors"
+              className="text-primary/80 dark:text-slate-50/80 hover:text-secondary dark:hover:text-accent"
             >
               {contactInfo.phone}
             </a>
           </div>
 
-          <div className="bg-white/80 dark:bg-primary-dark/80 backdrop-blur-lg rounded-xl p-6 shadow-lg border border-secondary/20 dark:border-accent/20">
+          <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg rounded-xl p-6 shadow-lg border border-secondary/20 dark:border-accent/20">
             <Clock className="w-6 h-6 text-secondary dark:text-accent mb-4" />
-            <h3 className="font-semibold text-primary dark:text-background mb-2">
+            <h3 className="font-semibold text-primary dark:text-slate-50 mb-2">
               Available Hours
             </h3>
-            <p className="text-primary/80 dark:text-background/80">
+            <p className="text-primary/80 dark:text-slate-50/80">
               {contactInfo.availability.days}
               <br />
               {contactInfo.availability.hours}{" "}
