@@ -1,13 +1,9 @@
 import { useRef } from "react";
 import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowRight, Code, Github, Linkedin, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { useGSAP } from "@gsap/react";
-
-// Register ScrollTrigger plugin
-gsap.registerPlugin(ScrollTrigger);
 
 export function FirstHero() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -15,139 +11,106 @@ export function FirstHero() {
   const contentRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    const section = sectionRef.current;
-    const content = contentRef.current;
-    if (!section || !content) return;
-
-    // Create a single timeline for initial animations
     const tl = gsap.timeline();
 
-    // Fade in background
-    tl.from(".hero-bg", {
+    // Fade in background and particles
+    tl.from(floatingParticlesRef.current, {
       opacity: 0,
-      duration: 1,
+      scale: 1.2,
+      duration: 0.8,
+      ease: "power2.out",
     });
 
     // Animate status badge with bounce
     tl.from(".status-badge", {
-      y: -50,
       opacity: 0,
-      duration: 0.6,
-      ease: "bounce.out",
-    }, "-=0.5");
+      scale: 0,
+      duration: 0.4,
+      ease: "elastic.out(1, 0.5)",
+    }, "-=0.6");
 
     // Animate code icon with rotation
     tl.from(".code-icon", {
       scale: 0,
       rotation: 360,
       opacity: 0,
-      duration: 0.8,
-      ease: "back.out(1.7)",
-    }, "-=0.3");
-
-    // Split and animate title text
-    const titleText = section.querySelectorAll(".hero-title span");
-    tl.from(titleText, {
-      opacity: 0,
-      y: 50,
-      rotateX: -90,
-      stagger: 0.02,
-      duration: 0.8,
-      ease: "back.out(1.7)",
-    }, "-=0.4");
-
-    // Animate subtitle with wave effect
-    const subtitleText = section.querySelectorAll(".hero-subtitle span");
-    tl.from(subtitleText, {
-      opacity: 0,
-      y: "random(-50, 50)", 
-      stagger: 0.03,
-      duration: 0.8,
-      ease: "power2.out",
-    }, "-=0.6");
-
-    // Animate description with words effect
-    const descriptionWords = section.querySelectorAll(".hero-description span");
-    tl.from(descriptionWords, {
-      opacity: 0,
-      x: -20,
-      stagger: 0.05,
-      duration: 0.8,
-      ease: "power2.out",
-    }, "-=0.4");
-
-    // Buttons animation
-    tl.from(".hero-button", {
-      y: 50,
-      opacity: 0,
-      stagger: 0.2,
-      duration: 0.6,
-      ease: "back.out(1.7)",
-    }, "-=0.4");
-
-    // Social icons animation with bounce
-    tl.from(".social-icon", {
-      scale: 0,
-      opacity: 0,
-      rotation: 360,
-      stagger: 0.2,
-      duration: 0.6,
+      duration: 0.5,
       ease: "back.out(1.7)",
     }, "-=0.2");
 
-    // Create floating particles
+    // Animate title text
+    const headingWords = gsap.utils.toArray(".hero-title > div > span");
+    tl.from(headingWords, {
+      opacity: 0,
+      y: 30,
+      rotateX: -45,
+      stagger: 0.08,
+      duration: 0.5,
+      ease: "back.out(1.7)",
+    }, "-=0.2");
+
+    // Animate subtitle with wave effect
+    tl.from(".hero-subtitle > span", {
+      opacity: 0,
+      y: 20,
+      stagger: 0.03,
+      duration: 0.5,
+      ease: "power2.out",
+    }, "-=0.3");
+
+    // Animate description with words effect
+    tl.from(".hero-description > span", {
+      opacity: 0,
+      y: 20,
+      stagger: 0.02,
+      duration: 0.5,
+      ease: "power2.out",
+    }, "-=0.3");
+
+    // Buttons and social icons animation
+    tl.from([".hero-button", ".social-icon"], {
+      opacity: 0,
+      y: 20,
+      stagger: 0.1,
+      duration: 0.4,
+      ease: "back.out(1.7)",
+    }, "-=0.2");
+
+    // Create floating particles animation
     const particles = gsap.utils.toArray(".floating-particle");
     particles.forEach((particle: any) => {
       gsap.to(particle, {
-        x: "random(-100, 100)",
-        y: "random(-100, 100)",
-        rotation: "random(-180, 180)",
-        duration: "random(3, 6)",
+        y: "random(-20, 20)",
+        x: "random(-20, 20)",
+        rotation: "random(-15, 15)",
+        duration: "random(2, 4)",
         repeat: -1,
         yoyo: true,
         ease: "sine.inOut",
       });
     });
 
-    // Scroll-triggered animations
-    gsap.to(content, {
-      y: 100,
-      opacity: 0,
-      ease: "power2.in",
-      scrollTrigger: {
-        trigger: section,
-        start: "top top",
-        end: "bottom top",
-        scrub: true,
-      },
-    });
+    // Button hover animations
+    const buttons = gsap.utils.toArray(".hero-button");
+    buttons.forEach((button: any) => {
+      button.addEventListener("mouseenter", () => {
+        gsap.to(button, {
+          scale: 1.05,
+          duration: 0.3,
+          ease: "power2.out",
+        });
+      });
 
-    gsap.from(".floating-particle", {
-      scale: 0,
-      opacity: 0,
-      stagger: 0.1,
-      duration: 1,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: section,
-        start: "top bottom",
-        end: "center center",
-        scrub: true,
-      },
+      button.addEventListener("mouseleave", () => {
+        gsap.to(button, {
+          scale: 1,
+          duration: 0.3,
+          ease: "power2.in",
+        });
+      });
     });
 
   }, { scope: sectionRef });
-
-  // Handle button hover animations separately with contextSafe
-  const { contextSafe } = useGSAP({ scope: sectionRef });
-
-  const handleButtonHover = contextSafe((button: HTMLElement, isEntering: boolean) => {
-    gsap.to(button, {
-      scale: isEntering ? 1.05 : 1,
-      duration: 0.3,
-      ease: isEntering ? "power2.out" : "power2.in",
-    });
-  });
 
   return (
     <section 
@@ -160,7 +123,7 @@ export function FirstHero() {
           {[...Array(50)].map((_, i) => (
             <div
               key={i}
-              className="floating-particle absolute bg-accent/10 dark:bg-accent-dark/5 opacity-10 rounded-full"
+              className="floating-particle absolute bg-accent/10 dark:bg-background opacity-10 rounded-full"
               style={{
                 width: Math.random() * 20 + 10,
                 height: Math.random() * 20 + 10,
@@ -224,8 +187,6 @@ export function FirstHero() {
           <Button
             asChild
             className="hero-button group bg-secondary hover:bg-accent text-background dark:bg-primary-dark dark:hover:bg-accent-dark dark:text-background-dark"
-            onMouseEnter={(e) => handleButtonHover(e.currentTarget, true)}
-            onMouseLeave={(e) => handleButtonHover(e.currentTarget, false)}
           >
             <Link href="#projects" className="flex items-center">
               View My Work
@@ -236,8 +197,6 @@ export function FirstHero() {
             asChild
             variant="outline"
             className="hero-button group bg-secondary hover:bg-accent text-background dark:bg-primary-dark dark:hover:bg-accent-dark dark:text-background-dark"
-            onMouseEnter={(e) => handleButtonHover(e.currentTarget, true)}
-            onMouseLeave={(e) => handleButtonHover(e.currentTarget, false)}
           >
             <Link href="#contact" className="flex items-center">
               Contact Me
