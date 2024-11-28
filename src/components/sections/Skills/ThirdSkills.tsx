@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Code, Database, Server, Globe, Laptop, Cloud } from "lucide-react";
+import { Code, Database, Server } from "lucide-react";
 import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -139,7 +139,6 @@ export function ThirdSkills() {
 
     // Stats counter animation
     gsap.utils.toArray(".stat-number").forEach((stat: any) => {
-      const target = parseInt(stat.getAttribute("data-value"));
       gsap.from(stat, {
         textContent: 0,
         duration: 2,

@@ -175,7 +175,6 @@ export function FourthProjects() {
 
     // Stats counter animation
     gsap.utils.toArray(".metric-value").forEach((stat: any) => {
-      const target = parseInt(stat.getAttribute("data-value"));
       gsap.from(stat, {
         innerText: 0,
         duration: 2,

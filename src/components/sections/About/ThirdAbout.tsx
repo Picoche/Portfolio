@@ -16,8 +16,6 @@ const achievements = [
 
 export function ThirdAbout() {
   const sectionRef = useRef(null);
-  const imageRef = useRef(null);
-  const contentRef = useRef(null);
 
   useGSAP(() => {
     const tl = gsap.timeline({

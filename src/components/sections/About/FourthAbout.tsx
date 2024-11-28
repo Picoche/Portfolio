@@ -78,7 +78,6 @@ export function FourthAbout() {
 
     // Animate numbers with ScrollTrigger
     gsap.utils.toArray(".number-counter").forEach((counter: any) => {
-      const target = parseInt(counter.getAttribute("data-value"));
       gsap.from(counter, {
         textContent: 0,
         duration: 2,

@@ -133,7 +133,6 @@ export function FirstSkills() {
 
     // Stats counter animation
     gsap.utils.toArray(".stat-number").forEach((stat: any) => {
-      const target = parseInt(stat.getAttribute("data-value"));
       gsap.from(stat, {
         textContent: 0,
         duration: 2,
