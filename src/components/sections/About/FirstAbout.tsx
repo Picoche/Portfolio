@@ -82,10 +82,10 @@ export function FirstAbout() {
   return (
     <section 
       ref={sectionRef}
-      className="py-20 bg-slate-100"
+      className="py-20 bg-slate-100 dark:bg-gray-900 transition-colors duration-200"
     >
       <div className="container mx-auto px-4">
-        <h2 className="about-heading text-3xl md:text-4xl font-bold mb-12 heading-gradient text-center theme-transition">
+        <h2 className="about-heading text-3xl md:text-4xl font-bold mb-12 text-primary dark:text-slate-50 text-center transition-colors duration-200">
           About Me
         </h2>
         
@@ -95,7 +95,7 @@ export function FirstAbout() {
               ref={imageRef}
               className="image-container relative w-64 h-64 mx-auto lg:w-80 lg:h-80"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-secondary/20 to-accent/20 dark:from-accent/20 dark:to-secondary/20 rounded-full blur-xl" />
+              <div className="absolute inset-0 bg-gradient-to-br from-secondary/20 to-accent/20 dark:from-accent/20 dark:to-secondary/20 rounded-full blur-xl transition-colors duration-200" />
               <Image
                 src="/johndoe.png"
                 width={500}
@@ -103,22 +103,22 @@ export function FirstAbout() {
                 alt="John Doe"
                 className="rounded-full shadow-lg relative z-10"
               />
-              <div className="absolute inset-0 rounded-full border-2 border-secondary dark:border-accent z-20" />
+              <div className="absolute inset-0 rounded-full border-2 border-secondary dark:border-accent z-20 transition-colors duration-200" />
             </div>
           </div>
 
           <div ref={contentRef} className="lg:w-1/2 content-section">
-            <h3 className="text-2xl font-bold mb-4 text-primary dark:text-background font-heading">
+            <h3 className="text-2xl font-bold mb-4 text-primary dark:text-slate-50 font-heading transition-colors duration-200">
               Hi there! I&apos;m John Doe
             </h3>
-            <p className="text-lg mb-6 text-primary dark:text-background font-body">
+            <p className="text-lg mb-6 text-primary/80 dark:text-slate-50/90 font-body transition-colors duration-200">
               I&apos;m a passionate Full Stack Developer with over 5 years of
               experience in crafting robust and scalable web applications. My
               expertise spans across the entire development stack, from
               designing intuitive user interfaces to architecting efficient
               backend systems.
             </p>
-            <p className="text-lg mb-6 text-primary dark:text-background font-body">
+            <p className="text-lg mb-6 text-primary/80 dark:text-slate-50/90 font-body transition-colors duration-200">
               I thrive on solving complex problems and turning innovative ideas
               into reality. My approach combines clean code practices,
               user-centric design, and cutting-edge technologies to deliver
@@ -136,7 +136,7 @@ export function FirstAbout() {
               ].map((skill) => (
                 <span
                   key={skill}
-                  className="skill-tag px-3 py-1 bg-secondary dark:bg-accent text-background rounded-full text-sm font-body"
+                  className="skill-tag px-3 py-1 bg-secondary/90 dark:bg-accent/90 text-background dark:text-slate-50 rounded-full text-sm font-body transition-colors duration-200"
                 >
                   {skill}
                 </span>
@@ -145,7 +145,7 @@ export function FirstAbout() {
 
             <div className="flex flex-col sm:flex-row gap-4">
               <Button 
-                className="about-button bg-secondary hover:bg-accent text-background transition-colors duration-300"
+                className="about-button bg-secondary hover:bg-accent text-background dark:bg-accent dark:hover:bg-accent/90 dark:text-slate-50 transition-colors duration-200"
                 onMouseEnter={(e) => handleButtonHover(e.currentTarget, true)}
                 onMouseLeave={(e) => handleButtonHover(e.currentTarget, false)}
               >
@@ -153,7 +153,7 @@ export function FirstAbout() {
               </Button>
               <Button
                 variant="outline"
-                className="about-button border-primary dark:border-background text-primary dark:text-background hover:bg-primary hover:text-background dark:hover:bg-background dark:hover:text-primary transition-colors duration-300"
+                className="about-button border-secondary text-secondary hover:bg-secondary hover:text-background dark:border-accent dark:text-slate-50 dark:hover:bg-accent dark:hover:text-slate-50 transition-colors duration-200"
                 onMouseEnter={(e) => handleButtonHover(e.currentTarget, true)}
                 onMouseLeave={(e) => handleButtonHover(e.currentTarget, false)}
               >

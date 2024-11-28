@@ -4,17 +4,13 @@ import { ArrowRight, Code, Github, Linkedin, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { useGSAP } from "@gsap/react";
-import { useReducedMotion } from "@/hooks/use-reduced-motion";
 
 export function FirstHero() {
   const sectionRef = useRef<HTMLElement>(null);
   const floatingParticlesRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
-  const prefersReducedMotion = useReducedMotion();
 
   useGSAP(() => {
-    if (prefersReducedMotion) return; // Skip animations if user prefers reduced motion
-
     const section = sectionRef.current;
     const content = contentRef.current;
     if (!section || !content) return;
@@ -149,11 +145,10 @@ export function FirstHero() {
     });
   });
 
-
   return (
     <section 
       ref={sectionRef} 
-      className="min-h-screen flex items-center bg-slate-100 justify-center relative overflow-hidden"
+      className="min-h-screen flex items-center bg-background dark:bg-background-dark justify-center relative overflow-hidden"
     >
       {/* Animated background particles */}
       <div ref={floatingParticlesRef} className="absolute inset-0 overflow-hidden hide-scrollbar pointer-events-none hero-bg">
@@ -161,7 +156,7 @@ export function FirstHero() {
           {[...Array(50)].map((_, i) => (
             <div
               key={i}
-              className="floating-particle absolute bg-accent opacity-10 rounded-full"
+              className="floating-particle absolute bg-accent/10 dark:bg-accent-dark/5 opacity-10 rounded-full"
               style={{
                 width: Math.random() * 20 + 10,
                 height: Math.random() * 20 + 10,
@@ -175,15 +170,15 @@ export function FirstHero() {
 
       <div className="container mx-auto px-4 text-center relative z-10">
         <div className="mb-6">
-          <span className="status-badge inline-flex items-center px-3 py-1 text-sm font-medium rounded-full bg-secondary/10 text-secondary dark:bg-accent/10 dark:text-accent mb-8">
-            <span className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse" />
+          <span className="status-badge inline-flex items-center px-3 py-1 text-sm font-medium rounded-full bg-secondary/10 text-secondary dark:bg-primary-dark/10 dark:text-primary-dark mb-8">
+            <span className="w-2 h-2 bg-green-400 dark:bg-green-500 rounded-full mr-2 animate-pulse" />
             Ready for new opportunities
           </span>
-          <Code className="code-icon w-16 h-16 mx-auto text-secondary dark:text-accent theme-transition mt-4" />
+          <Code className="code-icon w-16 h-16 mx-auto text-secondary dark:text-primary mt-4" />
         </div>
 
-        <h1 className="hero-title text-4xl md:text-6xl lg:text-7xl font-bold mb-4 font-heading">
-          <div className="text-primary dark:text-background">
+        <h1 className="hero-title text-4xl md:text-6xl lg:text-7xl font-bold mb-4 font-heading text-primary dark:text-primary-dark">
+          <div className="text-primary dark:text-primary-dark">
             {/* Split each word into a span */}
             {"Welcome, I'm".split(" ").map((word, i) => (
               <span key={i} className="inline-block">
@@ -191,7 +186,7 @@ export function FirstHero() {
               </span>
             ))}
           </div>
-          <div className="bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent">
+          <div className="bg-gradient-to-r from-secondary to-accent dark:from-primary-dark dark:to-accent-dark bg-clip-text text-transparent">
             {/* Split name into spans */}
             {"John Doe".split(" ").map((word, i) => (
               <span key={i} className="inline-block">
@@ -201,7 +196,7 @@ export function FirstHero() {
           </div>
         </h1>
 
-        <h2 className="hero-subtitle text-xl md:text-2xl lg:text-3xl mb-6 text-secondary dark:text-accent font-accent italic">
+        <h2 className="hero-subtitle text-xl md:text-2xl lg:text-3xl mb-6 text-secondary dark:text-secondary-dark/90 font-accent italic">
           {/* Split subtitle into spans */}
           {"Full Stack Developer".split(" ").map((word, i) => (
             <span key={i} className="inline-block">
@@ -210,7 +205,7 @@ export function FirstHero() {
           ))}
         </h2>
 
-        <p className="hero-description text-base md:text-lg lg:text-xl mb-8 max-w-2xl mx-auto text-primary/80 dark:text-background/80 font-body">
+        <p className="hero-description text-base md:text-lg lg:text-xl mb-8 max-w-2xl mx-auto text-primary/80 dark:text-slate-50/90 font-body transition-colors duration-200">
           {/* Split description into spans */}
           {"Transforming ideas into elegant, efficient, and scalable web solutions with modern technologies and best practices"
             .split(" ")
@@ -224,25 +219,25 @@ export function FirstHero() {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Button
             asChild
-            className="hero-button group bg-secondary hover:bg-accent text-background"
+            className="hero-button group bg-secondary hover:bg-accent text-background dark:bg-primary dark:hover:bg-accent dark:text-background transition-colors duration-200"
             onMouseEnter={(e) => handleButtonHover(e.currentTarget, true)}
             onMouseLeave={(e) => handleButtonHover(e.currentTarget, false)}
           >
             <Link href="#projects" className="flex items-center">
               View My Work
-              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1" />
+              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-200" />
             </Link>
           </Button>
           <Button
             asChild
             variant="outline"
-            className="hero-button group border-secondary text-secondary hover:bg-secondary hover:text-background dark:border-accent dark:text-accent dark:hover:bg-accent dark:hover:text-background"
+            className="hero-button group border-secondary text-secondary hover:bg-secondary hover:text-background dark:border-primary dark:text-primary dark:hover:bg-primary dark:hover:text-background transition-colors duration-200"
             onMouseEnter={(e) => handleButtonHover(e.currentTarget, true)}
             onMouseLeave={(e) => handleButtonHover(e.currentTarget, false)}
           >
             <Link href="#contact" className="flex items-center">
               Contact Me
-              <ExternalLink className="ml-2 h-4 w-4 group-hover:translate-x-1" />
+              <ExternalLink className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-200" />
             </Link>
           </Button>
         </div>
@@ -252,7 +247,7 @@ export function FirstHero() {
             href="https://github.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="social-icon text-primary dark:text-background hover:text-secondary dark:hover:text-accent"
+            className="social-icon text-primary dark:text-primary hover:text-secondary dark:hover:text-accent transition-colors duration-200"
           >
             <Github className="w-6 h-6" />
             <span className="sr-only">GitHub</span>
@@ -261,7 +256,7 @@ export function FirstHero() {
             href="https://linkedin.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="social-icon text-primary dark:text-background hover:text-secondary dark:hover:text-accent"
+            className="social-icon text-primary dark:text-primary hover:text-secondary dark:hover:text-accent transition-colors duration-200"
           >
             <Linkedin className="w-6 h-6" />
             <span className="sr-only">LinkedIn</span>

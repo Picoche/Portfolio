@@ -70,32 +70,32 @@ export function FirstContact() {
   return (
     <section
       ref={sectionRef}
-      className="py-20 bg-slate-100"
+      className="py-20 bg-slate-100 dark:bg-gray-900 transition-colors duration-200"
     >
       <div className="container mx-auto px-4">
-        <h2 className="section-title text-4xl md:text-5xl font-bold text-center mb-16 text-primary dark:text-background">
+        <h2 className="section-title text-4xl md:text-5xl font-bold text-center mb-16 text-primary dark:text-slate-50 transition-colors duration-200">
           Get in Touch
         </h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           {/* Contact Information */}
           <div className="contact-info lg:col-span-1 space-y-8">
-            <div className="bg-white dark:bg-primary-dark rounded-2xl p-8 shadow-lg border border-secondary/20 dark:border-accent/20">
-              <h3 className="text-xl font-semibold mb-6 text-primary dark:text-background">
+            <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-secondary/20 dark:border-accent/20 transition-all duration-200">
+              <h3 className="text-xl font-semibold mb-6 text-primary dark:text-slate-50 transition-colors duration-200">
                 Contact Information
               </h3>
               <div className="space-y-6">
                 <div className="flex items-center gap-4">
-                  <div className="p-3 rounded-xl bg-secondary/10 dark:bg-accent/10">
-                    <Mail className="contact-icon w-6 h-6 text-secondary dark:text-accent" />
+                  <div className="p-3 rounded-xl bg-secondary/10 dark:bg-accent/10 transition-colors duration-200">
+                    <Mail className="contact-icon w-6 h-6 text-secondary dark:text-accent transition-colors duration-200" />
                   </div>
                   <div>
-                    <p className="text-sm text-primary/60 dark:text-background/60">
+                    <p className="text-sm text-primary/60 dark:text-slate-50/60 transition-colors duration-200">
                       Email
                     </p>
                     <a
                       href={`mailto:${contactInfo.email}`}
-                      className="text-primary dark:text-background hover:text-secondary dark:hover:text-accent transition-colors"
+                      className="text-primary dark:text-slate-50 hover:text-secondary dark:hover:text-accent transition-colors duration-200"
                     >
                       {contactInfo.email}
                     </a>
@@ -103,16 +103,16 @@ export function FirstContact() {
                 </div>
 
                 <div className="flex items-center gap-4">
-                  <div className="p-3 rounded-xl bg-secondary/10 dark:bg-accent/10">
-                    <Phone className="contact-icon w-6 h-6 text-secondary dark:text-accent" />
+                  <div className="p-3 rounded-xl bg-secondary/10 dark:bg-accent/10 transition-colors duration-200">
+                    <Phone className="contact-icon w-6 h-6 text-secondary dark:text-accent transition-colors duration-200" />
                   </div>
                   <div>
-                    <p className="text-sm text-primary/60 dark:text-background/60">
+                    <p className="text-sm text-primary/60 dark:text-slate-50/60 transition-colors duration-200">
                       Phone
                     </p>
                     <a
                       href={`tel:${contactInfo.phone}`}
-                      className="text-primary dark:text-background hover:text-secondary dark:hover:text-accent transition-colors"
+                      className="text-primary dark:text-slate-50 hover:text-secondary dark:hover:text-accent transition-colors duration-200"
                     >
                       {contactInfo.phone}
                     </a>
@@ -120,25 +120,25 @@ export function FirstContact() {
                 </div>
 
                 <div className="flex items-center gap-4">
-                  <div className="p-3 rounded-xl bg-secondary/10 dark:bg-accent/10">
-                    <MapPin className="contact-icon w-6 h-6 text-secondary dark:text-accent" />
+                  <div className="p-3 rounded-xl bg-secondary/10 dark:bg-accent/10 transition-colors duration-200">
+                    <MapPin className="contact-icon w-6 h-6 text-secondary dark:text-accent transition-colors duration-200" />
                   </div>
                   <div>
-                    <p className="text-sm text-primary/60 dark:text-background/60">
+                    <p className="text-sm text-primary/60 dark:text-slate-50/60 transition-colors duration-200">
                       Location
                     </p>
-                    <p className="text-primary dark:text-background">
+                    <p className="text-primary dark:text-slate-50 transition-colors duration-200">
                       {contactInfo.location}
                     </p>
                   </div>
                 </div>
               </div>
 
-              <div className="mt-8 pt-8 border-t border-secondary/20 dark:border-accent/20">
-                <p className="text-sm text-primary/60 dark:text-background/60">
+              <div className="mt-8 pt-8 border-t border-secondary/20 dark:border-accent/20 transition-colors duration-200">
+                <p className="text-sm text-primary/60 dark:text-slate-50/60 transition-colors duration-200">
                   Available Hours
                 </p>
-                <p className="text-primary dark:text-background">
+                <p className="text-primary dark:text-slate-50 transition-colors duration-200">
                   {contactInfo.availability}
                 </p>
               </div>
@@ -147,8 +147,8 @@ export function FirstContact() {
 
           {/* Contact Form */}
           <div className="contact-form lg:col-span-2">
-            <div className="bg-white dark:bg-primary-dark rounded-2xl p-8 shadow-lg border border-secondary/20 dark:border-accent/20">
-              <h3 className="text-xl font-semibold mb-6 text-primary dark:text-background">
+            <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-secondary/20 dark:border-accent/20 transition-all duration-200">
+              <h3 className="text-xl font-semibold mb-6 text-primary dark:text-slate-50 transition-colors duration-200">
                 Send a Message
               </h3>
               <form onSubmit={onSubmit} className="space-y-6">
@@ -156,7 +156,7 @@ export function FirstContact() {
                   <div className="space-y-2">
                     <label
                       htmlFor="name"
-                      className="text-sm text-primary/60 dark:text-background/60"
+                      className="text-sm text-primary/60 dark:text-slate-50/60 transition-colors duration-200"
                     >
                       Your Name
                     </label>
@@ -165,7 +165,7 @@ export function FirstContact() {
                       {...register("name")}
                       placeholder="John Doe"
                       className={cn(
-                        "bg-secondary/5 dark:bg-accent/5 border-secondary/20 dark:border-accent/20",
+                        "bg-secondary/5 dark:bg-accent/5 border-secondary/20 dark:border-accent/20 text-primary dark:text-slate-50 placeholder:text-primary/50 dark:placeholder:text-slate-50/50 transition-colors duration-200",
                         errors.name &&
                           "border-red-500 dark:border-red-400 focus-visible:ring-red-500"
                       )}
@@ -181,7 +181,7 @@ export function FirstContact() {
                   <div className="space-y-2">
                     <label
                       htmlFor="email"
-                      className="text-sm text-primary/60 dark:text-background/60"
+                      className="text-sm text-primary/60 dark:text-slate-50/60 transition-colors duration-200"
                     >
                       Your Email
                     </label>
@@ -191,7 +191,7 @@ export function FirstContact() {
                       {...register("email")}
                       placeholder="john@example.com"
                       className={cn(
-                        "bg-secondary/5 dark:bg-accent/5 border-secondary/20 dark:border-accent/20",
+                        "bg-secondary/5 dark:bg-accent/5 border-secondary/20 dark:border-accent/20 text-primary dark:text-slate-50 placeholder:text-primary/50 dark:placeholder:text-slate-50/50 transition-colors duration-200",
                         errors.email &&
                           "border-red-500 dark:border-red-400 focus-visible:ring-red-500"
                       )}
@@ -208,7 +208,7 @@ export function FirstContact() {
                 <div className="space-y-2">
                   <label
                     htmlFor="subject"
-                    className="text-sm text-primary/60 dark:text-background/60"
+                    className="text-sm text-primary/60 dark:text-slate-50/60 transition-colors duration-200"
                   >
                     Subject
                   </label>
@@ -217,7 +217,7 @@ export function FirstContact() {
                     {...register("subject")}
                     placeholder="Project Inquiry"
                     className={cn(
-                      "bg-secondary/5 dark:bg-accent/5 border-secondary/20 dark:border-accent/20",
+                      "bg-secondary/5 dark:bg-accent/5 border-secondary/20 dark:border-accent/20 text-primary dark:text-slate-50 placeholder:text-primary/50 dark:placeholder:text-slate-50/50 transition-colors duration-200",
                       errors.subject &&
                         "border-red-500 dark:border-red-400 focus-visible:ring-red-500"
                     )}
@@ -233,7 +233,7 @@ export function FirstContact() {
                 <div className="space-y-2">
                   <label
                     htmlFor="message"
-                    className="text-sm text-primary/60 dark:text-background/60"
+                    className="text-sm text-primary/60 dark:text-slate-50/60 transition-colors duration-200"
                   >
                     Message
                   </label>
@@ -242,7 +242,7 @@ export function FirstContact() {
                     {...register("message")}
                     placeholder="Your message here..."
                     className={cn(
-                      "min-h-[150px] bg-secondary/5 dark:bg-accent/5 border-secondary/20 dark:border-accent/20",
+                      "min-h-[150px] bg-secondary/5 dark:bg-accent/5 border-secondary/20 dark:border-accent/20 text-primary dark:text-slate-50 placeholder:text-primary/50 dark:placeholder:text-slate-50/50 transition-colors duration-200",
                       errors.message &&
                         "border-red-500 dark:border-red-400 focus-visible:ring-red-500"
                     )}
@@ -258,7 +258,7 @@ export function FirstContact() {
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full md:w-auto bg-gradient-to-r from-secondary to-accent"
+                  className="w-full md:w-auto bg-secondary hover:bg-accent dark:bg-accent dark:hover:bg-accent/90 text-background dark:text-slate-50 transition-colors duration-200"
                 >
                   {isSubmitting ? (
                     <>

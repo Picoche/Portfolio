@@ -133,21 +133,23 @@ export function SecondHero() {
   return (
     <section
       ref={sectionRef}
-      className="min-h-screen flex items-center justify-center bg-slate-100 relative overflow-hidden py-20 sm:py-32"
+      className="min-h-screen flex items-center justify-center bg-slate-100 dark:bg-gray-900 relative overflow-hidden py-20 sm:py-32 transition-colors duration-200"
       onMouseMove={(e) => handleMouseMove(e as unknown as MouseEvent)}
     >
-      <div className="gradient-bg absolute inset-0 bg-gradient-to-br from-accent/10 via-transparent to-secondary/10 dark:from-accent/5 dark:to-secondary/5 pointer-events-none" />
+      {/* Gradient background */}
+      <div className="gradient-bg absolute inset-0 bg-gradient-to-br from-accent/10 via-transparent to-secondary/10 dark:from-primary/5 dark:via-transparent dark:to-accent/5 pointer-events-none" />
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          {/* Text Content */}
           <div className="text-left space-y-6 max-w-xl mx-auto lg:mx-0">
             <div className="inline-block">
-              <span className="status-badge px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-secondary/10 dark:bg-secondary/20 text-secondary dark:text-accent text-sm font-medium">
+              <span className="status-badge px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-secondary/10 dark:bg-primary/10 text-secondary dark:text-primary text-sm font-medium">
                 Available for work
               </span>
             </div>
 
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-heading text-primary dark:text-background">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-heading text-primary dark:text-slate-50">
               {"Crafting Digital".split(" ").map((word, i) => (
                 <span key={i} className="heading-word inline-block mr-3 sm:mr-4">
                   {word}
@@ -159,7 +161,7 @@ export function SecondHero() {
               </span>
             </h1>
 
-            <p className="hero-description text-base sm:text-lg text-primary/80 dark:text-background/80 font-body max-w-md">
+            <p className="hero-description text-base sm:text-lg text-primary/80 dark:text-slate-50/90 font-body max-w-md">
               Full-stack developer specializing in building exceptional digital
               experiences. Currently focused on creating accessible,
               human-centered products.
@@ -168,34 +170,35 @@ export function SecondHero() {
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
               <Button
                 asChild
-                className="hero-button bg-primary hover:bg-secondary text-background dark:bg-background dark:text-primary dark:hover:bg-accent dark:hover:text-background"
+                className="hero-button bg-secondary hover:bg-accent text-background dark:bg-primary dark:text-background dark:hover:bg-accent transition-colors duration-200"
               >
                 <Link href="#projects" className="flex items-center">
                   View Projects
-                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1" />
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-200" />
                 </Link>
               </Button>
               <Button
                 asChild
                 variant="outline"
-                className="hero-button border-secondary text-secondary hover:bg-secondary hover:text-background dark:border-accent dark:text-accent dark:hover:bg-accent dark:hover:text-background"
+                className="hero-button border-secondary text-secondary hover:bg-secondary hover:text-background dark:border-primary dark:text-primary dark:hover:bg-primary dark:hover:text-background transition-colors duration-200"
               >
                 <Link href="#contact">Let&apos;s Talk</Link>
               </Button>
             </div>
           </div>
 
+          {/* Image Section */}
           <div className="parallax-wrapper relative mt-8 lg:mt-0">
-            <div className="decorative-blur absolute -inset-4 bg-gradient-to-r from-secondary to-accent opacity-30 blur-3xl dark:opacity-20" />
+            <div className="decorative-blur absolute -inset-4 bg-gradient-to-r from-secondary to-accent opacity-30 dark:from-primary dark:to-accent dark:opacity-20 blur-3xl" />
 
             <div ref={imageRef} className="relative">
               <div className="image-wrapper w-full aspect-square max-w-sm sm:max-w-md mx-auto">
-                {/* Rotating gradient border with dark mode support */}
-                <div className="image-gradient-border absolute inset-0 bg-gradient-to-r from-secondary via-accent to-secondary dark:from-accent dark:via-secondary dark:to-accent rounded-2xl opacity-50" />
+                {/* Rotating gradient border */}
+                <div className="image-gradient-border absolute inset-0 bg-gradient-to-r from-secondary via-accent to-secondary dark:from-primary dark:via-accent dark:to-primary rounded-2xl opacity-50" />
                 
                 {/* Main image container */}
-                <div className="image-container relative w-full h-full rounded-2xl overflow-hidden bg-gradient-to-br from-secondary/20 to-accent/20 p-1 z-10">
-                  <div className="w-full h-full rounded-xl overflow-hidden bg-background dark:bg-primary">
+                <div className="image-container relative w-full h-full rounded-2xl overflow-hidden bg-gradient-to-br from-secondary/20 to-accent/20 dark:from-primary/20 dark:to-accent/20 p-1 z-10">
+                  <div className="w-full h-full rounded-xl overflow-hidden bg-background dark:bg-gray-900">
                     <div className="parallax-image relative w-full h-full transform">
                       <Image
                         src="/johndoe.png"
@@ -209,7 +212,7 @@ export function SecondHero() {
                 </div>
               </div>
 
-              <div className="floating-icon absolute -bottom-6 -right-6 bg-secondary dark:bg-accent text-background p-4 rounded-2xl shadow-lg">
+              <div className="floating-icon absolute -bottom-6 -right-6 bg-secondary dark:bg-primary text-background p-4 rounded-2xl shadow-lg">
                 <Code size={32} />
               </div>
             </div>

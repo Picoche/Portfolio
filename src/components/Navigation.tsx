@@ -4,6 +4,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useEffect, useRef, useState } from "react";
 import { Menu, X } from "lucide-react";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 
 interface NavLink {
   href: string;
@@ -98,6 +99,7 @@ export function Navigation() {
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
               </a>
             ))}
+            <ThemeToggle />
           </div>
 
           {/* Mobile Menu Button */}
@@ -127,6 +129,9 @@ export function Navigation() {
                 {link.label}
               </a>
             ))}
+            <div className="px-3 py-2">
+              <ThemeToggle />
+            </div>
           </div>
         </div>
       </div>

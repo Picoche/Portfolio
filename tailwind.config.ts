@@ -11,7 +11,7 @@ module.exports = {
         },
         secondary: {
           DEFAULT: '#E54B4B',
-          dark: '#FF6B6B'
+          dark: '#4A7C59'
         },
         accent: {
           DEFAULT: '#7DA87B',
