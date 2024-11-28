@@ -37,7 +37,6 @@ const experiences: Experience[] = [
       "Mentored junior developers and established best practices",
     ],
     technologies: ["Next.js", "TypeScript", "GSAP", "Tailwind CSS"],
-    link: "https://techinnovators.com",
     category: "frontend",
     icon: Code,
   },
@@ -52,7 +51,6 @@ const experiences: Experience[] = [
       "Collaborated with UX designers to implement responsive designs",
     ],
     technologies: ["React", "Node.js", "PostgreSQL", "AWS"],
-    link: "https://digitalsolutions.com",
     category: "fullstack",
     icon: Globe,
   },
@@ -67,7 +65,6 @@ const experiences: Experience[] = [
       "Implemented real-time data processing pipelines",
     ],
     technologies: ["Python", "PostgreSQL", "Redis", "Docker"],
-    link: "https://datasystems.com",
     category: "backend",
     icon: Server,
   },
@@ -152,13 +149,13 @@ export function SecondExperience() {
   return (
     <section
       ref={sectionRef}
-      className="py-20 bg-slate-100 relative overflow-hidden"
+      className="py-20 bg-slate-100 dark:bg-gray-900 relative overflow-hidden"
     >
       {/* Background pattern */}
-      <div className="pattern-bg absolute inset-0 bg-grid-pattern opacity-5" />
+      <div className="pattern-bg absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10" />
 
       <div className="container mx-auto px-4">
-        <h2 className="section-title text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent">
+        <h2 className="section-title text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-secondary to-accent dark:from-accent dark:to-secondary bg-clip-text text-transparent">
           Work Experience
         </h2>
 
@@ -168,9 +165,9 @@ export function SecondExperience() {
               id={`card-${index}`}
               key={index}
               className={cn(
-                "experience-card group relative bg-white/80 dark:bg-primary-dark/80 backdrop-blur-lg",
+                "experience-card group relative bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg",
                 "rounded-2xl p-8 shadow-lg border border-secondary/20 dark:border-accent/20",
-                "hover:shadow-xl",
+                "hover:shadow-xl  ",
                 activeCard !== null &&
                   activeCard !== index &&
                   "opacity-75 scale-95"
@@ -183,7 +180,7 @@ export function SecondExperience() {
                 <div
                   className={`px-4 py-1 rounded-full bg-gradient-to-r ${
                     categoryColors[experience.category]
-                  } text-background text-sm font-medium`}
+                  } text-background text-sm font-medium shadow-lg`}
                 >
                   {experience.category.charAt(0).toUpperCase() +
                     experience.category.slice(1)}
@@ -191,11 +188,11 @@ export function SecondExperience() {
               </div>
 
               <div className="flex items-start gap-4 mb-6">
-                <div className="p-3 rounded-xl bg-secondary/10 dark:bg-accent/10">
+                <div className="p-3 rounded-xl bg-secondary/10 dark:bg-accent/20">
                   <experience.icon className="floating-icon w-6 h-6 text-secondary dark:text-accent" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-primary dark:text-background">
+                  <h3 className="text-xl font-bold text-primary dark:text-slate-50">
                     {experience.title}
                   </h3>
                   <div className="flex items-center gap-2 text-secondary dark:text-accent">
@@ -205,18 +202,18 @@ export function SecondExperience() {
                 </div>
               </div>
 
-              <div className="flex flex-wrap gap-4 mb-4 text-primary/60 dark:text-background/60">
+              <div className="flex flex-wrap gap-4 mb-4 text-primary/60 dark:text-slate-50/60">
                 <div className="flex items-center gap-1">
-                  <Calendar className="w-4 h-4" />
+                  <Calendar className="w-4 h-4 text-secondary dark:text-accent" />
                   <span>{experience.period}</span>
                 </div>
                 <div className="flex items-center gap-1">
-                  <MapPin className="w-4 h-4" />
+                  <MapPin className="w-4 h-4 text-secondary dark:text-accent" />
                   <span>{experience.location}</span>
                 </div>
               </div>
 
-              <ul className="space-y-2 mb-6 text-primary/80 dark:text-background/80">
+              <ul className="space-y-2 mb-6 text-primary/80 dark:text-slate-50/80">
                 {experience.description.map((item, i) => (
                   <li key={i} className="flex items-start gap-2">
                     <span className="mt-2 w-1 h-1 rounded-full bg-secondary dark:bg-accent" />
@@ -229,31 +226,12 @@ export function SecondExperience() {
                 {experience.technologies.map((tech, i) => (
                   <span
                     key={i}
-                    className="px-3 py-1 rounded-full text-sm font-medium bg-secondary/10 dark:bg-accent/10 text-secondary dark:text-accent"
+                    className="px-3 py-1 rounded-full text-sm font-medium bg-secondary/10 dark:bg-accent/20 text-secondary dark:text-accent  "
                   >
                     {tech}
                   </span>
                 ))}
               </div>
-
-              {experience.link && (
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="group/button"
-                  asChild
-                >
-                  <a
-                    href={experience.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2"
-                  >
-                    Visit Company
-                    <ExternalLink className="w-4 h-4 group-hover/button:translate-x-1" />
-                  </a>
-                </Button>
-              )}
             </div>
           ))}
         </div>

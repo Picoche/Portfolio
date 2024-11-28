@@ -179,13 +179,13 @@ export function SecondSkills() {
   return (
     <section
       ref={sectionRef}
-      className="py-20 bg-slate-100 relative overflow-hidden"
+      className="py-20 bg-slate-100 dark:bg-gray-900 relative overflow-hidden"
     >
       {/* Background pattern */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-5" />
+      <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10" />
 
       <div className="container mx-auto px-4">
-        <h2 className="section-title text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent">
+        <h2 className="section-title text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-secondary to-accent dark:from-accent dark:to-secondary bg-clip-text text-transparent">
           Professional Skills
         </h2>
 
@@ -194,26 +194,26 @@ export function SecondSkills() {
           {skillsData.map((category, index) => (
             <button
               key={index}
-              className={`category-button flex-1 p-6 rounded-xl border-2 ${
+              className={`category-button flex-1 p-6 rounded-xl border-2   ${
                 activeCategory === index
-                  ? "border-secondary dark:border-accent bg-white/90 dark:bg-primary-dark shadow-lg"
-                  : "border-secondary/20 dark:border-accent/20 hover:border-secondary/50 dark:hover:border-accent/50 bg-white/80 dark:bg-primary-dark/80"
+                  ? "border-secondary dark:border-accent bg-white/90 dark:bg-gray-800/90 shadow-lg"
+                  : "border-secondary/20 dark:border-accent/20 hover:border-secondary/50 dark:hover:border-accent/50 bg-white/80 dark:bg-gray-800/80"
               }`}
               onClick={() => handleCategoryChange(index)}
             >
               <div className="flex flex-col items-center gap-3">
                 <div
-                  className={`p-3 rounded-lg transition-colors duration-300 ${
+                  className={`p-3 rounded-lg   ${
                     activeCategory === index
-                      ? "bg-secondary/10 dark:bg-accent/10"
-                      : "bg-secondary/5 dark:bg-accent/5"
+                      ? "bg-secondary/10 dark:bg-accent/20"
+                      : "bg-secondary/5 dark:bg-accent/10"
                   }`}
                 >
                   {(() => {
                     const Icon = category.icon;
                     return (
                       <Icon
-                        className={`w-6 h-6 transition-colors duration-300 ${
+                        className={`w-6 h-6   ${
                           activeCategory === index
                             ? "text-secondary dark:text-accent"
                             : "text-secondary/70 dark:text-accent/70"
@@ -223,10 +223,10 @@ export function SecondSkills() {
                   })()}
                 </div>
                 <span
-                  className={`font-semibold text-base transition-colors duration-300 ${
+                  className={`font-semibold text-base   ${
                     activeCategory === index
-                      ? "text-primary dark:text-background"
-                      : "text-primary/80 dark:text-background/80"
+                      ? "text-primary dark:text-slate-50"
+                      : "text-primary/80 dark:text-slate-50/80"
                   }`}
                 >
                   {category.name}
@@ -237,7 +237,7 @@ export function SecondSkills() {
         </div>
 
         {/* Skills display */}
-        <div className="skills-container bg-white dark:bg-primary-dark rounded-2xl p-8 shadow-lg border border-secondary/20 dark:border-accent/20">
+        <div className="skills-container bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-secondary/20 dark:border-accent/20  ">
           <div className="flex items-center gap-4 mb-8">
             <div
               className={`p-4 rounded-xl bg-gradient-to-br ${skillsData[activeCategory].color}`}
@@ -245,11 +245,11 @@ export function SecondSkills() {
               {(() => {
                 const Icon = skillsData[activeCategory].icon;
                 return (
-                  <Icon className="floating-icon w-8 h-8 text-background" />
+                  <Icon className="floating-icon w-8 h-8 text-background dark:text-slate-50" />
                 );
               })()}
             </div>
-            <h3 className="text-2xl font-bold text-primary dark:text-background">
+            <h3 className="text-2xl font-bold text-primary dark:text-slate-50">
               {skillsData[activeCategory].name} Skills
             </h3>
           </div>
@@ -259,10 +259,10 @@ export function SecondSkills() {
               <div key={index} className="space-y-2">
                 <div className="flex justify-between items-center">
                   <div>
-                    <h4 className="font-medium text-primary dark:text-background">
+                    <h4 className="font-medium text-primary dark:text-slate-50">
                       {skill.name}
                     </h4>
-                    <p className="text-sm text-primary/60 dark:text-background/60">
+                    <p className="text-sm text-primary/60 dark:text-slate-50/60">
                       {skill.years} years experience
                     </p>
                   </div>
@@ -270,9 +270,9 @@ export function SecondSkills() {
                     {skill.proficiency}
                   </span>
                 </div>
-                <div className="h-2 bg-secondary/10 dark:bg-accent/10 rounded-full overflow-hidden">
+                <div className="h-2 bg-secondary/10 dark:bg-accent/20 rounded-full overflow-hidden  ">
                   <div
-                    className="skill-bar h-full bg-gradient-to-r from-secondary to-accent dark:from-accent dark:to-secondary rounded-full transition-all duration-300"
+                    className="skill-bar h-full bg-gradient-to-r from-secondary to-accent dark:from-accent dark:to-secondary rounded-full  duration-300"
                     style={{
                       width: `${proficiencyToLevel[skill.proficiency]}%`,
                     }}

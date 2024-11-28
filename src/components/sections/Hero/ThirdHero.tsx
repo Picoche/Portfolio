@@ -17,14 +17,14 @@ const skills = [
     icon: Monitor,
     description: "Crafting beautiful and responsive user interfaces",
     technologies: ["React", "Next.js", "Tailwind CSS"],
-    color: "bg-accent dark:bg-secondary",
+    color: "bg-accent dark:bg-secondary/80",
   },
   {
     title: "Backend Development",
     icon: Server,
     description: "Building robust and scalable server-side applications",
     technologies: ["Node.js", "Python", "PostgreSQL"],
-    color: "bg-secondary dark:bg-accent",
+    color: "bg-secondary dark:bg-accent/80",
   },
   {
     title: "DevOps & Cloud",
@@ -141,29 +141,29 @@ export function ThirdHero() {
   return (
     <section
       ref={sectionRef}
-      className="min-h-screen flex items-center justify-center bg-slate-100 relative overflow-hidden py-20 sm:py-32 theme-transition"
+      className="min-h-screen flex items-center justify-center bg-background dark:bg-background-dark relative overflow-hidden py-20 sm:py-32 theme-transition"
     >
       {/* Grid pattern background */}
       <div className="absolute inset-0 bg-grid-pattern opacity-5" />
 
       {/* Gradient overlay */}
-      <div className="gradient-overlay absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-secondary/5" />
+      <div className="gradient-overlay absolute inset-0 bg-gradient-to-br from-accent/5 dark:from-accent-dark/5 via-transparent to-secondary/5 dark:to-secondary-dark/5" />
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <div className="space-y-8 sm:space-y-12">
           {/* Header section */}
           <div className="text-center max-w-3xl mx-auto px-4">
-            <span className="status-badge inline-block px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-secondary/10 dark:bg-secondary/20 text-secondary dark:text-accent text-sm font-medium mb-4 sm:mb-6">
+            <span className="status-badge inline-block px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-secondary/10 dark:bg-secondary-dark/10 text-secondary dark:text-secondary-dark text-sm font-medium mb-4 sm:mb-6">
               Full Stack Developer
             </span>
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6 font-heading">
               {"John Doe".split(" ").map((word, i) => (
-                <span key={i} className="heading-word inline-block mr-3 sm:mr-4 bg-gradient-to-r from-primary via-secondary to-accent dark:from-background dark:via-accent dark:to-secondary bg-clip-text text-transparent">
-                  {word}
+                <span key={i} className="bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent animate-text">
+                  {word}{" "}
                 </span>
               ))}
             </h1>
-            <p className="hero-description text-base sm:text-lg md:text-xl text-primary/80 dark:text-background/80 font-body">
+            <p className="hero-description text-base sm:text-lg md:text-xl text-primary/80 dark:text-primary-dark/80 font-body">
               Transforming complex problems into elegant solutions through code
             </p>
           </div>
@@ -173,7 +173,7 @@ export function ThirdHero() {
             {skills.map((skill) => (
               <div
                 key={skill.title}
-                className={`skill-card ${skill.color} rounded-2xl p-4 sm:p-6 text-background`}
+                className={`skill-card ${skill.color} rounded-2xl p-4 sm:p-6 text-background dark:text-primary-dark`}
                 onMouseEnter={(e) => handleCardHover(e.currentTarget, true)}
                 onMouseLeave={(e) => handleCardHover(e.currentTarget, false)}
               >
@@ -186,7 +186,7 @@ export function ThirdHero() {
                   {skill.technologies.map((tech) => (
                     <span
                       key={tech}
-                      className="tech-tag px-2 sm:px-3 py-1 bg-background/10 rounded-full text-xs sm:text-sm font-medium"
+                      className="tech-tag px-2 sm:px-3 py-1 bg-background/10 dark:bg-background-dark/10 rounded-full text-xs sm:text-sm font-medium"
                     >
                       {tech}
                     </span>
@@ -200,7 +200,8 @@ export function ThirdHero() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mt-8 sm:mt-12 px-4">
             <Button
               asChild
-              className="hero-button group bg-secondary hover:bg-accent text-background"
+              variant="outline"
+              className="hero-button group border-secondary text-secondary hover:bg-secondary hover:text-background dark:border-accent-dark dark:text-accent-dark dark:hover:bg-accent-dark dark:hover:text-background"
             >
               <Link href="#projects" className="flex items-center">
                 View My Work
@@ -210,7 +211,7 @@ export function ThirdHero() {
             <Button
               asChild
               variant="outline"
-              className="hero-button group border-secondary text-secondary hover:bg-secondary hover:text-background dark:border-accent dark:text-accent dark:hover:bg-accent dark:hover:text-background"
+              className="hero-button group border-secondary text-secondary hover:bg-secondary hover:text-background dark:border-accent-dark dark:text-accent-dark dark:hover:bg-accent-dark dark:hover:text-background-dark"
             >
               <Link href="#contact" className="flex items-center">
                 Contact Me

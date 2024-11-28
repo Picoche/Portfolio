@@ -173,7 +173,7 @@ export function SecondAbout() {
               </Button>
               <Button
                 variant="outline"
-                className="border-primary dark:border-slate-50 text-primary dark:text-slate-50 hover:bg-primary hover:text-background dark:hover:bg-slate-50 dark:hover:text-primary transition-colors duration-200"
+                className="border-primary dark:border-slate-50 text-primary hover:bg-primary hover:text-background dark:hover:bg-slate-50 dark:hover:text-primary transition-colors duration-200"
                 onMouseEnter={(e) => handleButtonHover(e.currentTarget, true)}
                 onMouseLeave={(e) => handleButtonHover(e.currentTarget, false)}
               >

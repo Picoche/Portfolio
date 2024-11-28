@@ -120,13 +120,13 @@ export function FirstSkills() {
   return (
     <section 
       ref={sectionRef}
-      className="py-20 bg-slate-100 relative overflow-hidden"
+      className="py-20 bg-slate-100 dark:bg-gray-900 relative overflow-hidden"
     >
       {/* Background pattern */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-5" />
+      <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10" />
 
       <div className="container mx-auto px-4">
-        <h2 className="section-title text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent">
+        <h2 className="section-title text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-secondary to-accent dark:from-accent dark:to-secondary bg-clip-text text-transparent">
           Technical Expertise
         </h2>
 
@@ -134,15 +134,15 @@ export function FirstSkills() {
           {skillsData.map((category, index) => (
             <div
               key={index}
-              className="skill-category bg-white dark:bg-primary-dark rounded-2xl p-6 shadow-lg border border-secondary/20 dark:border-accent/20"
+              className="skill-category bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-secondary/20 dark:border-accent/20 transition-transform duration-300"
               onMouseEnter={(e) => handleHover(e.currentTarget, true)}
               onMouseLeave={(e) => handleHover(e.currentTarget, false)}
             >
               <div className="flex items-center gap-4 mb-6">
-                <div className="p-3 rounded-xl bg-secondary/10 dark:bg-accent/10">
+                <div className="p-3 rounded-xl bg-secondary/10 dark:bg-accent/20 transition-colors duration-200">
                   <category.icon className="floating-icon w-6 h-6 text-secondary dark:text-accent" />
                 </div>
-                <h3 className="text-xl font-bold text-primary dark:text-background">
+                <h3 className="text-xl font-bold text-primary dark:text-slate-50">
                   {category.category}
                 </h3>
               </div>
@@ -151,16 +151,16 @@ export function FirstSkills() {
                 {category.skills.map((skill, skillIndex) => (
                   <div key={skillIndex} className="space-y-2">
                     <div className="flex justify-between text-sm">
-                      <span className="text-primary/80 dark:text-background/80 font-medium">
+                      <span className="text-primary/80 dark:text-slate-50/80 font-medium">
                         {skill.name}
                       </span>
                       <span className="text-secondary dark:text-accent">
                         {skill.level}%
                       </span>
                     </div>
-                    <div className="h-2 bg-secondary/10 dark:bg-accent/10 rounded-full overflow-hidden">
+                    <div className="h-2 bg-secondary/10 dark:bg-accent/20 rounded-full overflow-hidden transition-colors duration-200">
                       <div 
-                        className="progress-bar h-full bg-gradient-to-r from-secondary to-accent dark:from-accent dark:to-secondary rounded-full"
+                        className="progress-bar h-full bg-gradient-to-r from-secondary to-accent dark:from-accent dark:to-secondary rounded-full transition-colors duration-200"
                         style={{ width: `${skill.level}%`, transformOrigin: "left" }}
                       />
                     </div>
@@ -173,4 +173,4 @@ export function FirstSkills() {
       </div>
     </section>
   );
-} 
+}

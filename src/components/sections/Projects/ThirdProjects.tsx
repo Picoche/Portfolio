@@ -169,24 +169,24 @@ export function ThirdProjects() {
   return (
     <section
       ref={sectionRef}
-      className="py-20 bg-slate-100 relative overflow-hidden"
+      className="py-20 bg-slate-100 dark:bg-gray-900 relative overflow-hidden"
     >
       {/* Background pattern */}
-      <div className="pattern-bg absolute inset-0 opacity-5">
+      <div className="pattern-bg absolute inset-0 opacity-5 dark:opacity-10">
         <div className="absolute inset-0 bg-grid-pattern" />
         <div className="absolute inset-0 bg-gradient-to-br from-secondary/10 via-transparent to-accent/10" />
       </div>
 
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="section-title text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent">
+          <h2 className="section-title text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-secondary to-accent dark:from-accent dark:to-secondary bg-clip-text text-transparent">
             Featured Projects
           </h2>
           <div className="flex flex-wrap justify-center gap-4">
             {["All", "Full Stack", "Web App", "AI/ML"].map((filter) => (
               <button
                 key={filter}
-                className="filter-button px-4 py-2 rounded-full bg-secondary/10 dark:bg-accent/10 text-secondary dark:text-accent hover:bg-secondary/20 dark:hover:bg-accent/20 transition-colors"
+                className="filter-button px-4 py-2 rounded-full bg-secondary/10 dark:bg-accent/10 text-secondary dark:text-accent hover:bg-secondary/20 dark:hover:bg-accent/20"
               >
                 {filter}
               </button>
@@ -203,7 +203,7 @@ export function ThirdProjects() {
               }`}
             >
               <div
-                className="bg-white dark:bg-primary-dark rounded-2xl shadow-lg overflow-hidden border border-secondary/20 dark:border-accent/20"
+                className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden border border-secondary/20 dark:border-accent/20"
                 onMouseEnter={(e) => handleHover(e.currentTarget, true)}
                 onMouseLeave={(e) => handleHover(e.currentTarget, false)}
               >
@@ -229,7 +229,7 @@ export function ThirdProjects() {
                 </div>
 
                 <div className="p-6 space-y-4">
-                  <p className="text-primary/80 dark:text-background/80">
+                  <p className="text-primary/80 dark:text-slate-50/80">
                     {project.description}
                   </p>
 
@@ -242,7 +242,7 @@ export function ThirdProjects() {
                         >
                           {value}
                         </div>
-                        <div className="text-sm text-primary/60 dark:text-background/60 capitalize">
+                        <div className="text-sm text-primary/60 dark:text-slate-50/60 capitalize">
                           {key}
                         </div>
                       </div>
@@ -253,7 +253,7 @@ export function ThirdProjects() {
                     {project.technologies.map((tech) => (
                       <span
                         key={tech}
-                        className="px-3 py-1 bg-secondary/5 dark:bg-accent/5 text-secondary dark:text-accent rounded-full text-sm"
+                        className="px-3 py-1 bg-secondary/5 dark:bg-accent/10 text-secondary dark:text-accent rounded-full text-sm"
                       >
                         {tech}
                       </span>
@@ -284,20 +284,6 @@ export function ThirdProjects() {
               </div>
             </div>
           ))}
-        </div>
-
-        <div className="mt-16 text-center">
-          <Button
-            asChild
-            className="bg-secondary hover:bg-accent text-background transition-colors duration-300"
-            onMouseEnter={(e) => handleHover(e.currentTarget, true)}
-            onMouseLeave={(e) => handleHover(e.currentTarget, false)}
-          >
-            <Link href="/projects" className="flex items-center">
-              View All Projects
-              <ChevronRight className="ml-2 h-4 w-4" />
-            </Link>
-          </Button>
         </div>
       </div>
     </section>

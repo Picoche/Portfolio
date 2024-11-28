@@ -155,11 +155,11 @@ export function ThirdTestimonials() {
   return (
     <section
       ref={sectionRef}
-      className="py-20 bg-slate-100 relative overflow-hidden min-h-screen"
+      className="py-20 bg-slate-100 dark:bg-gray-900 relative overflow-hidden min-h-screen"
     >
       {/* Animated background */}
       <div className="parallax-bg absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 to-accent/5" />
+        <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 to-accent/5 dark:from-accent/5 dark:to-secondary/5" />
         <div className="grid grid-cols-12 gap-8 opacity-10 rotate-12 scale-150">
           {Array.from({ length: 50 }).map((_, i) => (
             <div
@@ -172,7 +172,7 @@ export function ThirdTestimonials() {
 
       <div className="container mx-auto px-4 relative z-10">
         <h2 className="section-title text-5xl md:text-7xl font-bold text-center mb-16">
-          <span className="bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-secondary to-accent dark:from-accent dark:to-secondary bg-clip-text text-transparent">
             Success Stories
           </span>
         </h2>
@@ -183,10 +183,9 @@ export function ThirdTestimonials() {
               key={testimonial.id}
               className={cn(
                 "testimonial-card",
-                "bg-white/90 dark:bg-primary-dark/90 backdrop-blur-lg",
+                "bg-white/90 dark:bg-gray-800/90 backdrop-blur-lg",
                 "rounded-2xl shadow-xl overflow-hidden",
-                "transform-gpu transition-all duration-500",
-                "hover:shadow-2xl"
+                "transform-gpu"
               )}
             >
               <div className="grid md:grid-cols-2 gap-8">
@@ -202,13 +201,12 @@ export function ThirdTestimonials() {
                         muted
                         playsInline
                       />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                       <Button
-                        variant="outline"
-                        size="sm"
-                        className="absolute bottom-4 right-4"
+                        className="absolute bottom-4 right-4 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white"
                         onClick={() => setIsVideoPlaying(!isVideoPlaying)}
                       >
-                        {isVideoPlaying ? "Pause" : "Play"} Demo
+                        {isVideoPlaying ? "Pause" : "Play"}
                       </Button>
                     </div>
                   ) : (
@@ -223,68 +221,65 @@ export function ThirdTestimonials() {
 
                 {/* Content Section */}
                 <div className="card-content p-8 space-y-6">
-                  <div className="flex items-center gap-4">
-                    <div className="relative w-16 h-16 rounded-full overflow-hidden border-2 border-secondary/20 dark:border-accent/20">
-                      <Image
-                        src={testimonial.image}
-                        alt={testimonial.name}
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-xl text-primary dark:text-background">
-                        {testimonial.name}
-                      </h3>
-                      <p className="text-secondary dark:text-accent">
-                        {testimonial.position}
-                      </p>
-                      <p className="text-primary/60 dark:text-background/60">
-                        {testimonial.company}
-                      </p>
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-2xl font-bold text-primary dark:text-slate-50">
+                      {testimonial.name}
+                    </h3>
+                    <div className="flex gap-1">
+                      {Array.from({ length: testimonial.rating }).map((_, i) => (
+                        <Star
+                          key={i}
+                          className="w-5 h-5 fill-secondary dark:fill-accent text-secondary dark:text-accent"
+                        />
+                      ))}
                     </div>
                   </div>
 
-                  <Quote className="w-10 h-10 text-secondary/30 dark:text-accent/30" />
-                  <blockquote className="text-lg text-primary/80 dark:text-background/80">
-                    &quot;{testimonial.quote}&quot;
+                  <div>
+                    <p className="text-primary/60 dark:text-slate-50/60">
+                      {testimonial.position}
+                    </p>
+                    <p className="text-secondary dark:text-accent">
+                      {testimonial.company}
+                    </p>
+                  </div>
+
+                  <blockquote>
+                    <Quote className="floating-quote w-8 h-8 text-secondary dark:text-accent opacity-50 mb-2" />
+                    <p className="text-primary/80 dark:text-slate-50/80 italic">
+                      &quot;{testimonial.quote}&quot;
+                    </p>
                   </blockquote>
 
-                  {/* Impact Metrics */}
                   <div className="grid grid-cols-3 gap-4">
-                    {testimonial.impact.map((item, i) => {
-                      const Icon = item.icon;
-                      return (
-                        <div
-                          key={i}
-                          className="p-4 rounded-xl bg-secondary/5 dark:bg-accent/5 text-center"
-                        >
-                          <Icon className="w-6 h-6 mx-auto mb-2 text-secondary dark:text-accent" />
-                          <div className="font-bold text-xl text-secondary dark:text-accent">
-                            {item.value}
-                          </div>
-                          <div className="text-sm text-primary/60 dark:text-background/60">
-                            {item.metric}
-                          </div>
+                    {testimonial.impact.map((stat, index) => (
+                      <div key={index} className="text-center">
+                        <stat.icon className="w-6 h-6 mx-auto mb-2 text-secondary dark:text-accent" />
+                        <div className="text-xl font-bold text-secondary dark:text-accent">
+                          {stat.value}
                         </div>
-                      );
-                    })}
+                        <div className="text-sm text-primary/60 dark:text-slate-50/60">
+                          {stat.metric}
+                        </div>
+                      </div>
+                    ))}
                   </div>
 
-                  <div className="flex items-center justify-between">
-                    <div className="flex gap-1">
-                      {Array.from({ length: testimonial.rating }).map(
-                        (_, i) => (
-                          <Star
-                            key={i}
-                            className="w-5 h-5 fill-secondary dark:fill-accent text-secondary dark:text-accent"
-                          />
-                        )
-                      )}
+                  <div className="flex items-center justify-between pt-4 border-t border-secondary/10 dark:border-accent/10">
+                    <div>
+                      <p className="text-sm font-medium text-primary dark:text-slate-50">
+                        {testimonial.project}
+                      </p>
+                      <p className="text-sm text-primary/60 dark:text-slate-50/60">
+                        {testimonial.date}
+                      </p>
                     </div>
-                    <Button variant="outline" className="group">
+                    <Button
+                      className="bg-secondary hover:bg-accent text-white"
+                      size="sm"
+                    >
                       View Case Study
-                      <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+                      <ArrowRight className="w-4 h-4 ml-2" />
                     </Button>
                   </div>
                 </div>

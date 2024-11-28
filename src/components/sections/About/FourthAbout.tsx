@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { gsap } from "gsap";
 import Image from "next/image";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Download, Mail, Laptop, Server, Globe, Blocks} from "lucide-react";
 import { useGSAP } from "@gsap/react";
@@ -112,12 +113,12 @@ export function FourthAbout() {
   return (
     <section 
       ref={sectionRef}
-      className="py-20 bg-slate-100 relative overflow-hidden"
+      className="py-20 bg-background dark:bg-background-dark relative overflow-hidden"
     >
       {/* Background pattern */}
       <div className="pattern-bg absolute inset-0 opacity-5">
         <div className="absolute inset-0 bg-grid-pattern" />
-        <div className="absolute inset-0 bg-gradient-to-br from-secondary/10 via-transparent to-accent/10" />
+        <div className="absolute inset-0 bg-gradient-to-br from-secondary/10 via-transparent to-accent/10 dark:from-secondary-dark/10 dark:to-accent-dark/10" />
       </div>
 
       <div className="container mx-auto px-4">
@@ -167,7 +168,7 @@ export function FourthAbout() {
 
           {/* Right column - Content and tech stack */}
           <div className="lg:col-span-2 space-y-8">
-            <div className="prose prose-lg dark:prose-invert">
+            <div className="section-title prose prose-lg dark:prose-invert">
               <h3 className="text-2xl font-bold text-primary dark:text-background">
                 Crafting Digital Excellence
               </h3>
@@ -209,25 +210,6 @@ export function FourthAbout() {
                   </div>
                 </div>
               ))}
-            </div>
-
-            {/* Action buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <Button 
-                className="bg-secondary hover:bg-accent text-background transition-colors duration-300"
-                onMouseEnter={(e) => handleHover(e.currentTarget, true)}
-                onMouseLeave={(e) => handleHover(e.currentTarget, false)}
-              >
-                <Download className="mr-2 h-4 w-4" /> Download CV
-              </Button>
-              <Button
-                variant="outline"
-                className="border-primary dark:border-background text-primary dark:text-background hover:bg-primary hover:text-background dark:hover:bg-background dark:hover:text-primary transition-colors duration-300"
-                onMouseEnter={(e) => handleHover(e.currentTarget, true)}
-                onMouseLeave={(e) => handleHover(e.currentTarget, false)}
-              >
-                <Mail className="mr-2 h-4 w-4" /> Get in Touch
-              </Button>
             </div>
           </div>
         </div>

@@ -143,16 +143,16 @@ export function ThirdEducation() {
   return (
     <section 
       ref={sectionRef}
-      className="py-20 bg-slate-100 relative overflow-hidden"
+      className="py-20 bg-slate-100 dark:bg-gray-900 relative overflow-hidden"
     >
       {/* Background pattern */}
-      <div className="pattern-bg absolute inset-0 opacity-5">
+      <div className="pattern-bg absolute inset-0 opacity-5 dark:opacity-10">
         <div className="absolute inset-0 bg-grid-pattern" />
-        <div className="absolute inset-0 bg-gradient-to-br from-secondary/10 via-transparent to-accent/10" />
+        <div className="absolute inset-0 bg-gradient-to-br from-secondary/10 via-transparent to-accent/10 dark:from-accent/5 dark:to-secondary/5" />
       </div>
 
       <div className="container mx-auto px-4">
-        <h2 className="section-title text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent">
+        <h2 className="section-title text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-secondary to-accent dark:from-accent dark:to-secondary bg-clip-text text-transparent">
           Academic Excellence
         </h2>
 
@@ -163,7 +163,7 @@ export function ThirdEducation() {
           {educationData.map((education, index) => (
             <div key={index} className="relative mb-16">
               {/* Year marker */}
-              <div className="year-marker absolute left-0 md:left-1/2 -translate-x-1/2 bg-background dark:bg-primary px-4 py-2 rounded-full border-2 border-secondary dark:border-accent">
+              <div className="year-marker absolute left-0 md:left-1/2 -translate-x-1/2 bg-white dark:bg-gray-800 px-4 py-2 rounded-full border-2 border-secondary dark:border-accent">
                 <span className="text-secondary dark:text-accent font-bold">
                   {education.year}
                 </span>
@@ -176,14 +176,14 @@ export function ThirdEducation() {
                 }`}
               >
                 <div
-                  className="bg-white dark:bg-primary-dark rounded-2xl shadow-lg p-6 border border-secondary/20 dark:border-accent/20"
+                  className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 border border-secondary/20 dark:border-accent/20"
                   onMouseEnter={(e) => handleHover(e.currentTarget, true)}
                   onMouseLeave={(e) => handleHover(e.currentTarget, false)}
                 >
                   <div className="flex items-start gap-4 mb-6">
                     <GraduationCap className="floating-icon w-8 h-8 text-secondary dark:text-accent flex-shrink-0" />
                     <div>
-                      <h3 className="text-2xl font-bold text-primary dark:text-background">
+                      <h3 className="text-2xl font-bold text-primary dark:text-slate-50">
                         {education.degree}
                       </h3>
                       <p className="text-secondary dark:text-accent">
@@ -192,18 +192,18 @@ export function ThirdEducation() {
                     </div>
                   </div>
 
-                  <div className="flex flex-wrap gap-4 mb-4 text-primary/60 dark:text-background/60">
+                  <div className="flex flex-wrap gap-4 mb-4 text-primary/60 dark:text-slate-50/60">
                     <div className="flex items-center">
-                      <MapPin className="w-4 h-4 mr-1" />
+                      <MapPin className="w-4 h-4 mr-1 text-secondary dark:text-accent" />
                       {education.institution}, {education.location}
                     </div>
                     <div className="flex items-center">
-                      <Star className="w-4 h-4 mr-1" />
+                      <Star className="w-4 h-4 mr-1 text-secondary dark:text-accent" />
                       GPA: {education.gpa}
                     </div>
                   </div>
 
-                  <p className="text-primary/80 dark:text-background/80 mb-6">
+                  <p className="text-primary/80 dark:text-slate-50/80 mb-6">
                     {education.description}
                   </p>
 
@@ -213,10 +213,10 @@ export function ThirdEducation() {
                       {education.achievements.map((achievement, i) => (
                         <div
                           key={i}
-                          className="achievement-item flex items-center gap-2 p-2 rounded-lg bg-secondary/5 dark:bg-accent/5"
+                          className="achievement-item flex items-center gap-2 p-2 rounded-lg bg-secondary/5 dark:bg-accent/10"
                         >
                           <achievement.icon className="w-5 h-5 text-secondary dark:text-accent" />
-                          <span className="text-sm text-primary/80 dark:text-background/80">
+                          <span className="text-sm text-primary/80 dark:text-slate-50/80">
                             {achievement.text}
                           </span>
                         </div>
@@ -225,15 +225,15 @@ export function ThirdEducation() {
 
                     {/* Skills */}
                     <div>
-                      <h4 className="text-lg font-semibold text-primary dark:text-background mb-3 flex items-center gap-2">
-                        <Book className="w-5 h-5" />
+                      <h4 className="text-lg font-semibold text-primary dark:text-slate-50 mb-3 flex items-center gap-2">
+                        <Book className="w-5 h-5 text-secondary dark:text-accent" />
                         Key Skills
                       </h4>
                       <div className="flex flex-wrap gap-2">
                         {education.keySkills.map((skill, i) => (
                           <span
                             key={i}
-                            className="skill-tag px-3 py-1 rounded-full bg-secondary/10 dark:bg-accent/10 text-secondary dark:text-accent text-sm"
+                            className="skill-tag px-3 py-1 rounded-full bg-secondary/10 dark:bg-accent/20 text-secondary dark:text-accent text-sm"
                           >
                             {skill}
                           </span>

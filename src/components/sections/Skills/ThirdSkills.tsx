@@ -119,13 +119,13 @@ export function ThirdSkills() {
   return (
     <section
       ref={sectionRef}
-      className="py-20 bg-slate-100 dark:bg-gray-900 relative overflow-hidden transition-colors duration-200"
+      className="py-20 bg-slate-100 dark:bg-gray-900 relative overflow-hidden "
     >
       {/* Background pattern */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10 transition-opacity duration-200" />
+      <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10 " />
 
       <div className="container mx-auto px-4">
-        <h2 className="section-title text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-secondary to-accent dark:from-accent dark:to-secondary bg-clip-text text-transparent transition-colors duration-200">
+        <h2 className="section-title text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-secondary to-accent dark:from-accent dark:to-secondary bg-clip-text text-transparent ">
           Technical Proficiency
         </h2>
 
@@ -133,19 +133,19 @@ export function ThirdSkills() {
           {skillsData.map((group, groupIndex) => (
             <div
               key={groupIndex}
-              className="skill-card bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-secondary/20 dark:border-accent/20 transition-all duration-200"
+              className="skill-card bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-secondary/20 dark:border-accent/20 "
               onMouseEnter={(e) => handleHover(e.currentTarget, true)}
               onMouseLeave={(e) => handleHover(e.currentTarget, false)}
             >
               <div className="flex items-center gap-4 mb-6">
-                <div className="p-3 rounded-xl bg-secondary/10 dark:bg-accent/20 transition-colors duration-200">
-                  <group.icon className="floating-icon w-6 h-6 text-secondary dark:text-accent transition-colors duration-200" />
+                <div className="p-3 rounded-xl bg-secondary/10 dark:bg-accent/20 ">
+                  <group.icon className="floating-icon w-6 h-6 text-secondary dark:text-accent " />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-primary dark:text-slate-50 transition-colors duration-200">
+                  <h3 className="text-xl font-bold text-primary dark:text-slate-50 ">
                     {group.category}
                   </h3>
-                  <p className="text-sm text-primary/60 dark:text-slate-50/60 transition-colors duration-200">
+                  <p className="text-sm text-primary/60 dark:text-slate-50/60 ">
                     {group.description}
                   </p>
                 </div>
@@ -157,7 +157,7 @@ export function ThirdSkills() {
                     <div className="relative w-24 h-24 mx-auto mb-3">
                       <svg className="w-full h-full transform -rotate-90">
                         <circle
-                          className="text-secondary/10 dark:text-accent/20 transition-colors duration-200"
+                          className="text-secondary/10 dark:text-accent/20 "
                           strokeWidth="8"
                           stroke="currentColor"
                           fill="transparent"
@@ -166,7 +166,7 @@ export function ThirdSkills() {
                           cy="48"
                         />
                         <circle
-                          className="progress-circle bg-gradient-to-r text-secondary dark:text-accent transition-colors duration-200"
+                          className="progress-circle bg-gradient-to-r text-secondary dark:text-accent "
                           strokeWidth="8"
                           strokeLinecap="round"
                           stroke="currentColor"
@@ -181,12 +181,12 @@ export function ThirdSkills() {
                         />
                       </svg>
                       <div className="absolute inset-0 flex items-center justify-center">
-                        <span className="text-lg font-bold text-secondary dark:text-accent transition-colors duration-200">
+                        <span className="text-lg font-bold text-secondary dark:text-accent ">
                           {skill.level}%
                         </span>
                       </div>
                     </div>
-                    <h4 className="font-medium text-primary dark:text-slate-50 transition-colors duration-200">
+                    <h4 className="font-medium text-primary dark:text-slate-50 ">
                       {skill.name}
                     </h4>
                   </div>

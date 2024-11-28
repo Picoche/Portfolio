@@ -30,13 +30,13 @@ const skillCards = [
     icon: Wrench,
     title: "DevOps",
     skills: ["Docker", "AWS", "CI/CD"],
-    gradient: "from-primary to-secondary dark:from-background dark:to-accent",
+    gradient: "from-primary to-secondary dark:from-background-dark dark:to-accent-dark",
   },
   {
     icon: Code,
     title: "Best Practices",
     skills: ["Clean Code", "Testing", "Documentation"],
-    gradient: "from-secondary to-primary dark:from-accent dark:to-background",
+    gradient: "from-secondary to-primary dark:from-accent-dark dark:to-background-dark",
   },
 ];
 
@@ -131,7 +131,7 @@ export function FourthHero() {
   return (
     <section 
       ref={sectionRef} 
-      className="min-h-screen flex items-center justify-center bg-slate-100 relative overflow-hidden py-20 sm:py-32 theme-transition"
+      className="min-h-screen flex items-center justify-center bg-background dark:bg-background-dark relative overflow-hidden py-20 sm:py-32 theme-transition"
     >
       {/* Animated gradient background */}
       <div 
@@ -156,25 +156,25 @@ export function FourthHero() {
         <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12">
           {/* Left Column - Introduction */}
           <div ref={textRef} className="lg:w-1/2 space-y-4 sm:space-y-6 text-center lg:text-left">
-            <span className="status-badge inline-flex items-center px-3 sm:px-4 py-1.5 text-sm font-medium rounded-full bg-secondary/10 text-secondary dark:bg-accent/10 dark:text-accent">
-              <span className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse" />
+            <span className="status-badge inline-flex items-center px-3 sm:px-4 py-1.5 text-sm font-medium rounded-full bg-secondary/10 text-secondary dark:bg-secondary-dark/10 dark:text-secondary-dark">
+              <span className="w-2 h-2 bg-green-400 dark:bg-green-500 rounded-full mr-2 animate-pulse" />
               Open to opportunities
             </span>
 
             <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold font-heading">
-              <span className="text-primary dark:text-background animate-text">
+              <span className="text-primary dark:text-primary-dark animate-text">
                 Hello, I&apos;m{" "}
               </span>
-              <span className="bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent animate-text">
+              <span className="bg-gradient-to-r from-secondary to-accent dark:from-secondary-dark dark:to-accent-dark bg-clip-text text-transparent animate-text">
                 John Doe
               </span>
             </h1>
 
-            <h2 className="text-lg sm:text-xl lg:text-2xl text-secondary dark:text-accent font-accent">
+            <h2 className="text-lg sm:text-xl lg:text-2xl text-secondary dark:text-secondary-dark font-accent">
               Full Stack Developer & DevOps Engineer
             </h2>
 
-            <p className="text-base sm:text-lg text-primary/80 dark:text-background/80 font-body max-w-xl mx-auto lg:mx-0">
+            <p className="text-base sm:text-lg text-primary/80 dark:text-primary-dark/80 font-body max-w-xl mx-auto lg:mx-0">
               Specializing in building exceptional digital experiences that
               combine elegant frontend designs with robust backend
               architectures.
@@ -183,7 +183,7 @@ export function FourthHero() {
             <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-3 sm:gap-4 pt-2 sm:pt-4">
               <Button
                 asChild
-                className="group bg-secondary hover:bg-accent text-background transition-all duration-300"
+                className="group bg-secondary hover:bg-accent text-background dark:bg-secondary-dark dark:hover:bg-accent-dark dark:text-background-dark transition-all duration-300"
                 onMouseEnter={(e) => handleCardHover(e.currentTarget, true)}
                 onMouseLeave={(e) => handleCardHover(e.currentTarget, false)}
               >
@@ -195,7 +195,7 @@ export function FourthHero() {
               <Button
                 asChild
                 variant="outline"
-                className="border-secondary text-secondary hover:bg-secondary hover:text-background dark:border-accent dark:text-accent dark:hover:bg-accent dark:hover:text-background transition-all duration-300"
+                className="border-secondary text-secondary hover:bg-secondary hover:text-background dark:border-secondary-dark dark:text-secondary-dark dark:hover:bg-secondary-dark dark:hover:text-background-dark transition-all duration-300"
                 onMouseEnter={(e) => handleCardHover(e.currentTarget, true)}
                 onMouseLeave={(e) => handleCardHover(e.currentTarget, false)}
               >
@@ -208,7 +208,7 @@ export function FourthHero() {
                 href="https://github.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="social-icon text-primary dark:text-background hover:text-secondary dark:hover:text-accent transition-colors duration-300"
+                className="social-icon text-primary dark:text-primary-dark hover:text-secondary dark:hover:text-secondary-dark transition-colors duration-300"
               >
                 <Github className="w-6 h-6" />
               </Link>
@@ -216,7 +216,7 @@ export function FourthHero() {
                 href="https://linkedin.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="social-icon text-primary dark:text-background hover:text-secondary dark:hover:text-accent transition-colors duration-300"
+                className="social-icon text-primary dark:text-primary-dark hover:text-secondary dark:hover:text-secondary-dark transition-colors duration-300"
               >
                 <Linkedin className="w-6 h-6" />
               </Link>
@@ -229,7 +229,7 @@ export function FourthHero() {
               {skillCards.map(card => (
                 <div
                   key={card.title}
-                  className={`skill-card bg-gradient-to-br ${card.gradient} p-4 sm:p-6 rounded-xl text-background shadow-lg transform transition-transform duration-300`}
+                  className={`skill-card bg-gradient-to-br ${card.gradient} p-4 sm:p-6 rounded-xl text-background dark:text-background/70 shadow-lg transform transition-transform duration-300`}
                   onMouseEnter={(e) => handleCardHover(e.currentTarget, true)}
                   onMouseLeave={(e) => handleCardHover(e.currentTarget, false)}
                 >
@@ -239,7 +239,7 @@ export function FourthHero() {
                   </h3>
                   <div className="space-y-1">
                     {card.skills.map((skill) => (
-                      <p key={skill} className="font-body text-xs sm:text-sm">
+                      <p key={skill} className="font-body text-xs sm:text-sm text-background/90">
                         {skill}
                       </p>
                     ))}

@@ -102,10 +102,10 @@ export function FirstProjects() {
   return (
     <section 
       ref={sectionRef}
-      className="py-20 bg-slate-100 dark:bg-gray-900 transition-colors duration-200"
+      className="py-20 bg-background dark:bg-background-dark  "
     >
       <div className="container mx-auto px-4">
-        <h2 className="section-title text-4xl md:text-5xl font-bold text-center mb-16 text-primary dark:text-slate-50 transition-colors duration-200">
+        <h2 className="section-title text-4xl md:text-5xl font-bold text-center mb-16 text-primary dark:text-primary-dark  ">
           Featured Projects
         </h2>
 
@@ -113,7 +113,7 @@ export function FirstProjects() {
           {projects.map((project) => (
             <div
               key={project.title}
-              className="project-card bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden border border-secondary/20 dark:border-accent/20 transition-all duration-200"
+              className="project-card bg-background dark:bg-background-dark rounded-xl shadow-lg overflow-hidden border border-secondary/20 dark:border-secondary-dark/20  "
               onMouseEnter={(e) => handleHover(e.currentTarget, true)}
               onMouseLeave={(e) => handleHover(e.currentTarget, false)}
             >
@@ -125,14 +125,14 @@ export function FirstProjects() {
                   height={200}
                   className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent dark:from-black/70" />
               </div>
 
               <div className="p-6">
-                <h3 className="text-xl font-bold mb-2 text-primary dark:text-slate-50 transition-colors duration-200">
+                <h3 className="text-xl font-bold mb-2 text-primary dark:text-primary-dark  ">
                   {project.title}
                 </h3>
-                <p className="text-primary/80 dark:text-slate-50/90 mb-4 line-clamp-3 transition-colors duration-200">
+                <p className="text-primary/80 dark:text-primary-dark/80 mb-4 line-clamp-3  ">
                   {project.description}
                 </p>
 
@@ -140,7 +140,7 @@ export function FirstProjects() {
                   {project.technologies.map((tech) => (
                     <span
                       key={tech}
-                      className="tech-tag px-2 py-1 bg-secondary/10 dark:bg-accent/10 text-secondary dark:text-accent rounded-full text-sm transition-colors duration-200"
+                      className="tech-tag px-2 py-1 bg-secondary/10 dark:bg-secondary-dark/10 text-secondary dark:text-secondary-dark rounded-full text-sm  "
                     >
                       {tech}
                     </span>
@@ -150,7 +150,7 @@ export function FirstProjects() {
                 <div className="flex justify-between items-center">
                   <Link
                     href={project.liveLink}
-                    className="project-link text-secondary dark:text-accent hover:text-accent dark:hover:text-accent/80 hover:underline flex items-center transition-colors duration-200"
+                    className="project-link text-secondary dark:text-secondary-dark hover:text-accent dark:hover:text-accent-dark hover:underline flex items-center  "
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -159,7 +159,7 @@ export function FirstProjects() {
                   </Link>
                   <Link
                     href={project.githubLink}
-                    className="project-link text-secondary dark:text-accent hover:text-accent dark:hover:text-accent/80 hover:underline flex items-center transition-colors duration-200"
+                    className="project-link text-secondary dark:text-secondary-dark hover:text-accent dark:hover:text-accent-dark hover:underline flex items-center  "
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -170,20 +170,6 @@ export function FirstProjects() {
               </div>
             </div>
           ))}
-        </div>
-
-        <div className="mt-12 text-center">
-          <Button
-            asChild
-            className="view-all-button bg-secondary hover:bg-accent dark:bg-accent dark:hover:bg-accent/90 text-background dark:text-slate-50 transition-colors duration-200"
-            onMouseEnter={(e) => handleHover(e.currentTarget, true)}
-            onMouseLeave={(e) => handleHover(e.currentTarget, false)}
-          >
-            <Link href="/projects" className="flex items-center">
-              View All Projects
-              <ChevronRight className="ml-2 h-4 w-4" />
-            </Link>
-          </Button>
         </div>
       </div>
     </section>

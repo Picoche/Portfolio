@@ -122,16 +122,16 @@ export function SecondProjects() {
   return (
     <section 
       ref={sectionRef}
-      className="py-20 bg-slate-100 relative overflow-hidden"
+      className="py-20 bg-slate-100 dark:bg-gray-900 relative overflow-hidden"
     >
       {/* Background pattern */}
-      <div className="pattern-bg absolute inset-0 opacity-5">
+      <div className="pattern-bg absolute inset-0 opacity-5 dark:opacity-10">
         <div className="absolute inset-0 bg-grid-pattern" />
         <div className="absolute inset-0 bg-gradient-to-br from-secondary/10 via-transparent to-accent/10" />
       </div>
 
       <div className="container mx-auto px-4">
-        <h2 className="section-title text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent">
+        <h2 className="section-title text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-secondary to-accent dark:from-accent dark:to-secondary bg-clip-text text-transparent">
           Featured Projects
         </h2>
 
@@ -139,7 +139,7 @@ export function SecondProjects() {
           {projects.map((project, index) => (
             <div
               key={project.title}
-              className={`project-card bg-white dark:bg-primary-dark rounded-2xl shadow-lg overflow-hidden border border-secondary/20 dark:border-accent/20 transform perspective-1000 ${
+              className={`project-card bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden border border-secondary/20 dark:border-accent/20 transform perspective-1000 ${
                 index % 2 === 0 ? "" : "md:flex-row-reverse"
               }`}
               onMouseEnter={(e) => handleHover(e.currentTarget, true)}
@@ -152,7 +152,7 @@ export function SecondProjects() {
                     alt={project.title}
                     width={800}
                     height={600}
-                    className="w-full h-64 md:h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                    className="w-full h-64 md:h-full object-cover duration-300 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                   <project.icon className="project-icon absolute bottom-4 right-4 w-8 h-8 text-white" />
@@ -160,19 +160,19 @@ export function SecondProjects() {
 
                 <div className="md:w-1/2 p-8 space-y-6">
                   <div className="flex items-center justify-between">
-                    <span className="category-tag px-3 py-1 bg-secondary/10 dark:bg-accent/10 text-secondary dark:text-accent rounded-full text-sm">
+                    <span className="category-tag px-3 py-1 bg-secondary/10 dark:bg-accent/20 text-secondary dark:text-accent rounded-full text-sm">
                       {project.category}
                     </span>
-                    <span className="text-primary/60 dark:text-background/60 text-sm">
+                    <span className="text-primary/60 dark:text-slate-50/60 text-sm">
                       {project.year}
                     </span>
                   </div>
 
                   <div>
-                    <h3 className="text-2xl font-bold mb-2 text-primary dark:text-background">
+                    <h3 className="text-2xl font-bold mb-2 text-primary dark:text-slate-50">
                       {project.title}
                     </h3>
-                    <p className="text-primary/80 dark:text-background/80 mb-4">
+                    <p className="text-primary/80 dark:text-slate-50/80 mb-4">
                       {project.description}
                     </p>
                   </div>
@@ -181,7 +181,7 @@ export function SecondProjects() {
                     {project.technologies.map((tech) => (
                       <span
                         key={tech}
-                        className="tech-pill px-3 py-1 bg-secondary/5 dark:bg-accent/5 text-secondary dark:text-accent rounded-full text-sm"
+                        className="tech-pill px-3 py-1 bg-secondary/5 dark:bg-accent/10 text-secondary dark:text-accent rounded-full text-sm"
                       >
                         {tech}
                       </span>
@@ -213,21 +213,7 @@ export function SecondProjects() {
             </div>
           ))}
         </div>
-
-        <div className="mt-16 text-center">
-          <Button
-            asChild
-            className="bg-secondary hover:bg-accent text-background transition-colors duration-300"
-            onMouseEnter={(e) => handleHover(e.currentTarget, true)}
-            onMouseLeave={(e) => handleHover(e.currentTarget, false)}
-          >
-            <Link href="/projects" className="flex items-center">
-              View All Projects
-              <ChevronRight className="ml-2 h-4 w-4" />
-            </Link>
-          </Button>
-        </div>
       </div>
     </section>
   );
-} 
+}

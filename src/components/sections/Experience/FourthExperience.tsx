@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -44,7 +44,6 @@ const experiences: Experience[] = [
       "Mentored junior developers and established best practices",
     ],
     technologies: ["Next.js", "TypeScript", "GSAP", "Tailwind CSS"],
-    link: "https://techinnovators.com",
     category: "frontend",
     icon: Code,
     stats: {
@@ -76,6 +75,18 @@ const experiences: Experience[] = [
 export function FourthExperience() {
   const sectionRef = useRef(null);
   const [isHovering, setIsHovering] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const originalScrollTo = window.scrollTo;
+      window.scrollTo = function(...args: any[]) {
+        if (args.length === 1 && typeof args[0] === 'object') {
+          return originalScrollTo.call(this, args[0].left || 0, args[0].top || 0);
+        }
+        return originalScrollTo.apply(this, args[0].left || 0);
+      };
+    }
+  }, []);
 
   useGSAP(
     () => {
@@ -175,19 +186,19 @@ export function FourthExperience() {
   return (
     <section
       ref={sectionRef}
-      className="py-20 bg-slate-100 relative overflow-hidden min-h-screen"
+      className="py-20 bg-slate-100 dark:bg-gray-900 relative overflow-hidden min-h-screen"
     >
       {/* Animated background patterns */}
-      <div className="parallax-bg absolute inset-0 opacity-10">
-        <div className="absolute inset-0 bg-gradient-to-br from-secondary/20 to-accent/20" />
+      <div className="parallax-bg absolute inset-0 opacity-10 dark:opacity-20">
+        <div className="absolute inset-0 bg-gradient-to-br from-secondary/20 to-accent/20 dark:from-accent/20 dark:to-secondary/20" />
         <div className="grid grid-cols-10 gap-4 rotate-12 scale-150">
           {Array.from({ length: 100 }).map((_, i) => (
             <div
               key={i}
               className="floating-element w-4 h-4 rounded-full bg-secondary/20 dark:bg-accent/20"
-              style={{ 
+              style={{
                 animationDelay: `${i * 0.1}s`,
-                transform: `translateY(${Math.floor(i % 3) * 10}px)`
+                transform: `translateY(${Math.floor(i % 3) * 10}px)`,
               }}
             />
           ))}
@@ -196,7 +207,7 @@ export function FourthExperience() {
 
       <div className="container mx-auto px-4 relative z-10">
         <h2 className="section-title text-5xl md:text-7xl font-bold text-center mb-16">
-          <span className="bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-secondary to-accent dark:from-accent dark:to-secondary bg-clip-text text-transparent">
             Experience
           </span>
         </h2>
@@ -207,7 +218,7 @@ export function FourthExperience() {
               key={index}
               className={cn(
                 "experience-card group",
-                "bg-white/90 dark:bg-primary-dark/90 backdrop-blur-lg",
+                "bg-white/90 dark:bg-gray-800/90 backdrop-blur-lg",
                 "rounded-2xl p-8 md:p-12 shadow-lg",
                 "border border-secondary/20 dark:border-accent/20",
                 "transform transition-all duration-300",
@@ -220,11 +231,11 @@ export function FourthExperience() {
                 {/* Left column: Main content */}
                 <div className="space-y-6">
                   <div className="flex items-start gap-4">
-                    <div className="p-3 rounded-xl bg-gradient-to-br from-secondary/20 to-accent/20">
+                    <div className="p-3 rounded-xl bg-gradient-to-br from-secondary/20 to-accent/20 dark:from-accent/20 dark:to-secondary/20">
                       <experience.icon className="w-8 h-8 text-secondary dark:text-accent" />
                     </div>
                     <div>
-                      <h3 className="text-2xl font-bold text-primary dark:text-background">
+                      <h3 className="text-2xl font-bold text-primary dark:text-slate-50">
                         {experience.title}
                       </h3>
                       <div className="flex items-center gap-2 text-secondary dark:text-accent">
@@ -234,13 +245,13 @@ export function FourthExperience() {
                     </div>
                   </div>
 
-                  <div className="flex flex-wrap gap-4 text-primary/60 dark:text-background/60">
+                  <div className="flex flex-wrap gap-4 text-primary/60 dark:text-slate-50/60">
                     <div className="flex items-center gap-1">
-                      <Calendar className="w-4 h-4" />
+                      <Calendar className="w-4 h-4 text-secondary dark:text-accent" />
                       <span>{experience.period}</span>
                     </div>
                     <div className="flex items-center gap-1">
-                      <MapPin className="w-4 h-4" />
+                      <MapPin className="w-4 h-4 text-secondary dark:text-accent" />
                       <span>{experience.location}</span>
                     </div>
                   </div>
@@ -249,7 +260,7 @@ export function FourthExperience() {
                     {experience.description.map((item, i) => (
                       <li
                         key={i}
-                        className="flex items-start gap-2 text-primary/80 dark:text-background/80"
+                        className="flex items-start gap-2 text-primary/80 dark:text-slate-50/80"
                       >
                         <ArrowRight className="w-4 h-4 mt-1 text-secondary dark:text-accent" />
                         <span>{item}</span>
@@ -262,33 +273,33 @@ export function FourthExperience() {
                 <div className="space-y-8">
                   {/* Stats grid */}
                   <div className="grid grid-cols-3 gap-4">
-                    <div className="stat-card p-4 rounded-xl bg-secondary/5 dark:bg-accent/5">
-                      <div 
+                    <div className="stat-card p-4 rounded-xl bg-secondary/5 dark:bg-accent/10">
+                      <div
                         className="stat-number text-3xl font-bold text-secondary dark:text-accent"
                         data-value={experience.stats.projects}
                       >
                         {experience.stats.projects}
                       </div>
-                      <div className="text-sm text-primary/60 dark:text-background/60">
+                      <div className="text-sm text-primary/60 dark:text-slate-50/60">
                         Projects
                       </div>
                     </div>
-                    <div className="stat-card p-4 rounded-xl bg-secondary/5 dark:bg-accent/5">
-                      <div 
+                    <div className="stat-card p-4 rounded-xl bg-secondary/5 dark:bg-accent/10">
+                      <div
                         className="stat-number text-3xl font-bold text-secondary dark:text-accent"
                         data-value={experience.stats.teamSize}
                       >
                         {experience.stats.teamSize}
                       </div>
-                      <div className="text-sm text-primary/60 dark:text-background/60">
+                      <div className="text-sm text-primary/60 dark:text-slate-50/60">
                         Team Size
                       </div>
                     </div>
-                    <div className="stat-card p-4 rounded-xl bg-secondary/5 dark:bg-accent/5">
+                    <div className="stat-card p-4 rounded-xl bg-secondary/5 dark:bg-accent/10">
                       <div className="text-3xl font-bold text-secondary dark:text-accent">
                         {experience.stats.impact}
                       </div>
-                      <div className="text-sm text-primary/60 dark:text-background/60">
+                      <div className="text-sm text-primary/60 dark:text-slate-50/60">
                         Impact
                       </div>
                     </div>
@@ -296,39 +307,20 @@ export function FourthExperience() {
 
                   {/* Technologies */}
                   <div className="space-y-4">
-                    <h4 className="font-semibold text-primary dark:text-background">
+                    <h4 className="font-semibold text-primary dark:text-slate-50">
                       Technologies
                     </h4>
                     <div className="flex flex-wrap gap-2">
                       {experience.technologies.map((tech, i) => (
                         <span
                           key={i}
-                          className="px-3 py-1 rounded-full text-sm font-medium bg-secondary/10 dark:bg-accent/10 text-secondary dark:text-accent"
+                          className="px-3 py-1 rounded-full text-sm font-medium bg-secondary/10 dark:bg-accent/20 text-secondary dark:text-accent transition-colors duration-200"
                         >
                           {tech}
                         </span>
                       ))}
                     </div>
                   </div>
-
-                  {/* Company link */}
-                  {experience.link && (
-                    <Button
-                      variant="outline"
-                      className="group/button w-full"
-                      asChild
-                    >
-                      <a
-                        href={experience.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center justify-center gap-2"
-                      >
-                        Visit Company
-                        <ExternalLink className="w-4 h-4 transition-transform group-hover/button:translate-x-1" />
-                      </a>
-                    </Button>
-                  )}
                 </div>
               </div>
             </div>

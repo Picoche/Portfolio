@@ -190,7 +190,7 @@ export function FirstHero() {
               </span>
             ))}
           </div>
-          <div className="bg-gradient-to-r from-secondary to-accent dark:from-primary-dark dark:to-accent-dark bg-clip-text text-transparent">
+          <div className="text-transparent bg-gradient-to-r from-secondary to-accent dark:from-primary-dark dark:to-accent-dark bg-clip-text">
             {/* Split name into spans */}
             {"John Doe".split(" ").map((word, i) => (
               <span key={i} className="inline-block">

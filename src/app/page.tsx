@@ -17,37 +17,61 @@ export default function Home() {
       <section id="home" className="w-full">
         <Hero />
       </section>
+
+      <Separator orientation="horizontal" className=" bg-background-dark dark:bg-background w-[90%]" />
+      
       {/* About Section */}
-      <section id="about" className="w-full bg-slate-100 py-20">
+      <section id="about" className="w-full bg-background dark:bg-background-dark py-20">
         <About />
       </section>
+
+      <Separator orientation="horizontal" className=" bg-background-dark dark:bg-background w-[90%]" />
+
       {/* Education Section */}
-      <section id="education" className="w-full bg-slate-100 py-20">
+      <section id="education" className="w-full bg-background dark:bg-background-dark py-20">
         <Education />
       </section>
+
+      <Separator orientation="horizontal" className=" bg-background-dark dark:bg-background w-[90%]" />
+
       {/* Skills Section */}
-      <section id="skills" className="w-full bg-slate-100 py-20">
+      <section id="skills" className="w-full bg-background dark:bg-background-dark py-20">
         <Skills />
       </section>
+
+      <Separator orientation="horizontal" className=" bg-background-dark dark:bg-background w-[90%]" />
+
       {/* Projects Section */}
-      <section id="projects" className="w-full bg-slate-100 py-20">
+      <section id="projects" className="w-full bg-background dark:bg-background-dark py-20">
         <Projects />
       </section>
+
+      <Separator orientation="horizontal" className=" bg-background-dark dark:bg-background w-[90%]" />
+
       {/* Experience Section */}
-      <section id="experience" className="w-full bg-slate-100 py-20">
+      <section id="experience" className="w-full bg-background dark:bg-background-dark py-20">
         <Experience />
       </section>
+
+      <Separator orientation="horizontal" className=" bg-background-dark dark:bg-background w-[90%]" />
+
       {/* Testimonials Section */}
-      <section id="testimonials" className="w-full bg-slate-100 py-20">
+      <section id="testimonials" className="w-full bg-background dark:bg-background-dark py-20">
         <Testimonials />
       </section>
+
+      <Separator orientation="horizontal" className=" bg-background-dark dark:bg-background w-[90%]" />
+
       {/* Contact Section */}
-      <section id="contact" className="w-full bg-slate-100 py-20">
+      <section id="contact" className="w-full bg-background dark:bg-background-dark py-20">
         <Contact />
       </section>
+
+      <Separator orientation="horizontal" className=" bg-background-dark dark:bg-background w-[90%]" />
+      
       {/* Footer */}
       <footer className="w-full py-6 text-center border-t">
-        <p className="text-sm text-gray-600">
+        <p className="text-sm text-background">
           © {new Date().getFullYear()} Portfolio. All rights reserved.
         </p>
       </footer>

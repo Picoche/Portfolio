@@ -147,16 +147,16 @@ export function SecondEducation() {
   return (
     <section 
       ref={sectionRef}
-      className="py-20 bg-slate-100 relative overflow-hidden"
+      className="py-20 bg-slate-100 dark:bg-gray-900 relative overflow-hidden"
     >
       {/* Background pattern */}
-      <div className="pattern-bg absolute inset-0 opacity-5">
+      <div className="pattern-bg absolute inset-0 opacity-5 dark:opacity-10">
         <div className="absolute inset-0 bg-grid-pattern" />
-        <div className="absolute inset-0 bg-gradient-to-br from-secondary/10 via-transparent to-accent/10" />
+        <div className="absolute inset-0 bg-gradient-to-br from-secondary/10 via-transparent to-accent/10 dark:from-accent/5 dark:to-secondary/5" />
       </div>
 
       <div className="container mx-auto px-4">
-        <h2 className="section-title text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent">
+        <h2 className="section-title text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-secondary to-accent dark:from-accent dark:to-secondary bg-clip-text text-transparent">
           Educational Journey
         </h2>
 
@@ -164,7 +164,7 @@ export function SecondEducation() {
           {educationData.map((education, index) => (
             <div
               key={index}
-              className="education-card bg-white dark:bg-primary-dark rounded-2xl shadow-lg overflow-hidden border border-secondary/20 dark:border-accent/20"
+              className="education-card bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden border border-secondary/20 dark:border-accent/20"
               onMouseEnter={(e) => handleHover(e.currentTarget, true)}
               onMouseLeave={(e) => handleHover(e.currentTarget, false)}
             >
@@ -172,7 +172,7 @@ export function SecondEducation() {
                 <div className="flex items-center gap-4 mb-6">
                   <GraduationCap className="floating-icon w-8 h-8 text-secondary dark:text-accent" />
                   <div>
-                    <h3 className="text-2xl font-bold text-primary dark:text-background">
+                    <h3 className="text-2xl font-bold text-primary dark:text-slate-50">
                       {education.degree}
                     </h3>
                     <p className="text-secondary dark:text-accent">
@@ -184,15 +184,15 @@ export function SecondEducation() {
                 <div className="grid md:grid-cols-2 gap-8">
                   <div>
                     <div className="mb-6">
-                      <h4 className="text-lg font-semibold text-primary dark:text-background mb-2">
+                      <h4 className="text-lg font-semibold text-primary dark:text-slate-50 mb-2">
                         {education.institution}
                       </h4>
-                      <p className="text-primary/60 dark:text-background/60">
+                      <p className="text-primary/60 dark:text-slate-50/60">
                         {education.period}
                       </p>
                     </div>
 
-                    <p className="text-primary/80 dark:text-background/80 mb-6">
+                    <p className="text-primary/80 dark:text-slate-50/80 mb-6">
                       {education.description}
                     </p>
 
@@ -200,14 +200,14 @@ export function SecondEducation() {
                       {education.highlights.map((highlight, i) => (
                         <div
                           key={i}
-                          className="highlight-item flex items-center gap-4 p-3 rounded-lg bg-secondary/5 dark:bg-accent/5"
+                          className="highlight-item flex items-center gap-4 p-3 rounded-lg bg-secondary/5 dark:bg-accent/10"
                         >
                           <highlight.icon className="w-5 h-5 text-secondary dark:text-accent" />
                           <div>
-                            <h5 className="font-medium text-primary dark:text-background">
+                            <h5 className="font-medium text-primary dark:text-slate-50">
                               {highlight.title}
                             </h5>
-                            <p className="text-sm text-primary/60 dark:text-background/60">
+                            <p className="text-sm text-primary/60 dark:text-slate-50/60">
                               {highlight.details}
                             </p>
                           </div>
@@ -217,15 +217,15 @@ export function SecondEducation() {
                   </div>
 
                   <div>
-                    <h4 className="text-lg font-semibold text-primary dark:text-background mb-4 flex items-center gap-2">
-                      <Book className="w-5 h-5" />
+                    <h4 className="text-lg font-semibold text-primary dark:text-slate-50 mb-4 flex items-center gap-2 transition-colors duration-200">
+                      <Book className="w-5 h-5 text-secondary dark:text-accent transition-colors duration-200" />
                       Key Courses
                     </h4>
                     <div className="flex flex-wrap gap-2">
                       {education.courses.map((course, i) => (
                         <span
                           key={i}
-                          className="course-tag px-3 py-1 rounded-full bg-secondary/10 dark:bg-accent/10 text-secondary dark:text-accent text-sm"
+                          className="course-tag px-3 py-1 rounded-full bg-secondary/10 dark:bg-accent/20 text-secondary dark:text-accent text-sm transition-colors duration-200"
                         >
                           {course}
                         </span>
@@ -240,4 +240,4 @@ export function SecondEducation() {
       </div>
     </section>
   );
-} 
+}

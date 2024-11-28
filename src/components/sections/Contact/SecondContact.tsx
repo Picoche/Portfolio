@@ -115,11 +115,11 @@ export function SecondContact() {
   return (
     <section
       ref={sectionRef}
-      className="py-20 bg-slate-100 relative overflow-hidden min-h-screen"
+      className="py-20 bg-background dark:bg-background-dark relative overflow-hidden min-h-screen"
     >
       {/* Background pattern */}
       <div className="pattern-bg absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 to-accent/5" />
+        <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 to-accent/5 dark:from-accent/5 dark:to-secondary/5" />
         <div className="grid grid-cols-12 gap-8 opacity-10 rotate-12 scale-150">
           {Array.from({ length: 50 }).map((_, i) => (
             <div
@@ -132,7 +132,7 @@ export function SecondContact() {
 
       <div className="container mx-auto px-4 relative z-10">
         <h2 className="section-title text-5xl md:text-7xl font-bold text-center mb-16">
-          <span className="bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-secondary to-accent dark:from-accent dark:to-secondary bg-clip-text text-transparent">
             Let&apos;s Connect
           </span>
         </h2>
@@ -140,8 +140,8 @@ export function SecondContact() {
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           {/* Left Column: Contact Form */}
           <div className="split-left space-y-8">
-            <div className="bg-white/80 dark:bg-primary-dark/80 backdrop-blur-lg rounded-2xl p-8 shadow-lg border border-secondary/20 dark:border-accent/20">
-              <h3 className="text-2xl font-semibold mb-6 text-primary dark:text-background">
+            <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg rounded-2xl p-8 shadow-lg border border-secondary/20 dark:border-accent/20">
+              <h3 className="text-2xl font-semibold mb-6 text-primary dark:text-slate-50">
                 Send a Message
               </h3>
               <form onSubmit={onSubmit} className="space-y-6">
@@ -149,7 +149,7 @@ export function SecondContact() {
                   <div className="space-y-2">
                     <label
                       htmlFor="name"
-                      className="text-sm text-primary/60 dark:text-background/60"
+                      className="text-sm text-primary/60 dark:text-slate-50/60"
                     >
                       Your Name
                     </label>
@@ -174,7 +174,7 @@ export function SecondContact() {
                   <div className="space-y-2">
                     <label
                       htmlFor="email"
-                      className="text-sm text-primary/60 dark:text-background/60"
+                      className="text-sm text-primary/60 dark:text-slate-50/60"
                     >
                       Your Email
                     </label>
@@ -201,7 +201,7 @@ export function SecondContact() {
                 <div className="space-y-2">
                   <label
                     htmlFor="subject"
-                    className="text-sm text-primary/60 dark:text-background/60"
+                    className="text-sm text-primary/60 dark:text-slate-50/60"
                   >
                     Subject
                   </label>
@@ -226,7 +226,7 @@ export function SecondContact() {
                 <div className="space-y-2">
                   <label
                     htmlFor="message"
-                    className="text-sm text-primary/60 dark:text-background/60"
+                    className="text-sm text-primary/60 dark:text-slate-50/60"
                   >
                     Message
                   </label>
@@ -251,7 +251,7 @@ export function SecondContact() {
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-gradient-to-r from-secondary to-accent"
+                  className="w-full bg-gradient-to-r from-secondary to-accent hover:from-accent hover:to-secondary dark:from-accent dark:to-secondary dark:hover:from-secondary dark:hover:to-accent"
                 >
                   {isSubmitting ? (
                     <>
@@ -277,16 +277,15 @@ export function SecondContact() {
                     key={index}
                     className={cn(
                       "quick-link group",
-                      "bg-white/80 dark:bg-primary-dark/80 backdrop-blur-lg",
+                      "bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg",
                       "rounded-xl p-4 shadow-lg border border-secondary/20 dark:border-accent/20",
-                      "transition-all duration-300",
                       "hover:shadow-xl hover:-translate-y-1",
                       activeQuickLink === index && "scale-95"
                     )}
                     onClick={() => setActiveQuickLink(index)}
                   >
-                    <Icon className="w-6 h-6 mb-2 text-secondary dark:text-accent group-hover:scale-110 transition-transform" />
-                    <span className="text-sm font-medium text-primary dark:text-background">
+                    <Icon className="w-6 h-6 mb-2 text-secondary dark:text-accent group-hover:scale-110" />
+                    <span className="text-sm font-medium text-primary dark:text-slate-50">
                       {link.label}
                     </span>
                   </button>
@@ -297,8 +296,8 @@ export function SecondContact() {
 
           {/* Right Column: Contact Info & Map */}
           <div className="split-right space-y-8">
-            <div className="bg-white/80 dark:bg-primary-dark/80 backdrop-blur-lg rounded-2xl p-8 shadow-lg border border-secondary/20 dark:border-accent/20">
-              <h3 className="text-2xl font-semibold mb-6 text-primary dark:text-background">
+            <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg rounded-2xl p-8 shadow-lg border border-secondary/20 dark:border-accent/20">
+              <h3 className="text-2xl font-semibold mb-6 text-primary dark:text-slate-50">
                 Contact Information
               </h3>
               <div className="space-y-6">
@@ -307,12 +306,12 @@ export function SecondContact() {
                     <Mail className="w-6 h-6 text-secondary dark:text-accent" />
                   </div>
                   <div>
-                    <p className="text-sm text-primary/60 dark:text-background/60">
+                    <p className="text-sm text-primary/60 dark:text-slate-50/60">
                       Email
                     </p>
                     <a
                       href={`mailto:${contactInfo.email}`}
-                      className="text-primary dark:text-background hover:text-secondary dark:hover:text-accent transition-colors"
+                      className="text-primary dark:text-slate-50 hover:text-secondary dark:hover:text-accent"
                     >
                       {contactInfo.email}
                     </a>
@@ -324,12 +323,12 @@ export function SecondContact() {
                     <Phone className="w-6 h-6 text-secondary dark:text-accent" />
                   </div>
                   <div>
-                    <p className="text-sm text-primary/60 dark:text-background/60">
+                    <p className="text-sm text-primary/60 dark:text-slate-50/60">
                       Phone
                     </p>
                     <a
                       href={`tel:${contactInfo.phone}`}
-                      className="text-primary dark:text-background hover:text-secondary dark:hover:text-accent transition-colors"
+                      className="text-primary dark:text-slate-50 hover:text-secondary dark:hover:text-accent"
                     >
                       {contactInfo.phone}
                     </a>
@@ -341,13 +340,13 @@ export function SecondContact() {
                     <Clock className="w-6 h-6 text-secondary dark:text-accent" />
                   </div>
                   <div>
-                    <p className="text-sm text-primary/60 dark:text-background/60">
+                    <p className="text-sm text-primary/60 dark:text-slate-50/60">
                       Available Hours
                     </p>
-                    <p className="text-primary dark:text-background">
+                    <p className="text-primary dark:text-slate-50">
                       {contactInfo.availability.days}
                     </p>
-                    <p className="text-primary/80 dark:text-background/80 text-sm">
+                    <p className="text-primary/80 dark:text-slate-50/80 text-sm">
                       {contactInfo.availability.hours}{" "}
                       {contactInfo.availability.timezone}
                     </p>

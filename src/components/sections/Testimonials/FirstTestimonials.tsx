@@ -90,10 +90,10 @@ export function FirstTestimonials() {
   return (
     <section
       ref={sectionRef}
-      className="py-20 bg-slate-100"
+      className="py-20 bg-slate-100 dark:bg-gray-900 relative overflow-hidden"
     >
       <div className="container mx-auto px-4">
-        <h2 className="section-title text-4xl md:text-5xl font-bold text-center mb-16 text-primary dark:text-background">
+        <h2 className="section-title text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-secondary to-accent dark:from-accent dark:to-secondary bg-clip-text text-transparent">
           Client Testimonials
         </h2>
 
@@ -101,7 +101,7 @@ export function FirstTestimonials() {
           {testimonials.map((testimonial) => (
             <div
               key={testimonial.id}
-              className="testimonial-card bg-white dark:bg-primary-dark rounded-2xl p-8 shadow-lg border border-secondary/20 dark:border-accent/20"
+              className="testimonial-card bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-secondary/20 dark:border-accent/20"
             >
               {/* Quote Icon */}
               <div className="mb-6">
@@ -110,7 +110,7 @@ export function FirstTestimonials() {
 
               {/* Testimonial Content */}
               <blockquote className="mb-6">
-                <p className="text-primary/80 dark:text-background/80 italic">
+                <p className="text-primary/80 dark:text-slate-50/80 italic">
                   &quot;{testimonial.quote}&quot;
                 </p>
               </blockquote>
@@ -136,10 +136,10 @@ export function FirstTestimonials() {
                   />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-primary dark:text-background">
+                  <h3 className="font-semibold text-primary dark:text-slate-50">
                     {testimonial.name}
                   </h3>
-                  <p className="text-sm text-primary/60 dark:text-background/60">
+                  <p className="text-sm text-primary/60 dark:text-slate-50/60">
                     {testimonial.position}
                   </p>
                   <p className="text-sm text-secondary dark:text-accent">

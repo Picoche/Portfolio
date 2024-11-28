@@ -171,20 +171,20 @@ export function FourthProjects() {
   return (
     <section
       ref={sectionRef}
-      className="py-20 bg-slate-100 relative overflow-hidden"
+      className="py-20 bg-slate-100 dark:bg-gray-900 relative overflow-hidden"
     >
       {/* Background pattern */}
-      <div className="pattern-bg absolute inset-0 opacity-5">
+      <div className="pattern-bg absolute inset-0 opacity-5 dark:opacity-10">
         <div className="absolute inset-0 bg-grid-pattern" />
         <div className="absolute inset-0 bg-gradient-to-br from-secondary/10 via-transparent to-accent/10" />
       </div>
 
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="section-title text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent">
+          <h2 className="section-title text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-secondary to-accent dark:from-accent dark:to-secondary bg-clip-text text-transparent">
             Featured Projects
           </h2>
-          <p className="text-lg text-primary/80 dark:text-background/80 max-w-2xl mx-auto">
+          <p className="text-lg text-primary/80 dark:text-slate-50/80 max-w-2xl mx-auto">
             A showcase of my latest work combining innovative design with
             cutting-edge technology
           </p>
@@ -202,7 +202,7 @@ export function FourthProjects() {
               onClick={() => handleProjectClick(index)}
             >
               <div
-                className="bg-white dark:bg-primary-dark rounded-2xl shadow-lg overflow-hidden border border-secondary/20 dark:border-accent/20"
+                className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden border border-secondary/20 dark:border-accent/20"
                 onMouseEnter={(e) => handleHover(e.currentTarget, true)}
                 onMouseLeave={(e) => handleHover(e.currentTarget, false)}
               >
@@ -226,15 +226,15 @@ export function FourthProjects() {
 
                   <div className="lg:w-1/2 p-6 lg:p-8">
                     <div className="flex items-center justify-between mb-4">
-                      <h3 className="text-2xl font-bold text-primary dark:text-background">
+                      <h3 className="text-2xl font-bold text-primary dark:text-slate-50">
                         {project.title}
                       </h3>
-                      <span className="text-sm text-primary/60 dark:text-background/60">
+                      <span className="text-sm text-primary/60 dark:text-slate-50/60">
                         {project.year}
                       </span>
                     </div>
 
-                    <p className="text-primary/80 dark:text-background/80 mb-6">
+                    <p className="text-primary/80 dark:text-slate-50/80 mb-6">
                       {activeProject === index
                         ? project.longDescription
                         : project.description}
@@ -249,7 +249,7 @@ export function FourthProjects() {
                           >
                             {value}
                           </div>
-                          <div className="text-sm text-primary/60 dark:text-background/60 capitalize">
+                          <div className="text-sm text-primary/60 dark:text-slate-50/60 capitalize">
                             {key}
                           </div>
                         </div>
@@ -260,7 +260,7 @@ export function FourthProjects() {
                       {project.technologies.map((tech) => (
                         <span
                           key={tech}
-                          className="px-3 py-1 bg-secondary/5 dark:bg-accent/5 text-secondary dark:text-accent rounded-full text-sm"
+                          className="px-3 py-1 bg-secondary/5 dark:bg-accent/10 text-secondary dark:text-accent rounded-full text-sm"
                         >
                           {tech}
                         </span>
@@ -292,20 +292,6 @@ export function FourthProjects() {
               </div>
             </div>
           ))}
-        </div>
-
-        <div className="mt-16 text-center">
-          <Button
-            asChild
-            className="bg-secondary hover:bg-accent text-background transition-colors duration-300"
-            onMouseEnter={(e) => handleHover(e.currentTarget, true)}
-            onMouseLeave={(e) => handleHover(e.currentTarget, false)}
-          >
-            <Link href="/projects" className="flex items-center">
-              View All Projects
-              <ChevronRight className="ml-2 h-4 w-4" />
-            </Link>
-          </Button>
         </div>
       </div>
     </section>

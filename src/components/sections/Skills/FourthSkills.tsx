@@ -177,13 +177,13 @@ export function FourthSkills() {
   return (
     <section
       ref={sectionRef}
-      className="py-20 bg-slate-100 relative overflow-hidden"
+      className="py-20 bg-slate-100 dark:bg-gray-900 relative overflow-hidden  "
     >
       {/* Background pattern */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-5" />
+      <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10  " />
 
       <div className="container mx-auto px-4">
-        <h2 className="section-title text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent">
+        <h2 className="section-title text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-secondary to-accent dark:from-accent dark:to-secondary bg-clip-text text-transparent  ">
           Skills & Expertise
         </h2>
 
@@ -191,7 +191,7 @@ export function FourthSkills() {
           {skillsData.map((category, index) => (
             <div
               key={index}
-              className={`skill-card skill-card-${index} bg-white dark:bg-primary-dark rounded-2xl p-8 shadow-lg border border-secondary/20 dark:border-accent/20 cursor-pointer ${
+              className={`skill-card skill-card-${index} bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-secondary/20 dark:border-accent/20 cursor-pointer   ${
                 activeCard !== null && activeCard !== index
                   ? "opacity-50 scale-95"
                   : ""
@@ -199,14 +199,14 @@ export function FourthSkills() {
               onClick={() => handleCardClick(index)}
             >
               <div className="flex items-center gap-4 mb-6">
-                <div className="p-3 rounded-xl bg-secondary/10 dark:bg-accent/10">
-                  <category.icon className="floating-icon w-6 h-6 text-secondary dark:text-accent" />
+                <div className="p-3 rounded-xl bg-secondary/10 dark:bg-accent/20  ">
+                  <category.icon className="floating-icon w-6 h-6 text-secondary dark:text-accent  " />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-primary dark:text-background">
+                  <h3 className="text-xl font-bold text-primary dark:text-slate-50  ">
                     {category.name}
                   </h3>
-                  <p className="text-sm text-primary/60 dark:text-background/60">
+                  <p className="text-sm text-primary/60 dark:text-slate-50/60  ">
                     {category.description}
                   </p>
                 </div>
@@ -216,11 +216,11 @@ export function FourthSkills() {
               <div className="grid grid-cols-2 gap-4">
                 {category.mainSkills.map((skill, skillIndex) => (
                   <div key={skillIndex}>
-                    <h4 className="font-medium text-primary dark:text-background">
+                    <h4 className="font-medium text-primary dark:text-slate-50  ">
                       {skill.name}
                     </h4>
-                    <div className="flex items-center gap-2 text-primary/60 dark:text-background/60">
-                      <span className="text-secondary dark:text-accent">
+                    <div className="flex items-center gap-2 text-primary/60 dark:text-slate-50/60  ">
+                      <span className="text-secondary dark:text-accent  ">
                         {skill.level}
                       </span>
                       <span>• {skill.experience}</span>
@@ -231,14 +231,14 @@ export function FourthSkills() {
 
               {/* Related technologies */}
               <div className="mt-6">
-                <h4 className="font-medium text-primary dark:text-background mb-2">
+                <h4 className="font-medium text-primary dark:text-slate-50 mb-2  ">
                   Related Technologies
                 </h4>
                 <div className="flex flex-wrap gap-2">
                   {category.relatedTech.map((tech, techIndex) => (
                     <span
                       key={techIndex}
-                      className="px-2 py-1 text-xs rounded-full bg-secondary/10 dark:bg-accent/10 text-secondary dark:text-accent"
+                      className="px-2 py-1 text-xs rounded-full bg-secondary/10 dark:bg-accent/20 text-secondary dark:text-accent  "
                     >
                       {tech}
                     </span>
@@ -247,31 +247,31 @@ export function FourthSkills() {
               </div>
 
               {/* Metrics */}
-              <div className="grid grid-cols-3 gap-4 mt-6 pt-4 border-t border-secondary/10 dark:border-accent/10">
+              <div className="grid grid-cols-3 gap-4 mt-6 pt-4 border-t border-secondary/10 dark:border-accent/20  ">
                 <div className="text-center">
-                  <div className="metric-number text-xl font-bold text-secondary dark:text-accent">
+                  <div className="metric-number text-xl font-bold text-secondary dark:text-accent  ">
                     {category.metrics.projects}+
                   </div>
-                  <div className="text-xs text-primary/60 dark:text-background/60">
+                  <div className="text-xs text-primary/60 dark:text-slate-50/60  ">
                     Projects
                   </div>
                 </div>
                 <div className="text-center">
-                  <div className="text-xl font-bold text-secondary dark:text-accent">
+                  <div className="text-xl font-bold text-secondary dark:text-accent  ">
                     {category.metrics.experience}
                   </div>
-                  <div className="text-xs text-primary/60 dark:text-background/60">
+                  <div className="text-xs text-primary/60 dark:text-slate-50/60  ">
                     Experience
                   </div>
                 </div>
                 <div className="text-center">
                   <div className="flex items-center justify-center gap-1">
-                    <Star className="w-4 h-4 text-secondary dark:text-accent" />
-                    <span className="metric-number text-xl font-bold text-secondary dark:text-accent">
+                    <Star className="w-4 h-4 text-secondary dark:text-accent  " />
+                    <span className="metric-number text-xl font-bold text-secondary dark:text-accent  ">
                       {category.metrics.rating}
                     </span>
                   </div>
-                  <div className="text-xs text-primary/60 dark:text-background/60">
+                  <div className="text-xs text-primary/60 dark:text-slate-50/60  ">
                     Rating
                   </div>
                 </div>

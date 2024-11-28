@@ -6,24 +6,24 @@ module.exports = {
     extend: {
       colors: {
         primary: {
-          DEFAULT: '#0A2342',
-          dark: '#F7F7F7'
+          DEFAULT: 'rgb(10, 35, 66)',
+          dark: 'rgb(247, 247, 247)'
         },
         secondary: {
-          DEFAULT: '#E54B4B',
-          dark: '#4A7C59'
+          DEFAULT: 'rgb(229, 75, 75)',
+          dark: 'rgb(74, 124, 89)'
         },
         accent: {
-          DEFAULT: '#7DA87B',
-          dark: '#90C48E'
+          DEFAULT: 'rgb(125, 168, 123)',
+          dark: 'rgb(144, 196, 142)'
         },
         background: {
-          DEFAULT: '#F7F7F7',
-          dark: '#1a1a1a'
+          DEFAULT: 'rgb(247, 247, 247)',
+          dark: 'rgb(17, 24, 39)'
         },
         text: {
-          DEFAULT: '#0A2342',
-          dark: '#F7F7F7'
+          DEFAULT: 'rgb(10, 35, 66)',
+          dark: 'rgb(247, 247, 247)'
         }
       },
       fontFamily: {

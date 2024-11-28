@@ -148,11 +148,11 @@ export function SecondTestimonials() {
   return (
     <section
       ref={sectionRef}
-      className="py-20 bg-slate-100 relative overflow-hidden"
+      className="py-20 bg-slate-100 dark:bg-gray-900 relative overflow-hidden"
     >
       {/* Background pattern */}
-      <div className="pattern-bg absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 to-accent/5" />
+      <div className="pattern-bg absolute inset-0 dark:opacity-20">
+        <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 to-accent/5 dark:from-accent/5 dark:to-secondary/5" />
         <div className="grid grid-cols-10 gap-4 opacity-10">
           {Array.from({ length: 100 }).map((_, i) => (
             <div
@@ -164,13 +164,13 @@ export function SecondTestimonials() {
       </div>
 
       <div className="container mx-auto px-4 relative">
-        <h2 className="section-title text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent">
+        <h2 className="section-title text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-secondary to-accent dark:from-accent dark:to-secondary bg-clip-text text-transparent">
           Client Testimonials
         </h2>
 
         <div className="max-w-4xl mx-auto">
           {/* Main testimonial content */}
-          <div className="testimonial-content bg-white/80 dark:bg-primary-dark/80 backdrop-blur-lg rounded-2xl p-8 md:p-12 shadow-lg border border-secondary/20 dark:border-accent/20 mb-8">
+          <div className="testimonial-content bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg rounded-2xl p-8 md:p-12 shadow-lg border border-secondary/20 dark:border-accent/20 mb-8">
             <div className="flex flex-col md:flex-row gap-8 items-center">
               {/* Image and info */}
               <div className="md:w-1/3 text-center">
@@ -182,13 +182,13 @@ export function SecondTestimonials() {
                     className="object-cover"
                   />
                 </div>
-                <h3 className="font-semibold text-xl text-primary dark:text-background">
+                <h3 className="font-semibold text-xl text-primary dark:text-slate-50">
                   {testimonials[activeIndex].name}
                 </h3>
                 <p className="text-secondary dark:text-accent">
                   {testimonials[activeIndex].position}
                 </p>
-                <p className="text-primary/60 dark:text-background/60">
+                <p className="text-primary/60 dark:text-slate-50/60">
                   {testimonials[activeIndex].company}
                 </p>
               </div>
@@ -196,10 +196,22 @@ export function SecondTestimonials() {
               {/* Quote and details */}
               <div className="md:w-2/3 space-y-6">
                 <Quote className="floating-quote w-10 h-10 text-secondary dark:text-accent opacity-50" />
-                <blockquote className="text-lg text-primary/80 dark:text-background/80 italic">
+                <blockquote className="text-lg text-primary/80 dark:text-slate-50/80 italic">
                   &quot;{testimonials[activeIndex].quote}&quot;
                 </blockquote>
-                <div className="flex items-center gap-2">
+
+                {/* Project details */}
+                <div className="flex flex-wrap items-center gap-4 text-sm">
+                  <span className="px-3 py-1 bg-secondary/10 dark:bg-accent/10 text-secondary dark:text-accent rounded-full">
+                    {testimonials[activeIndex].project}
+                  </span>
+                  <span className="text-primary/60 dark:text-slate-50/60">
+                    {testimonials[activeIndex].date}
+                  </span>
+                </div>
+
+                {/* Rating */}
+                <div className="flex gap-1">
                   {Array.from({ length: testimonials[activeIndex].rating }).map(
                     (_, i) => (
                       <Star
@@ -209,48 +221,42 @@ export function SecondTestimonials() {
                     )
                   )}
                 </div>
-                <div className="flex flex-wrap gap-4 text-sm text-primary/60 dark:text-background/60">
-                  <span>Project: {testimonials[activeIndex].project}</span>
-                  <span>Date: {testimonials[activeIndex].date}</span>
-                </div>
               </div>
             </div>
           </div>
 
           {/* Navigation */}
-          <div className="flex items-center justify-between">
+          <div className="flex justify-between items-center">
             <Button
               variant="outline"
-              size="icon"
+              className="bg-white dark:bg-gray-800 border-secondary/20 dark:border-accent/20 text-secondary dark:text-accent hover:bg-secondary/5 dark:hover:bg-accent/5"
               onClick={() => handleNavigation("prev")}
               disabled={isAnimating}
-              className="hover:scale-110 transition-transform"
             >
               <ChevronLeft className="w-5 h-5" />
             </Button>
 
+            {/* Navigation dots */}
             <div className="flex gap-2">
               {testimonials.map((_, index) => (
                 <button
                   key={index}
                   className={cn(
-                    "nav-dot w-3 h-3 rounded-full transition-colors",
-                    activeIndex === index
+                    "nav-dot w-3 h-3 rounded-full",
+                    index === activeIndex
                       ? "bg-secondary dark:bg-accent"
-                      : "bg-secondary/20 dark:bg-accent/20 hover:bg-secondary/50 dark:hover:bg-accent/50"
+                      : "bg-secondary/20 dark:bg-accent/20"
                   )}
-                  onClick={() => setActiveIndex(index)}
-                  disabled={isAnimating}
+                  onClick={() => !isAnimating && setActiveIndex(index)}
                 />
               ))}
             </div>
 
             <Button
               variant="outline"
-              size="icon"
+              className="bg-white dark:bg-gray-800 border-secondary/20 dark:border-accent/20 text-secondary dark:text-accent hover:bg-secondary/5 dark:hover:bg-accent/5"
               onClick={() => handleNavigation("next")}
               disabled={isAnimating}
-              className="hover:scale-110 transition-transform"
             >
               <ChevronRight className="w-5 h-5" />
             </Button>

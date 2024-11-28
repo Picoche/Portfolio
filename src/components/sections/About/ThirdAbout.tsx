@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { gsap } from "gsap";
 import Image from "next/image";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Download, Mail, Code, Database, Cloud, Globe, Star, Zap } from "lucide-react";
 import { useGSAP } from "@gsap/react";
@@ -94,21 +95,10 @@ export function ThirdAbout() {
 
   }, { scope: sectionRef });
 
-  // Handle button hover animations
-  const { contextSafe } = useGSAP({ scope: sectionRef });
-
-  const handleButtonHover = contextSafe((button: HTMLElement, isEntering: boolean) => {
-    gsap.to(button, {
-      scale: isEntering ? 1.05 : 1,
-      duration: 0.3,
-      ease: isEntering ? "power2.out" : "power2.in",
-    });
-  });
-
   return (
     <section 
       ref={sectionRef}
-      className="py-20 bg-slate-100 relative overflow-hidden"
+      className="py-20 bg-background dark:bg-background-dark relative overflow-hidden"
     >
       {/* Grid background */}
       <div className="grid-bg absolute inset-0 bg-grid-pattern opacity-5" />
@@ -126,7 +116,7 @@ export function ThirdAbout() {
                   height={500}
                   className="object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-tr from-secondary/20 to-accent/20 mix-blend-overlay" />
+                <div className="absolute inset-0 bg-gradient-to-tr from-secondary/20 to-accent/20 dark:from-secondary-dark/20 dark:to-accent-dark/20 mix-blend-overlay" />
               </div>
               
               {/* Achievement cards grid */}
@@ -189,25 +179,6 @@ export function ThirdAbout() {
                   </div>
                 ))}
               </div>
-            </div>
-
-            {/* Action buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <Button 
-                className="bg-secondary hover:bg-accent text-background transition-colors duration-300"
-                onMouseEnter={(e) => handleButtonHover(e.currentTarget, true)}
-                onMouseLeave={(e) => handleButtonHover(e.currentTarget, false)}
-              >
-                <Download className="mr-2 h-4 w-4" /> Download CV
-              </Button>
-              <Button
-                variant="outline"
-                className="border-primary dark:border-background text-primary dark:text-background hover:bg-primary hover:text-background dark:hover:bg-background dark:hover:text-primary transition-colors duration-300"
-                onMouseEnter={(e) => handleButtonHover(e.currentTarget, true)}
-                onMouseLeave={(e) => handleButtonHover(e.currentTarget, false)}
-              >
-                <Mail className="mr-2 h-4 w-4" /> Get in Touch
-              </Button>
             </div>
           </div>
         </div>
