@@ -5,12 +5,10 @@ import Link from "next/link";
 import {
   ExternalLink,
   Github,
-  ChevronRight,
   Code,
   Blocks,
   Globe,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { useGSAP } from "@gsap/react";
 
 const projects = [

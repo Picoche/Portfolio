@@ -5,12 +5,10 @@ import {
   Briefcase,
   Calendar,
   MapPin,
-  ExternalLink,
   Code,
   Server,
   Globe,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 interface Experience {

@@ -2,8 +2,7 @@ import { useRef } from "react";
 import { gsap } from "gsap";
 import Image from "next/image";
 import Link from "next/link";
-import { ExternalLink, Github, ChevronRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { ExternalLink, Github } from "lucide-react";
 import { useGSAP } from "@gsap/react";
 
 const projects = [

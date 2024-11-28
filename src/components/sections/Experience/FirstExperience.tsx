@@ -1,8 +1,7 @@
 import { useRef } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
-import { Briefcase, Calendar, MapPin, ExternalLink } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Briefcase, Calendar, MapPin } from "lucide-react";
 
 interface Experience {
   title: string;

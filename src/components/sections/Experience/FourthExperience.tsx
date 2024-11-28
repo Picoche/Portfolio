@@ -6,11 +6,9 @@ import {
   Briefcase,
   Calendar,
   MapPin,
-  ExternalLink,
   Code,
   ArrowRight,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 gsap.registerPlugin(ScrollTrigger);

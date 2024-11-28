@@ -1,9 +1,7 @@
 import { useRef } from "react";
 import { gsap } from "gsap";
 import Image from "next/image";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Download, Mail, Laptop, Server, Globe, Blocks} from "lucide-react";
+import { Laptop, Server, Globe, Blocks} from "lucide-react";
 import { useGSAP } from "@gsap/react";
 
 const experienceCards = [

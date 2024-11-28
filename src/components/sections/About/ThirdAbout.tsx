@@ -1,9 +1,7 @@
 import { useRef } from "react";
 import { gsap } from "gsap";
 import Image from "next/image";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Download, Mail, Code, Database, Cloud, Globe, Star, Zap } from "lucide-react";
+import { Code, Database, Cloud, Globe, Star, Zap } from "lucide-react";
 import { useGSAP } from "@gsap/react";
 
 const achievements = [
