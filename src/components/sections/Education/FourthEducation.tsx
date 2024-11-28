@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   GraduationCap,
   Book,
@@ -11,6 +12,8 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const educationData = [
   {
@@ -75,12 +78,19 @@ export function FourthEducation() {
 
   useGSAP(
     () => {
-      const tl = gsap.timeline();
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top center+=100",
+          end: "bottom center",
+        },
+      });
 
       // Background pattern animation
       tl.from(".pattern-bg", {
         opacity: 0,
-        duration: 1,
+        scale: 1.2,
+        duration: 0.8,
         ease: "power2.out",
       });
 
@@ -90,7 +100,7 @@ export function FourthEducation() {
         y: 30,
         duration: 0.8,
         ease: "back.out(1.7)",
-      });
+      }, "-=0.4");
 
       // Navigation animation
       tl.from(
@@ -138,9 +148,10 @@ export function FourthEducation() {
         repeat: -1,
         yoyo: true,
         ease: "sine.inOut",
-        stagger: {
-          each: 0.5,
-          from: "random",
+        scrollTrigger: {
+          trigger: ".floating-icon",
+          start: "top center",
+          toggleActions: "play pause resume reset",
         },
       });
     },

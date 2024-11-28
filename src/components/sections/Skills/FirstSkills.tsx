@@ -1,7 +1,10 @@
 import { useRef } from "react";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Code, Database, Server, Globe } from "lucide-react";
 import { useGSAP } from "@gsap/react";
-import { Code, Server, Database, Cloud } from "lucide-react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface Skill {
   category: string;
@@ -45,7 +48,7 @@ const skillsData: Skill[] = [
   },
   {
     category: "DevOps & Tools",
-    icon: Cloud,
+    icon: Globe,
     skills: [
       { name: "Docker", level: 80 },
       { name: "Git/GitHub", level: 90 },
@@ -59,48 +62,95 @@ export function FirstSkills() {
   const sectionRef = useRef(null);
 
   useGSAP(() => {
-    const tl = gsap.timeline();
-
-    // Animate section title
-    tl.from(".section-title", {
-      opacity: 0,
-      y: -30,
-      duration: 0.6,
-      ease: "back.out(1.7)",
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top center+=100",
+        end: "bottom center",
+      },
     });
 
-    // Animate skill categories with stagger
-    tl.from(".skill-category", {
+    // Section background animation
+    tl.from(".section-bg", {
       opacity: 0,
-      y: 30,
-      stagger: 0.2,
+      scale: 1.1,
       duration: 0.8,
       ease: "power2.out",
-    }, "-=0.2");
+    });
 
-    // Animate progress bars
+    // Heading animation
+    tl.from(".section-title", {
+      opacity: 0,
+      y: 30,
+      duration: 0.8,
+      ease: "back.out(1.7)",
+    }, "-=0.4");
+
+    // Skill categories animation with stagger
+    tl.from(".skill-category", {
+      opacity: 0,
+      y: 50,
+      stagger: 0.3,
+      duration: 0.8,
+      ease: "power3.out",
+    }, "-=0.4");
+
+    // Progress bars animation
     gsap.from(".progress-bar", {
       scaleX: 0,
+      transformOrigin: "left center",
       duration: 1.2,
-      ease: "power2.out",
-      stagger: 0.1,
+      ease: "power2.inOut",
+      stagger: 0.2,
       scrollTrigger: {
-        trigger: ".skills-grid",
+        trigger: ".progress-bar",
         start: "top center+=100",
+        toggleActions: "play none none reset",
       },
     });
 
-    // Floating animation for icons
-    gsap.to(".floating-icon", {
-      y: -5,
-      duration: 2,
+    // Skill items stagger animation
+    tl.from(".skill-item", {
+      opacity: 0,
+      x: -30,
+      stagger: 0.1,
+      duration: 0.6,
+      ease: "power2.out",
+    }, "-=0.8");
+
+    // Icon rotation animation
+    gsap.to(".rotating-icon", {
+      rotation: 360,
+      duration: 20,
       repeat: -1,
-      yoyo: true,
-      ease: "sine.inOut",
-      stagger: {
-        each: 0.5,
-        from: "random",
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".rotating-icon",
+        start: "top center",
+        toggleActions: "play pause resume reset",
       },
+    });
+
+    // Stats counter animation
+    gsap.utils.toArray(".stat-number").forEach((stat: any) => {
+      const target = parseInt(stat.getAttribute("data-value"));
+      gsap.from(stat, {
+        textContent: 0,
+        duration: 2,
+        ease: "power2.out",
+        snap: { textContent: 1 },
+        stagger: {
+          each: 0.2,
+          onUpdate: function() {
+            stat.textContent = Math.ceil(parseFloat(stat.textContent));
+          },
+        },
+        scrollTrigger: {
+          trigger: stat,
+          start: "top center+=100",
+          toggleActions: "play none none reset",
+        },
+      });
     });
 
   }, { scope: sectionRef });
@@ -110,7 +160,7 @@ export function FirstSkills() {
 
   const handleHover = contextSafe((element: HTMLElement, isEntering: boolean) => {
     gsap.to(element, {
-      scale: isEntering ? 1.02 : 1,
+      scale: isEntering ? 1.03 : 1,
       y: isEntering ? -5 : 0,
       duration: 0.3,
       ease: isEntering ? "power2.out" : "power2.in",
@@ -123,7 +173,7 @@ export function FirstSkills() {
       className="py-20 bg-slate-100 dark:bg-gray-900 relative overflow-hidden"
     >
       {/* Background pattern */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10" />
+      <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10 section-bg" />
 
       <div className="container mx-auto px-4">
         <h2 className="section-title text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-secondary to-accent dark:from-accent dark:to-secondary bg-clip-text text-transparent">
@@ -140,7 +190,7 @@ export function FirstSkills() {
             >
               <div className="flex items-center gap-4 mb-6">
                 <div className="p-3 rounded-xl bg-secondary/10 dark:bg-accent/20 transition-colors duration-200">
-                  <category.icon className="floating-icon w-6 h-6 text-secondary dark:text-accent" />
+                  <category.icon className="rotating-icon w-6 h-6 text-secondary dark:text-accent" />
                 </div>
                 <h3 className="text-xl font-bold text-primary dark:text-slate-50">
                   {category.category}
@@ -149,7 +199,7 @@ export function FirstSkills() {
 
               <div className="space-y-4">
                 {category.skills.map((skill, skillIndex) => (
-                  <div key={skillIndex} className="space-y-2">
+                  <div key={skillIndex} className="space-y-2 skill-item">
                     <div className="flex justify-between text-sm">
                       <span className="text-primary/80 dark:text-slate-50/80 font-medium">
                         {skill.name}

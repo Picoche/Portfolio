@@ -1,8 +1,11 @@
 import { useRef } from "react";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import { Laptop, Server, Globe, Blocks} from "lucide-react";
 import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const experienceCards = [
   { number: "5+", label: "Years of Experience" },
@@ -22,13 +25,19 @@ export function FourthAbout() {
   const sectionRef = useRef(null);
 
   useGSAP(() => {
-    const tl = gsap.timeline();
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top center",
+        end: "bottom center",
+      },
+    });
 
     // Animate the background pattern
     tl.from(".pattern-bg", {
       opacity: 0,
       scale: 1.2,
-      duration: 1,
+      duration: 0.8,
       ease: "power2.out",
     });
 
@@ -36,62 +45,73 @@ export function FourthAbout() {
     tl.from(".section-title", {
       opacity: 0,
       y: 30,
-      duration: 0.6,
+      duration: 0.8,
       ease: "back.out(1.7)",
-    });
+    }, "-=0.4");
 
     // Image container animation with 3D effect
     tl.from(".image-container", {
       opacity: 0,
       rotationY: 30,
       transformOrigin: "left center",
-      duration: 1,
+      duration: 0.8,
       ease: "power2.out",
-    }, "-=0.3");
+    }, "-=0.4");
 
     // Experience cards stagger animation
     tl.from(".experience-card", {
       opacity: 0,
       y: 30,
-      stagger: 0.1,
-      duration: 0.6,
+      stagger: 0.2,
+      duration: 0.8,
       ease: "back.out(1.7)",
-    }, "-=0.5");
+    }, "-=0.4");
 
     // Tech stack cards animation
     tl.from(".tech-card", {
       opacity: 0,
       x: -30,
-      stagger: 0.1,
-      duration: 0.6,
+      stagger: 0.2,
+      duration: 0.8,
       ease: "power2.out",
-    }, "-=0.3");
+    }, "-=0.6");
 
-    // Animate numbers
+    // Animate numbers with ScrollTrigger
     gsap.utils.toArray(".number-counter").forEach((counter: any) => {
+      const target = parseInt(counter.getAttribute("data-value"));
       gsap.from(counter, {
-        innerText: 0,
+        textContent: 0,
         duration: 2,
-        snap: { innerText: 1 },
         ease: "power2.out",
+        snap: { textContent: 1 },
+        stagger: {
+          each: 0.2,
+          onUpdate: function() {
+            counter.textContent = Math.ceil(parseFloat(counter.textContent));
+          },
+        },
         scrollTrigger: {
           trigger: counter,
           start: "top center+=100",
+          toggleActions: "play none none reset",
         },
       });
     });
 
-    // Continuous animations
-    gsap.to(".floating-icon", {
-      y: -10,
-      duration: 2,
-      repeat: -1,
-      yoyo: true,
-      ease: "sine.inOut",
-      stagger: {
-        each: 0.5,
-        from: "random",
-      },
+    // Continuous floating animations with ScrollTrigger
+    gsap.utils.toArray(".floating-icon").forEach((icon: any) => {
+      gsap.to(icon, {
+        y: -10,
+        duration: 2,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+        scrollTrigger: {
+          trigger: icon,
+          start: "top center",
+          toggleActions: "play pause resume reset",
+        },
+      });
     });
 
   }, { scope: sectionRef });

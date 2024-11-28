@@ -1,7 +1,10 @@
 import { useRef } from "react";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { GraduationCap, Book, Star, Users, Trophy, Brain } from "lucide-react";
 import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const educationData = [
   {
@@ -72,32 +75,38 @@ export function SecondEducation() {
   const sectionRef = useRef(null);
 
   useGSAP(() => {
-    const tl = gsap.timeline();
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top center+=100",
+        end: "bottom center",
+      },
+    });
 
     // Background pattern animation
     tl.from(".pattern-bg", {
       opacity: 0,
-      scale: 1.1,
-      duration: 1,
+      scale: 1.2,
+      duration: 0.8,
       ease: "power2.out",
     });
 
-    // Title animation with gradient
+    // Section title animation
     tl.from(".section-title", {
       opacity: 0,
       y: 30,
       duration: 0.8,
       ease: "back.out(1.7)",
-    });
+    }, "-=0.4");
 
     // Education cards stagger animation
     tl.from(".education-card", {
       opacity: 0,
-      y: 50,
+      x: -50,
       stagger: 0.3,
       duration: 0.8,
-      ease: "power2.out",
-    });
+      ease: "power3.out",
+    }, "-=1");
 
     // Highlights animation
     tl.from(".highlight-item", {
@@ -128,6 +137,11 @@ export function SecondEducation() {
         each: 0.5,
         from: "random",
       },
+      scrollTrigger: {
+        trigger: ".floating-icon",
+        start: "top center",
+        toggleActions: "play pause resume reset",
+      },
     });
 
   }, { scope: sectionRef });
@@ -137,7 +151,7 @@ export function SecondEducation() {
 
   const handleHover = contextSafe((element: HTMLElement, isEntering: boolean) => {
     gsap.to(element, {
-      scale: isEntering ? 1.02 : 1,
+      scale: isEntering ? 1.03 : 1,
       y: isEntering ? -5 : 0,
       duration: 0.3,
       ease: isEntering ? "power2.out" : "power2.in",

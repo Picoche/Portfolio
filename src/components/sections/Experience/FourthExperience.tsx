@@ -88,7 +88,14 @@ export function FourthExperience() {
 
   useGSAP(
     () => {
-      const tl = gsap.timeline();
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top center+=100",
+          end: "bottom center",
+          toggleActions: "play none none reverse",
+        },
+      });
 
       // Parallax background effect
       gsap.to(".parallax-bg", {
@@ -175,6 +182,147 @@ export function FourthExperience() {
         stagger: {
           each: 0.2,
           from: 0,
+        },
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top center+=100",
+          toggleActions: "play none none reset",
+        },
+      });
+
+      // Background pattern animation
+      tl.from(".pattern-bg", {
+        opacity: 0,
+        scale: 1.2,
+        duration: 1,
+        ease: "power2.out",
+      });
+
+      // Title animation with 3D effect
+      tl.from(".section-title", {
+        opacity: 0,
+        y: 30,
+        rotationX: 45,
+        transformPerspective: 1000,
+        duration: 0.8,
+        ease: "back.out(1.7)",
+      }, "-=0.4");
+
+      // Experience cards reveal with 3D effect
+      gsap.from(".experience-card", {
+        opacity: 0,
+        y: 50,
+        rotationX: -20,
+        transformPerspective: 1000,
+        stagger: 0.3,
+        duration: 0.8,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".experience-card",
+          start: "top center+=100",
+          toggleActions: "play none none reset",
+        },
+      });
+
+      // Company logos reveal with spin
+      gsap.from(".company-logo", {
+        opacity: 0,
+        scale: 0,
+        rotation: 360,
+        duration: 0.8,
+        stagger: 0.2,
+        ease: "back.out(1.7)",
+        scrollTrigger: {
+          trigger: ".company-logo",
+          start: "top center+=100",
+          toggleActions: "play none none reset",
+        },
+      });
+
+      // Role badges slide in with bounce
+      gsap.from(".role-badge", {
+        opacity: 0,
+        x: -30,
+        duration: 0.6,
+        stagger: 0.1,
+        ease: "elastic.out(1, 0.5)",
+        scrollTrigger: {
+          trigger: ".role-badge",
+          start: "top center+=100",
+          toggleActions: "play none none reset",
+        },
+      });
+
+      // Tech stack tags pop animation
+      gsap.from(".tech-tag", {
+        opacity: 0,
+        scale: 0,
+        rotation: -15,
+        duration: 0.4,
+        stagger: {
+          from: "random",
+          amount: 0.5,
+        },
+        ease: "back.out(2)",
+        scrollTrigger: {
+          trigger: ".tech-tag",
+          start: "top center+=100",
+          toggleActions: "play none none reset",
+        },
+      });
+
+      // Timeline connector draw
+      gsap.from(".timeline-connector", {
+        scaleY: 0,
+        transformOrigin: "top center",
+        duration: 1.2,
+        ease: "power2.inOut",
+        scrollTrigger: {
+          trigger: ".timeline-connector",
+          start: "top center+=100",
+          toggleActions: "play none none reset",
+        },
+      });
+
+      // Date badges reveal with scale
+      gsap.from(".date-badge", {
+        opacity: 0,
+        scale: 0.5,
+        duration: 0.6,
+        stagger: 0.2,
+        ease: "back.out(1.7)",
+        scrollTrigger: {
+          trigger: ".date-badge",
+          start: "top center+=100",
+          toggleActions: "play none none reset",
+        },
+      });
+
+      // Description text fade in
+      gsap.from(".description-text", {
+        opacity: 0,
+        y: 20,
+        duration: 0.6,
+        stagger: 0.2,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: ".description-text",
+          start: "top center+=100",
+          toggleActions: "play none none reset",
+        },
+      });
+
+      // Stats counter animation
+      gsap.from(".stats-counter", {
+        textContent: 0,
+        duration: 2,
+        ease: "power1.inOut",
+        snap: { textContent: 1 },
+        stagger: 0.2,
+        scrollTrigger: {
+          trigger: ".stats-counter",
+          start: "top center+=100",
+          toggleActions: "play none none reset",
         },
       });
     },

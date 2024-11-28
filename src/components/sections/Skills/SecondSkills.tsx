@@ -1,7 +1,10 @@
 import { useRef, useState } from "react";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { Code, Server, Database, Cloud, Braces, Globe } from "lucide-react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface SkillCategory {
   name: string;
@@ -92,43 +95,55 @@ const proficiencyToLevel = {
 
 export function SecondSkills() {
   const sectionRef = useRef(null);
-  const [activeCategory, setActiveCategory] = useState<number>(0);
+  const [activeCategory, setActiveCategory] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
 
   useGSAP(
     () => {
-      const tl = gsap.timeline();
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top center+=100",
+          end: "bottom center",
+        },
+      });
 
       // Title animation
       tl.from(".section-title", {
         opacity: 0,
         y: 30,
-        duration: 0.6,
+        duration: 0.8,
         ease: "back.out(1.7)",
-      });
+      }, "-=0.4");
 
-      // Category buttons animation
-      tl.from(
-        ".category-button",
-        {
-          opacity: 0,
-          x: -30,
-          stagger: 0.2,
-          duration: 0.6,
-          ease: "power2.out",
-        },
-        "-=0.4"
-      );
-
-      // Skills container animation
-      tl.from(".skills-container", {
+      // Category tabs animation
+      tl.from(".category-tab", {
         opacity: 0,
-        y: 30,
+        y: 20,
+        stagger: 0.2,
         duration: 0.6,
         ease: "power2.out",
-      });
+      }, "-=0.4");
 
-      // Skill bars animation
-      gsap.from(".skill-bar", {
+      // Skills grid animation
+      tl.from(".skills-grid", {
+        opacity: 0,
+        y: 30,
+        duration: 0.8,
+        ease: "power2.out",
+      }, "-=0.2");
+
+      // Individual skill items animation
+      tl.from(".skill-item", {
+        opacity: 0,
+        scale: 0.8,
+        stagger: 0.1,
+        duration: 0.6,
+        ease: "back.out(1.7)",
+      }, "-=0.4");
+
+      // Progress bars animation
+      gsap.from(".progress-bar", {
         width: 0,
         duration: 1,
         ease: "power2.out",
@@ -136,10 +151,11 @@ export function SecondSkills() {
         scrollTrigger: {
           trigger: ".skills-container",
           start: "top center+=100",
+          toggleActions: "play none none reset"
         },
       });
 
-      // Floating icons animation
+      // Icon floating animation
       gsap.to(".floating-icon", {
         y: -5,
         duration: 2,
@@ -151,6 +167,29 @@ export function SecondSkills() {
           from: "random",
         },
       });
+
+      // Percentage numbers counter animation
+      gsap.utils.toArray(".skill-percentage").forEach((number: any) => {
+        const target = parseInt(number.getAttribute("data-value"));
+        gsap.from(number, {
+          textContent: target,
+          duration: 2,
+          ease: "power2.out",
+          snap: { textContent: 1 },
+          stagger: {
+            each: 0.2,
+            onUpdate: function() {
+              number.textContent = Math.ceil(parseFloat(number.textContent)) + "%";
+            },
+          },
+          scrollTrigger: {
+            trigger: number,
+            start: "top center+=100",
+            toggleActions: "play none none reset",
+          },
+        });
+      });
+
     },
     { scope: sectionRef }
   );
@@ -159,18 +198,22 @@ export function SecondSkills() {
   const { contextSafe } = useGSAP({ scope: sectionRef });
 
   const handleCategoryChange = contextSafe((index: number) => {
-    if (index === activeCategory) return;
+    if (isAnimating || index === activeCategory) return;
+    setIsAnimating(true);
+    
     gsap.to(".skills-container", {
       opacity: 0,
       y: 20,
-      duration: 0.3,
+      duration: 0.4,
+      ease: "power2.inOut",
       onComplete: () => {
         setActiveCategory(index);
         gsap.to(".skills-container", {
           opacity: 1,
           y: 0,
-          duration: 0.5,
-          ease: "power2.out",
+          duration: 0.6,
+          ease: "power3.out",
+          onComplete: () => setIsAnimating(false),
         });
       },
     });
@@ -194,7 +237,7 @@ export function SecondSkills() {
           {skillsData.map((category, index) => (
             <button
               key={index}
-              className={`category-button flex-1 p-6 rounded-xl border-2   ${
+              className={`category-tab flex-1 p-6 rounded-xl border-2   ${
                 activeCategory === index
                   ? "border-secondary dark:border-accent bg-white/90 dark:bg-gray-800/90 shadow-lg"
                   : "border-secondary/20 dark:border-accent/20 hover:border-secondary/50 dark:hover:border-accent/50 bg-white/80 dark:bg-gray-800/80"
@@ -256,7 +299,7 @@ export function SecondSkills() {
 
           <div className="grid gap-6">
             {skillsData[activeCategory].skills.map((skill, index) => (
-              <div key={index} className="space-y-2">
+              <div key={index} className="space-y-2 skill-item">
                 <div className="flex justify-between items-center">
                   <div>
                     <h4 className="font-medium text-primary dark:text-slate-50">
@@ -272,11 +315,14 @@ export function SecondSkills() {
                 </div>
                 <div className="h-2 bg-secondary/10 dark:bg-accent/20 rounded-full overflow-hidden  ">
                   <div
-                    className="skill-bar h-full bg-gradient-to-r from-secondary to-accent dark:from-accent dark:to-secondary rounded-full  duration-300"
+                    className="progress-bar h-full bg-gradient-to-r from-secondary to-accent dark:from-accent dark:to-secondary rounded-full  duration-300"
                     style={{
                       width: `${proficiencyToLevel[skill.proficiency]}%`,
                     }}
                   />
+                  <span className="skill-percentage" data-value={proficiencyToLevel[skill.proficiency]}>
+                    {proficiencyToLevel[skill.proficiency]}%
+                  </span>
                 </div>
               </div>
             ))}

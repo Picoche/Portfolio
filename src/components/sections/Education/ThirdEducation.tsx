@@ -1,7 +1,10 @@
 import { useRef } from "react";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { GraduationCap, Book, Star, Users, Trophy, Brain, MapPin } from "lucide-react";
 import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const educationData = [
   {
@@ -52,12 +55,19 @@ export function ThirdEducation() {
   const sectionRef = useRef(null);
 
   useGSAP(() => {
-    const tl = gsap.timeline();
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top center+=100",
+        end: "bottom center",
+      },
+    });
 
     // Background animations
     tl.from(".pattern-bg", {
       opacity: 0,
-      duration: 1,
+      scale: 1.1,
+      duration: 0.8,
       ease: "power2.out",
     });
 
@@ -67,63 +77,76 @@ export function ThirdEducation() {
       y: 30,
       duration: 0.8,
       ease: "back.out(1.7)",
-    });
+    }, "-=0.4");
 
     // Timeline line drawing animation
     tl.from(".timeline-line", {
       scaleY: 0,
-      transformOrigin: "top",
-      duration: 1.5,
+      transformOrigin: "top center",
+      duration: 1.2,
       ease: "power2.inOut",
-    }, "-=0.5");
+    }, "-=0.6");
 
-    // Year markers animation
-    tl.from(".year-marker", {
-      scale: 0,
-      opacity: 0,
-      stagger: 0.2,
-      duration: 0.5,
-      ease: "back.out(1.7)",
-    }, "-=1");
-
-    // Education cards stagger animation
+    // Education cards animation with stagger
     tl.from(".education-card", {
       opacity: 0,
       x: -50,
       stagger: 0.3,
       duration: 0.8,
-      ease: "power2.out",
-    }, "-=0.5");
+      ease: "power3.out",
+    }, "-=0.8");
 
-    // Skills tags animation
-    tl.from(".skill-tag", {
-      opacity: 0,
-      scale: 0,
-      stagger: 0.05,
-      duration: 0.4,
-      ease: "back.out(1.7)",
-    }, "-=0.3");
-
-    // Achievement items animation
-    tl.from(".achievement-item", {
+    // Card details animation
+    tl.from(".card-details", {
       opacity: 0,
       y: 20,
-      stagger: 0.1,
-      duration: 0.4,
+      stagger: 0.2,
+      duration: 0.6,
       ease: "power2.out",
-    }, "-=0.2");
+    }, "-=0.4");
 
-    // Floating animation for icons
-    gsap.to(".floating-icon", {
-      y: -5,
-      duration: 2,
+    // Achievements animation with stagger
+    tl.from(".achievement-item", {
+      opacity: 0,
+      scale: 0.8,
+      stagger: 0.2,
+      duration: 0.6,
+      ease: "back.out(1.7)",
+    }, "-=0.4");
+
+    // Icons continuous rotation
+    gsap.to(".rotating-icon", {
+      rotation: 360,
+      duration: 20,
       repeat: -1,
-      yoyo: true,
-      ease: "sine.inOut",
-      stagger: {
-        each: 0.5,
-        from: "random",
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".rotating-icon",
+        start: "top center",
+        toggleActions: "play pause resume reset",
       },
+    });
+
+    // Stats counter animation
+    gsap.utils.toArray(".stat-number").forEach((stat: any) => {
+      const target = parseInt(stat.getAttribute("data-value"));
+      gsap.from(stat, {
+        textContent: 0,
+        duration: 2,
+        ease: "power2.out",
+        snap: { textContent: 1 },
+        stagger: {
+          each: 0.2,
+          onUpdate: function() {
+            stat.textContent = Math.ceil(parseFloat(stat.textContent));
+          },
+        },
+        scrollTrigger: {
+          trigger: stat,
+          start: "top center+=100",
+          toggleActions: "play none none reset",
+        },
+      });
     });
 
   }, { scope: sectionRef });
@@ -133,7 +156,7 @@ export function ThirdEducation() {
 
   const handleHover = contextSafe((element: HTMLElement, isEntering: boolean) => {
     gsap.to(element, {
-      scale: isEntering ? 1.02 : 1,
+      scale: isEntering ? 1.03 : 1,
       y: isEntering ? -5 : 0,
       duration: 0.3,
       ease: isEntering ? "power2.out" : "power2.in",
@@ -181,7 +204,7 @@ export function ThirdEducation() {
                   onMouseLeave={(e) => handleHover(e.currentTarget, false)}
                 >
                   <div className="flex items-start gap-4 mb-6">
-                    <GraduationCap className="floating-icon w-8 h-8 text-secondary dark:text-accent flex-shrink-0" />
+                    <GraduationCap className="rotating-icon w-8 h-8 text-secondary dark:text-accent flex-shrink-0" />
                     <div>
                       <h3 className="text-2xl font-bold text-primary dark:text-slate-50">
                         {education.degree}

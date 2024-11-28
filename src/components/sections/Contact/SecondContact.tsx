@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import {
   Mail,
@@ -17,6 +18,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 import { useContactForm } from "@/hooks/use-contact-form";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const contactInfo = {
   email: "contact@example.com",
@@ -53,7 +56,14 @@ export function SecondContact() {
 
   useGSAP(
     () => {
-      const tl = gsap.timeline();
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top center+=100",
+          end: "bottom center",
+          toggleActions: "play none none none",
+        },
+      });
 
       // Background pattern animation
       tl.from(".pattern-bg", {

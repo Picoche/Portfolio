@@ -1,7 +1,10 @@
 import { useRef, useState } from "react";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { Code, Server, Database, Cloud, Star } from "lucide-react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface SkillCategory {
   name: string;
@@ -102,49 +105,54 @@ export function FourthSkills() {
   const sectionRef = useRef(null);
   const [activeCard, setActiveCard] = useState<number | null>(null);
 
-  useGSAP(
-    () => {
-      const tl = gsap.timeline({
-        defaults: {
-          ease: "power2.out",
-        },
-      });
+  useGSAP(() => {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top center+=100",
+        end: "bottom center",
+        toggleActions: "play none none reverse",
+      },
+    });
 
-      tl.from(".section-title", {
-        y: 20,
+    tl.from(".section-title", {
+      y: 20,
+      opacity: 0,
+      duration: 0.6,
+    });
+
+    tl.from(
+      ".skill-card",
+      {
         opacity: 0,
+        scale: 0.8,
         duration: 0.6,
-      });
-
-      tl.from(
-        ".skill-card",
-        {
-          opacity: 0,
-          scale: 0.8,
-          duration: 0.6,
-          stagger: {
-            amount: 0.4,
-            grid: [2, 2],
-            from: "edges",
-          },
-        },
-        "-=0.2"
-      );
-
-      gsap.to(".floating-icon", {
-        y: -3,
-        duration: 1.5,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
         stagger: {
-          each: 0.2,
-          from: "random",
+          amount: 0.4,
+          grid: [2, 2],
+          from: "edges",
         },
-      });
-    },
-    { scope: sectionRef }
-  );
+      },
+      "-=0.2"
+    );
+
+    gsap.to(".floating-icon", {
+      y: -3,
+      duration: 1.5,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut",
+      stagger: {
+        each: 0.2,
+        from: "random",
+      },
+      scrollTrigger: {
+        trigger: ".floating-icon",
+        start: "top center",
+        toggleActions: "play pause resume reset",
+      },
+    });
+  }, { scope: sectionRef });
 
   const { contextSafe } = useGSAP({ scope: sectionRef });
 

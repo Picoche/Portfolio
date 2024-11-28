@@ -1,9 +1,12 @@
 import { useRef } from "react";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Download, Mail, Code, Server, Database } from "lucide-react";
 import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export function SecondAbout() {
   const sectionRef = useRef(null);
@@ -11,7 +14,13 @@ export function SecondAbout() {
   const contentRef = useRef(null);
 
   useGSAP(() => {
-    const tl = gsap.timeline();
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top center",
+        end: "bottom center",
+      },
+    });
 
     // Background animation
     tl.from(".gradient-bg", {
@@ -36,6 +45,11 @@ export function SecondAbout() {
       repeat: -1,
       yoyo: true,
       ease: "sine.inOut",
+      scrollTrigger: {
+        trigger: ".image-container",
+        start: "top center",
+        toggleActions: "play pause resume reset",
+      },
     });
 
     // Rotating border animation
@@ -44,14 +58,19 @@ export function SecondAbout() {
       duration: 20,
       repeat: -1,
       ease: "none",
+      scrollTrigger: {
+        trigger: ".rotating-border",
+        start: "top center",
+        toggleActions: "play pause resume reset",
+      },
     });
 
     // Content animations with stagger
     tl.from(".content-item", {
       opacity: 0,
       x: 50,
-      stagger: 0.1,
-      duration: 0.6,
+      stagger: 0.2,
+      duration: 0.8,
       ease: "power2.out",
     }, "-=0.4");
 
@@ -59,25 +78,20 @@ export function SecondAbout() {
     const stats = gsap.utils.toArray(".stat-number");
     stats.forEach((stat: any) => {
       tl.from(stat, {
-        innerText: 0,
+        textContent: 0,
         duration: 2,
-        snap: { innerText: 1 },
         ease: "power2.out",
+        snap: { textContent: 1 },
+        stagger: {
+          each: 0.2,
+          onUpdate: function() {
+            stat.textContent = Math.ceil(parseFloat(stat.textContent));
+          },
+        },
       }, "-=1.5");
     });
 
   }, { scope: sectionRef });
-
-  // Handle button hover animations
-  const { contextSafe } = useGSAP({ scope: sectionRef });
-
-  const handleButtonHover = contextSafe((button: HTMLElement, isEntering: boolean) => {
-    gsap.to(button, {
-      scale: isEntering ? 1.05 : 1,
-      duration: 0.3,
-      ease: isEntering ? "power2.out" : "power2.in",
-    });
-  });
 
   return (
     <section 
@@ -160,25 +174,6 @@ export function SecondAbout() {
                 <Database className="w-8 h-8 mx-auto mb-2 text-secondary dark:text-accent transition-colors duration-200" />
                 <span className="text-sm font-medium text-primary dark:text-slate-50 transition-colors duration-200">Database</span>
               </div>
-            </div>
-
-            {/* Action buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 content-item">
-              <Button 
-                className="bg-secondary hover:bg-accent text-background dark:bg-secondary/90 dark:hover:bg-accent/90 dark:text-slate-50 transition-colors duration-200"
-                onMouseEnter={(e) => handleButtonHover(e.currentTarget, true)}
-                onMouseLeave={(e) => handleButtonHover(e.currentTarget, false)}
-              >
-                <Download className="mr-2 h-4 w-4" /> Download CV
-              </Button>
-              <Button
-                variant="outline"
-                className="border-primary dark:border-slate-50 text-primary hover:bg-primary hover:text-background dark:hover:bg-slate-50 dark:hover:text-primary transition-colors duration-200"
-                onMouseEnter={(e) => handleButtonHover(e.currentTarget, true)}
-                onMouseLeave={(e) => handleButtonHover(e.currentTarget, false)}
-              >
-                <Mail className="mr-2 h-4 w-4" /> Get in Touch
-              </Button>
             </div>
           </div>
         </div>

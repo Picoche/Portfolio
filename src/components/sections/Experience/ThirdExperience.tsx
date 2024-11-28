@@ -87,9 +87,16 @@ export function ThirdExperience() {
 
   useGSAP(
     () => {
-      const tl = gsap.timeline();
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top center+=100",
+          end: "bottom center",
+          toggleActions: "play none none reverse",
+        },
+      });
 
-      // Title animation
+      // Title animation with split effect
       tl.from(".section-title", {
         opacity: 0,
         y: 30,
@@ -97,13 +104,13 @@ export function ThirdExperience() {
         ease: "back.out(1.7)",
       });
 
-      // Timeline line drawing animation
+      // Timeline line reveal
       tl.from(".timeline-line", {
         scaleY: 0,
-        transformOrigin: "top",
-        duration: 1.5,
+        transformOrigin: "top center",
+        duration: 1.2,
         ease: "power2.inOut",
-      });
+      }, "-=0.4");
 
       // Year markers animation
       tl.from(".year-marker", {
@@ -114,7 +121,7 @@ export function ThirdExperience() {
         ease: "back.out(1.7)",
       });
 
-      // Experience cards stagger animation
+      // Experience cards reveal with perspective
       experiences.forEach((_, index) => {
         gsap.from(`#experience-${index}`, {
           opacity: 0,
@@ -124,10 +131,83 @@ export function ThirdExperience() {
           scrollTrigger: {
             trigger: `#experience-${index}`,
             start: "top center+=100",
-            end: "bottom center",
-            toggleActions: "play none none reverse",
+            toggleActions: "play none none reset",
           },
         });
+      });
+
+      // Company logos spin in
+      gsap.from(".company-logo", {
+        opacity: 0,
+        rotation: -180,
+        scale: 0,
+        duration: 0.8,
+        stagger: 0.2,
+        ease: "back.out(1.7)",
+        scrollTrigger: {
+          trigger: ".company-logo",
+          start: "top center+=100",
+          toggleActions: "play none none reset",
+        },
+      });
+
+      // Role badges slide up
+      gsap.from(".role-badge", {
+        opacity: 0,
+        y: 20,
+        duration: 0.4,
+        stagger: 0.1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: ".role-badge",
+          start: "top center+=100",
+          toggleActions: "play none none reset",
+        },
+      });
+
+      // Tech stack tags reveal
+      gsap.from(".tech-tag", {
+        opacity: 0,
+        scale: 0,
+        duration: 0.4,
+        stagger: {
+          from: "random",
+          amount: 0.5,
+        },
+        ease: "back.out(2)",
+        scrollTrigger: {
+          trigger: ".tech-tag",
+          start: "top center+=100",
+          toggleActions: "play none none reset",
+        },
+      });
+
+      // Date badges fade in with bounce
+      gsap.from(".date-badge", {
+        opacity: 0,
+        scale: 0.5,
+        duration: 0.6,
+        stagger: 0.2,
+        ease: "elastic.out(1, 0.5)",
+        scrollTrigger: {
+          trigger: ".date-badge",
+          start: "top center+=100",
+          toggleActions: "play none none reset",
+        },
+      });
+
+      // Description text reveal
+      gsap.from(".description-text", {
+        opacity: 0,
+        y: 20,
+        duration: 0.6,
+        stagger: 0.2,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: ".description-text",
+          start: "top center+=100",
+          toggleActions: "play none none reset",
+        },
       });
 
       // Floating icons animation

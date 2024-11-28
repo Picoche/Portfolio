@@ -1,8 +1,11 @@
 import { useRef } from "react";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import { Code, Database, Cloud, Globe, Star, Zap } from "lucide-react";
 import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const achievements = [
   { icon: Star, label: "5+ Years", desc: "Experience" },
@@ -13,16 +16,69 @@ const achievements = [
 
 export function ThirdAbout() {
   const sectionRef = useRef(null);
+  const imageRef = useRef(null);
+  const contentRef = useRef(null);
 
   useGSAP(() => {
-    const tl = gsap.timeline();
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top center",
+        end: "bottom center",
+      },
+    });
 
     // Grid background animation
     tl.from(".grid-bg", {
       opacity: 0,
       scale: 1.1,
-      duration: 1,
+      duration: 0.8,
       ease: "power2.out",
+    });
+
+    // Animate achievements with stagger
+    tl.from(".achievement-item", {
+      opacity: 0,
+      y: 30,
+      stagger: 0.2,
+      duration: 0.8,
+      ease: "power2.out",
+    }, "-=0.4");
+
+    // Animate icons with continuous rotation
+    gsap.to(".achievement-icon", {
+      rotation: 360,
+      duration: 20,
+      repeat: -1,
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".achievement-icon",
+        start: "top center",
+        toggleActions: "play pause resume reset",
+      },
+    });
+
+    // Animate skill sections
+    tl.from(".skill-section", {
+      opacity: 0,
+      x: -30,
+      stagger: 0.3,
+      duration: 0.8,
+      ease: "power2.out",
+    }, "-=0.6");
+
+    // Animate progress bars
+    gsap.from(".progress-bar", {
+      scaleX: 0,
+      transformOrigin: "left center",
+      duration: 1.5,
+      ease: "power2.out",
+      stagger: 0.2,
+      scrollTrigger: {
+        trigger: ".progress-bar",
+        start: "top center+=100",
+        toggleActions: "play none none reset",
+      },
     });
 
     // Image reveal with mask effect
@@ -124,7 +180,7 @@ export function ThirdAbout() {
                     key={item.label}
                     className="achievement-card bg-background dark:bg-primary shadow-lg rounded-xl p-4 border border-secondary/20 dark:border-accent/20"
                   >
-                    <item.icon className="w-8 h-8 text-secondary dark:text-accent mb-2" />
+                    <item.icon className="w-8 h-8 text-secondary dark:text-accent mb-2 achievement-icon" />
                     <div className="achievement-number font-bold text-2xl text-secondary dark:text-accent" data-value={parseInt(item.label)}>
                       {item.label}
                     </div>
@@ -159,7 +215,7 @@ export function ThirdAbout() {
 
             {/* Skills section */}
             <div className="grid grid-cols-2 gap-6">
-              <div className="space-y-4">
+              <div className="space-y-4 skill-section">
                 <h4 className="font-semibold text-primary dark:text-background">Frontend</h4>
                 {["React", "Next.js", "TypeScript"].map((skill) => (
                   <div key={skill} className="skill-item flex items-center gap-2">
@@ -168,7 +224,7 @@ export function ThirdAbout() {
                   </div>
                 ))}
               </div>
-              <div className="space-y-4">
+              <div className="space-y-4 skill-section">
                 <h4 className="font-semibold text-primary dark:text-background">Backend</h4>
                 {["Node.js", "Python", "PostgreSQL"].map((skill) => (
                   <div key={skill} className="skill-item flex items-center gap-2">

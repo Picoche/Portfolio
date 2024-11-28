@@ -61,7 +61,14 @@ export function ThirdTestimonials() {
 
   useGSAP(
     () => {
-      const tl = gsap.timeline();
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top center+=100",
+          end: "bottom center",
+          toggleActions: "play none none none",
+        },
+      });
 
       // Parallax background effect
       gsap.to(".parallax-bg", {
@@ -134,6 +141,42 @@ export function ThirdTestimonials() {
             ease: "power2.out",
           });
         });
+      });
+
+      // Testimonial cards stagger animation
+      tl.from(".testimonial-card", {
+        opacity: 0,
+        y: 50,
+        stagger: 0.2,
+        duration: 0.8,
+        ease: "power2.out",
+      });
+
+      // Quote icons animation
+      tl.from(".floating-quote", {
+        opacity: 0,
+        scale: 0,
+        stagger: 0.1,
+        duration: 0.4,
+        ease: "back.out(1.7)",
+      });
+
+      // Company logos animation
+      tl.from(".company-logo", {
+        opacity: 0,
+        scale: 0,
+        stagger: 0.2,
+        duration: 0.6,
+        ease: "back.out(1.7)",
+      }, "-=0.4");
+
+      // Rating stars animation
+      tl.from(".rating-star", {
+        opacity: 0,
+        scale: 0,
+        stagger: 0.1,
+        duration: 0.4,
+        ease: "back.out(1.7)",
       });
 
       // Floating elements animation

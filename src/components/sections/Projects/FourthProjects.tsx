@@ -1,5 +1,7 @@
 import { useRef, useState } from "react";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -9,7 +11,8 @@ import {
   Blocks,
   Globe,
 } from "lucide-react";
-import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
   {
@@ -75,63 +78,132 @@ export function FourthProjects() {
   const sectionRef = useRef(null);
   const [activeProject, setActiveProject] = useState<number | null>(null);
 
-  useGSAP(
-    () => {
-      const tl = gsap.timeline();
+  useGSAP(() => {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top center+=100",
+        end: "bottom center",
+        toggleActions: "play none none reverse",
+      },
+    });
 
-      // Background animations
-      tl.from(".pattern-bg", {
-        opacity: 0,
-        duration: 1,
-        ease: "power2.out",
-      });
+    // Background animations
+    tl.from(".pattern-bg", {
+      opacity: 0,
+      duration: 1,
+      ease: "power2.out",
+    });
 
-      // Title animations
-      tl.from(".section-title", {
-        opacity: 0,
-        y: 30,
-        duration: 0.8,
-        ease: "back.out(1.7)",
-      });
+    // Title animations
+    tl.from(".section-title", {
+      opacity: 0,
+      y: 30,
+      duration: 0.8,
+      ease: "back.out(1.7)",
+    }, "-=0.4");
 
-      // Project cards stagger animation
-      tl.from(".project-card", {
-        opacity: 0,
-        y: 50,
-        stagger: 0.2,
-        duration: 0.8,
-        ease: "power2.out",
-      });
+    // Project cards stagger animation
+    tl.from(".project-card", {
+      opacity: 0,
+      rotationX: 15,
+      y: 100,
+      transformPerspective: 1000,
+      transformOrigin: "bottom",
+      stagger: 0.2,
+      duration: 0.8,
+      ease: "power3.out",
+    }, "-=0.4");
 
-      // Metrics counter animation
-      gsap.utils.toArray(".metric-value").forEach((value: any) => {
-        gsap.from(value, {
-          innerText: 0,
-          duration: 2,
-          snap: { innerText: 1 },
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: value,
-            start: "top center+=100",
-          },
-        });
-      });
+    // Project images reveal with parallax
+    gsap.from(".project-image", {
+      opacity: 0,
+      y: 50,
+      scale: 1.1,
+      duration: 1,
+      stagger: 0.2,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: ".project-image",
+        start: "top center+=100",
+        toggleActions: "play none none reset",
+      },
+    });
 
-      // Floating icons animation
-      gsap.to(".floating-icon", {
-        y: -10,
+    // Project info reveal
+    gsap.from(".project-info", {
+      opacity: 0,
+      y: 30,
+      duration: 0.8,
+      stagger: 0.2,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: ".project-info",
+        start: "top center+=100",
+        toggleActions: "play none none reset",
+      },
+    });
+
+    // Tags animation with bounce
+    gsap.from(".project-tag", {
+      opacity: 0,
+      scale: 0,
+      rotation: -15,
+      duration: 0.6,
+      stagger: 0.1,
+      ease: "back.out(2)",
+      scrollTrigger: {
+        trigger: ".project-tag",
+        start: "top center+=100",
+        toggleActions: "play none none reset",
+      },
+    });
+
+    // Links slide and fade
+    gsap.from(".project-link", {
+      opacity: 0,
+      x: -20,
+      duration: 0.4,
+      stagger: 0.2,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: ".project-link",
+        start: "top center+=100",
+        toggleActions: "play none none reset",
+      },
+    });
+
+    // Stats counter animation
+    gsap.utils.toArray(".metric-value").forEach((stat: any) => {
+      const target = parseInt(stat.getAttribute("data-value"));
+      gsap.from(stat, {
+        innerText: 0,
         duration: 2,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
+        ease: "power2.out",
+        snap: { innerText: 1 },
         stagger: {
-          each: 0.5,
-          from: "random",
+          each: 0.2,
+          onUpdate: function() {
+            stat.textContent = Math.ceil(parseFloat(stat.textContent));
+          },
+        },
+        scrollTrigger: {
+          trigger: stat,
+          start: "top center+=100",
+          toggleActions: "play none none reset",
         },
       });
-    },
-    { scope: sectionRef }
-  );
+    });
+
+    // Continuous icon rotation
+    gsap.to(".rotating-icon", {
+      rotation: 360,
+      duration: 20,
+      repeat: -1,
+      ease: "none",
+    });
+
+  }, { scope: sectionRef });
 
   // Handle hover and click animations
   const { contextSafe } = useGSAP({ scope: sectionRef });
@@ -139,9 +211,10 @@ export function FourthProjects() {
   const handleHover = contextSafe(
     (element: HTMLElement, isEntering: boolean) => {
       gsap.to(element, {
-        scale: isEntering ? 1.02 : 1,
+        scale: isEntering ? 1.03 : 1,
+        rotationY: isEntering ? 5 : 0,
         y: isEntering ? -5 : 0,
-        duration: 0.4,
+        duration: 0.3,
         ease: isEntering ? "power2.out" : "power2.in",
       });
     }
@@ -211,7 +284,7 @@ export function FourthProjects() {
                       alt={project.title}
                       width={800}
                       height={600}
-                      className="w-full h-64 lg:h-full object-cover"
+                      className="w-full h-64 lg:h-full object-cover project-image"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                     <div className="absolute bottom-4 left-4">
@@ -219,10 +292,10 @@ export function FourthProjects() {
                         {project.category}
                       </span>
                     </div>
-                    <project.icon className="floating-icon absolute top-4 right-4 w-8 h-8 text-white" />
+                    <project.icon className="floating-icon absolute top-4 right-4 w-8 h-8 text-white rotating-icon" />
                   </div>
 
-                  <div className="lg:w-1/2 p-6 lg:p-8">
+                  <div className="lg:w-1/2 p-6 lg:p-8 project-info">
                     <div className="flex items-center justify-between mb-4">
                       <h3 className="text-2xl font-bold text-primary dark:text-slate-50">
                         {project.title}
@@ -258,7 +331,7 @@ export function FourthProjects() {
                       {project.technologies.map((tech) => (
                         <span
                           key={tech}
-                          className="px-3 py-1 bg-secondary/5 dark:bg-accent/10 text-secondary dark:text-accent rounded-full text-sm"
+                          className="px-3 py-1 bg-secondary/5 dark:bg-accent/10 text-secondary dark:text-accent rounded-full text-sm project-tag"
                         >
                           {tech}
                         </span>
@@ -268,7 +341,7 @@ export function FourthProjects() {
                     <div className="flex items-center justify-between">
                       <Link
                         href={project.liveLink}
-                        className="flex items-center text-secondary dark:text-accent hover:underline"
+                        className="flex items-center text-secondary dark:text-accent hover:underline project-link"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
@@ -277,7 +350,7 @@ export function FourthProjects() {
                       </Link>
                       <Link
                         href={project.githubLink}
-                        className="flex items-center text-secondary dark:text-accent hover:underline"
+                        className="flex items-center text-secondary dark:text-accent hover:underline project-link"
                         target="_blank"
                         rel="noopener noreferrer"
                       >

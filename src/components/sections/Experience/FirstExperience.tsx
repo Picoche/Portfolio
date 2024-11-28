@@ -1,7 +1,10 @@
 import { useRef } from "react";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { Briefcase, Calendar, MapPin } from "lucide-react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface Experience {
   title: string;
@@ -43,38 +46,81 @@ const experiences: Experience[] = [
 export function FirstExperience() {
   const sectionRef = useRef(null);
 
-  useGSAP(
-    () => {
-      const tl = gsap.timeline();
+  useGSAP(() => {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top center+=100",
+        end: "bottom center",
+        toggleActions: "play none none none",
+      },
+    });
 
-      // Title animation
-      tl.from(".section-title", {
-        opacity: 0,
-        y: 30,
-        duration: 0.6,
-        ease: "back.out(1.7)",
-      });
+    // Title animation
+    tl.from(".section-title", {
+      opacity: 0,
+      y: 30,
+      duration: 0.6,
+      ease: "back.out(1.7)",
+    });
 
-      // Experience cards stagger animation
-      tl.from(".experience-card", {
-        opacity: 0,
-        y: 50,
-        stagger: 0.2,
-        duration: 0.8,
-        ease: "power2.out",
-      });
+    // Timeline line drawing animation
+    tl.from(".timeline-line", {
+      scaleY: 0,
+      transformOrigin: "top center",
+      duration: 1,
+      ease: "power2.inOut",
+    }, "-=0.4");
 
-      // Technology tags animation
-      tl.from(".tech-tag", {
-        opacity: 0,
-        scale: 0,
-        stagger: 0.1,
-        duration: 0.4,
-        ease: "back.out(1.7)",
-      });
-    },
-    { scope: sectionRef }
-  );
+    // Experience cards stagger animation
+    tl.from(".experience-card", {
+      opacity: 0,
+      y: 50,
+      stagger: 0.2,
+      duration: 0.8,
+      ease: "power2.out",
+    }, "-=0.6");
+
+    // Company logos animation
+    gsap.from(".company-logo", {
+      opacity: 0,
+      scale: 0,
+      duration: 0.6,
+      stagger: 0.2,
+      ease: "back.out(1.7)",
+    });
+
+    // Role badges animation
+    gsap.from(".role-badge", {
+      opacity: 0,
+      y: 20,
+      duration: 0.4,
+      stagger: 0.1,
+      ease: "power2.out",
+    });
+
+    // Technology tags animation
+    gsap.from(".tech-tag", {
+      opacity: 0,
+      scale: 0,
+      stagger: 0.1,
+      duration: 0.4,
+      ease: "back.out(1.7)",
+    });
+
+    // Floating icon animation
+    gsap.to(".floating-icon", {
+      y: -5,
+      duration: 2,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut",
+      stagger: {
+        each: 0.5,
+        from: "random",
+      },
+    });
+  }, { scope: sectionRef });
 
   return (
     <section

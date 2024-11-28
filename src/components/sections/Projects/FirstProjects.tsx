@@ -1,9 +1,12 @@
 import { useRef } from "react";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 import Image from "next/image";
 import Link from "next/link";
-import { ExternalLink, Github } from "lucide-react";
-import { useGSAP } from "@gsap/react";
+import { Github, Globe } from "lucide-react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
   {
@@ -39,13 +42,20 @@ export function FirstProjects() {
   const sectionRef = useRef(null);
 
   useGSAP(() => {
-    const tl = gsap.timeline();
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top center+=100",
+        end: "bottom center",
+        toggleActions: "play none none reverse",
+      },
+    });
 
-    // Heading animation
+    // Title animation
     tl.from(".section-title", {
       opacity: 0,
-      y: -30,
-      duration: 0.6,
+      y: 30,
+      duration: 0.8,
       ease: "back.out(1.7)",
     });
 
@@ -53,36 +63,60 @@ export function FirstProjects() {
     tl.from(".project-card", {
       opacity: 0,
       y: 50,
-      stagger: 0.2,
+      stagger: 0.3,
       duration: 0.8,
-      ease: "power2.out",
-    }, "-=0.2");
-
-    // Technologies tags animation
-    tl.from(".tech-tag", {
-      opacity: 0,
-      scale: 0,
-      stagger: 0.05,
-      duration: 0.4,
-      ease: "back.out(1.7)",
+      ease: "power3.out",
     }, "-=0.4");
 
+    // Project images animation
+    tl.from(".project-image", {
+      opacity: 0,
+      scale: 0.8,
+      duration: 0.6,
+      stagger: 0.2,
+      ease: "power2.out",
+    }, "-=0.6");
+
+    // Tags animation
+    gsap.from(".project-tag", {
+      opacity: 0,
+      scale: 0,
+      duration: 0.4,
+      stagger: 0.1,
+      ease: "back.out(2)",
+      scrollTrigger: {
+        trigger: ".project-tag",
+        start: "top center+=100",
+        toggleActions: "play none none reset",
+      },
+    });
+
     // Links animation
-    tl.from(".project-link", {
+    gsap.from(".project-link", {
       opacity: 0,
       x: -20,
-      stagger: 0.1,
       duration: 0.4,
+      stagger: 0.2,
       ease: "power2.out",
-    }, "-=0.2");
+      scrollTrigger: {
+        trigger: ".project-link",
+        start: "top center+=100",
+        toggleActions: "play none none reset",
+      },
+    });
 
-    // View all button animation
-    tl.from(".view-all-button", {
-      opacity: 0,
-      y: 20,
-      duration: 0.4,
-      ease: "power2.out",
-    }, "-=0.2");
+    // Floating animation for icons
+    gsap.to(".floating-icon", {
+      y: -5,
+      duration: 2,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut",
+      stagger: {
+        each: 0.5,
+        from: "random",
+      },
+    });
 
   }, { scope: sectionRef });
 
@@ -91,7 +125,7 @@ export function FirstProjects() {
 
   const handleHover = contextSafe((element: HTMLElement, isEntering: boolean) => {
     gsap.to(element, {
-      scale: isEntering ? 1.02 : 1,
+      scale: isEntering ? 1.03 : 1,
       y: isEntering ? -5 : 0,
       duration: 0.3,
       ease: isEntering ? "power2.out" : "power2.in",
@@ -122,7 +156,7 @@ export function FirstProjects() {
                   alt={project.title}
                   width={400}
                   height={200}
-                  className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+                  className="project-image w-full h-full object-cover transition-transform duration-300 hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent dark:from-black/70" />
               </div>
@@ -139,7 +173,7 @@ export function FirstProjects() {
                   {project.technologies.map((tech) => (
                     <span
                       key={tech}
-                      className="tech-tag px-2 py-1 bg-secondary/10 dark:bg-secondary-dark/10 text-secondary dark:text-secondary-dark rounded-full text-sm  "
+                      className="project-tag px-2 py-1 bg-secondary/10 dark:bg-secondary-dark/10 text-secondary dark:text-secondary-dark rounded-full text-sm  "
                     >
                       {tech}
                     </span>
@@ -153,7 +187,7 @@ export function FirstProjects() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <ExternalLink className="w-4 h-4 mr-1" />
+                    <Globe className="w-4 h-4 mr-1" />
                     Live Demo
                   </Link>
                   <Link

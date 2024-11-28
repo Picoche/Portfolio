@@ -1,9 +1,12 @@
 import { useRef } from "react";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Download, Mail } from "lucide-react";
 import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export function FirstAbout() {
   const sectionRef = useRef(null);
@@ -11,13 +14,19 @@ export function FirstAbout() {
   const contentRef = useRef(null);
 
   useGSAP(() => {
-    const tl = gsap.timeline();
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top center",
+        end: "bottom center",
+      },
+    });
 
     // Heading animation
     tl.from(".about-heading", {
       opacity: 0,
       y: -30,
-      duration: 0.5,
+      duration: 0.8,
       ease: "power2.out",
     });
 
@@ -25,9 +34,9 @@ export function FirstAbout() {
     tl.from(".image-container", {
       opacity: 0,
       x: -50,
-      duration: 0.5,
+      duration: 0.8,
       ease: "power2.out",
-    }, "-=0.3");
+    }, "-=0.4");
 
     // Add continuous floating animation to image
     gsap.to(".image-container", {
@@ -36,16 +45,21 @@ export function FirstAbout() {
       repeat: -1,
       yoyo: true,
       ease: "sine.inOut",
+      scrollTrigger: {
+        trigger: ".image-container",
+        start: "top center",
+        toggleActions: "play pause resume reset",
+      },
     });
 
     // Content animations with stagger
     tl.from(".content-section > *", {
       opacity: 0,
       x: 50,
-      stagger: 0.1,
-      duration: 0.5,
+      stagger: 0.2,
+      duration: 0.8,
       ease: "power2.out",
-    }, "-=0.3");
+    }, "-=0.6");
 
     // Skills animation with stagger and scale
     tl.from(".skill-tag", {
@@ -53,31 +67,20 @@ export function FirstAbout() {
       scale: 0,
       y: 20,
       stagger: 0.1,
-      duration: 0.4,
+      duration: 0.6,
       ease: "back.out(1.7)",
-    }, "-=0.2");
+    }, "-=0.4");
 
     // Buttons animation
     tl.from(".about-button", {
       opacity: 0,
       y: 20,
       stagger: 0.2,
-      duration: 0.4,
+      duration: 0.6,
       ease: "power2.out",
-    }, "-=0.2");
+    }, "-=0.3");
 
   }, { scope: sectionRef });
-
-  // Handle button hover animations
-  const { contextSafe } = useGSAP({ scope: sectionRef });
-
-  const handleButtonHover = contextSafe((button: HTMLElement, isEntering: boolean) => {
-    gsap.to(button, {
-      scale: isEntering ? 1.05 : 1,
-      duration: 0.3,
-      ease: isEntering ? "power2.out" : "power2.in",
-    });
-  });
 
   return (
     <section 
@@ -141,24 +144,6 @@ export function FirstAbout() {
                   {skill}
                 </span>
               ))}
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button 
-                className="about-button bg-secondary hover:bg-accent text-background dark:bg-secondary-dark dark:hover:bg-accent-dark dark:text-background-dark transition-colors duration-200"
-                onMouseEnter={(e) => handleButtonHover(e.currentTarget, true)}
-                onMouseLeave={(e) => handleButtonHover(e.currentTarget, false)}
-              >
-                <Download className="mr-2 h-4 w-4" /> Download CV
-              </Button>
-              <Button
-                variant="outline"
-                className="about-button border-secondary text-secondary hover:bg-secondary hover:text-background dark:border-secondary-dark dark:text-secondary-dark dark:hover:bg-secondary-dark dark:hover:text-background-dark transition-colors duration-200"
-                onMouseEnter={(e) => handleButtonHover(e.currentTarget, true)}
-                onMouseLeave={(e) => handleButtonHover(e.currentTarget, false)}
-              >
-                <Mail className="mr-2 h-4 w-4" /> Get in Touch
-              </Button>
             </div>
           </div>
         </div>

@@ -69,7 +69,14 @@ export function ThirdContact() {
 
   useGSAP(
     () => {
-      const tl = gsap.timeline();
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top center+=100",
+          end: "bottom center",
+          toggleActions: "play none none none",
+        },
+      });
 
       // Background animations
       tl.from(".pattern-bg", {
@@ -144,6 +151,11 @@ export function ThirdContact() {
         stagger: {
           each: 0.2,
           from: "random",
+        },
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top center+=100",
+          toggleActions: "play none none reset",
         },
       });
 

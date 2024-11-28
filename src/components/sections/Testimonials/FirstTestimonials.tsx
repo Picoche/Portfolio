@@ -1,8 +1,11 @@
 import { useRef } from "react";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import Image from "next/image";
 import { Quote, Star } from "lucide-react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface Testimonial {
   id: number;
@@ -52,7 +55,14 @@ export function FirstTestimonials() {
 
   useGSAP(
     () => {
-      const tl = gsap.timeline();
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top center+=100",
+          end: "bottom center",
+          toggleActions: "play none none none",
+        },
+      });
 
       // Title animation
       tl.from(".section-title", {

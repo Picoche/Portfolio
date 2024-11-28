@@ -1,7 +1,10 @@
 import { useRef } from "react";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Code, Database, Server, Globe, Laptop, Cloud } from "lucide-react";
 import { useGSAP } from "@gsap/react";
-import { Code, Server, Database } from "lucide-react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface SkillGroup {
   category: string;
@@ -54,54 +57,108 @@ export function ThirdSkills() {
   const sectionRef = useRef(null);
 
   useGSAP(() => {
-    const tl = gsap.timeline();
-
-    // Title animation
-    tl.from(".section-title", {
-      opacity: 0,
-      y: 30,
-      duration: 0.6,
-      ease: "back.out(1.7)",
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top center+=100",
+        end: "bottom center",
+      },
     });
 
-    // Cards stagger animation
-    tl.from(".skill-card", {
+    // Background pattern animation
+    tl.from(".pattern-bg", {
       opacity: 0,
-      y: 50,
-      stagger: 0.2,
+      scale: 1.2,
       duration: 0.8,
       ease: "power2.out",
     });
 
-    // Circular progress animation
-    gsap.from(".progress-circle", {
-      strokeDashoffset: (i, target) => {
-        const circle = target as SVGCircleElement;
-        const radius = circle.r.baseVal.value;
-        const circumference = radius * 2 * Math.PI;
-        return circumference;
-      },
-      duration: 1.5,
-      ease: "power2.out",
-      stagger: 0.1,
+    // Heading animation
+    tl.from(".section-title", {
+      opacity: 0,
+      y: 30,
+      duration: 0.8,
+      ease: "back.out(1.7)",
+    }, "-=0.4");
+
+    // Skill categories stagger animation
+    tl.from(".skill-category", {
+      opacity: 0,
+      y: 50,
+      stagger: 0.3,
+      duration: 0.8,
+      ease: "power3.out",
+    }, "-=0.4");
+
+    // Skill cards animation with 3D effect
+    tl.from(".skill-card", {
+      opacity: 0,
+      rotationY: 30,
+      transformOrigin: "left center",
+      stagger: 0.2,
+      duration: 0.8,
+      ease: "power3.out",
+    }, "-=0.6");
+
+    // Progress bars animation
+    gsap.from(".progress-bar", {
+      scaleX: 0,
+      transformOrigin: "left center",
+      duration: 1.2,
+      ease: "power2.inOut",
+      stagger: 0.2,
       scrollTrigger: {
-        trigger: ".skills-grid",
+        trigger: ".progress-bar",
         start: "top center+=100",
+        toggleActions: "play none none reset",
       },
     });
 
-    // Floating icons animation
+    // Icon floating animation with rotation
     gsap.to(".floating-icon", {
-      y: -5,
-      duration: 2,
+      y: -10,
+      rotation: 360,
+      duration: 20,
       repeat: -1,
-      yoyo: true,
-      ease: "sine.inOut",
-      stagger: {
-        each: 0.5,
-        from: "random",
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".floating-icon",
+        start: "top center",
+        toggleActions: "play pause resume reset",
       },
     });
+
+    // Skill items stagger
+    tl.from(".skill-item", {
+      opacity: 0,
+      x: -30,
+      stagger: 0.1,
+      duration: 0.6,
+      ease: "power2.out",
+    }, "-=0.6");
+
+    // Stats counter animation
+    gsap.utils.toArray(".stat-number").forEach((stat: any) => {
+      const target = parseInt(stat.getAttribute("data-value"));
+      gsap.from(stat, {
+        textContent: 0,
+        duration: 2,
+        ease: "power2.out",
+        snap: { textContent: 1 },
+        stagger: {
+          each: 0.2,
+          onUpdate: function() {
+            stat.textContent = Math.ceil(parseFloat(stat.textContent));
+          },
+        },
+        scrollTrigger: {
+          trigger: stat,
+          start: "top center+=100",
+          toggleActions: "play none none reset",
+        },
+      });
+    });
+
   }, { scope: sectionRef });
 
   // Handle hover animations
@@ -109,7 +166,7 @@ export function ThirdSkills() {
 
   const handleHover = contextSafe((element: HTMLElement, isEntering: boolean) => {
     gsap.to(element, {
-      scale: isEntering ? 1.02 : 1,
+      scale: isEntering ? 1.03 : 1,
       y: isEntering ? -5 : 0,
       duration: 0.3,
       ease: isEntering ? "power2.out" : "power2.in",
@@ -122,7 +179,7 @@ export function ThirdSkills() {
       className="py-20 bg-slate-100 dark:bg-gray-900 relative overflow-hidden "
     >
       {/* Background pattern */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10 " />
+      <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10 pattern-bg" />
 
       <div className="container mx-auto px-4">
         <h2 className="section-title text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-secondary to-accent dark:from-accent dark:to-secondary bg-clip-text text-transparent ">
@@ -142,7 +199,7 @@ export function ThirdSkills() {
                   <group.icon className="floating-icon w-6 h-6 text-secondary dark:text-accent " />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-primary dark:text-slate-50 ">
+                  <h3 className="text-xl font-bold text-primary dark:text-slate-50 skill-category">
                     {group.category}
                   </h3>
                   <p className="text-sm text-primary/60 dark:text-slate-50/60 ">
@@ -166,7 +223,7 @@ export function ThirdSkills() {
                           cy="48"
                         />
                         <circle
-                          className="progress-circle bg-gradient-to-r text-secondary dark:text-accent "
+                          className="progress-bar bg-gradient-to-r text-secondary dark:text-accent "
                           strokeWidth="8"
                           strokeLinecap="round"
                           stroke="currentColor"
@@ -181,12 +238,12 @@ export function ThirdSkills() {
                         />
                       </svg>
                       <div className="absolute inset-0 flex items-center justify-center">
-                        <span className="text-lg font-bold text-secondary dark:text-accent ">
+                        <span className="text-lg font-bold text-secondary dark:text-accent stat-number" data-value={skill.level}>
                           {skill.level}%
                         </span>
                       </div>
                     </div>
-                    <h4 className="font-medium text-primary dark:text-slate-50 ">
+                    <h4 className="font-medium text-primary dark:text-slate-50 skill-item">
                       {skill.name}
                     </h4>
                   </div>

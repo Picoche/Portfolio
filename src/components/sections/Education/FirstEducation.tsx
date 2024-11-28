@@ -1,7 +1,10 @@
 import { useRef } from "react";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { GraduationCap, Calendar, MapPin, Award } from "lucide-react";
 import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const educationData = [
   {
@@ -36,14 +39,20 @@ export function FirstEducation() {
   const sectionRef = useRef(null);
 
   useGSAP(() => {
-    const tl = gsap.timeline();
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top center+=100",
+        end: "bottom center",
+      },
+    });
 
     // Heading animation
     tl.from(".section-title", {
       opacity: 0,
       y: -30,
-      duration: 0.6,
-      ease: "back.out(1.7)",
+      duration: 0.8,
+      ease: "power2.out",
     });
 
     // Timeline line drawing animation
@@ -57,20 +66,25 @@ export function FirstEducation() {
     // Education cards stagger animation
     tl.from(".education-card", {
       opacity: 0,
-      x: -50,
+      y: 50,
       stagger: 0.3,
       duration: 0.8,
-      ease: "power2.out",
-    }, "-=0.5");
+      ease: "power3.out",
+    }, "-=0.4");
 
     // Icons animation
-    tl.from(".card-icon", {
-      scale: 0,
-      rotation: -180,
+    gsap.to(".card-icon", {
+      scale: 1,
+      rotation: 0,
       stagger: 0.2,
       duration: 0.6,
       ease: "back.out(1.7)",
-    }, "-=1");
+      scrollTrigger: {
+        trigger: ".card-icon",
+        start: "top center+=100",
+        toggleActions: "play pause resume reset",
+      },
+    });
 
     // Achievements animation
     tl.from(".achievement-item", {
@@ -88,7 +102,7 @@ export function FirstEducation() {
 
   const handleHover = contextSafe((element: HTMLElement, isEntering: boolean) => {
     gsap.to(element, {
-      scale: isEntering ? 1.02 : 1,
+      scale: isEntering ? 1.03 : 1,
       y: isEntering ? -5 : 0,
       duration: 0.3,
       ease: isEntering ? "power2.out" : "power2.in",
