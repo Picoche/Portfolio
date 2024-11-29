@@ -367,7 +367,6 @@ export function FourthExperience() {
                 "bg-white/90 dark:bg-gray-800/90 backdrop-blur-lg",
                 "rounded-2xl p-8 md:p-12 shadow-lg",
                 "border border-secondary/20 dark:border-accent/20",
-                "transform transition-all duration-300",
                 "hover:shadow-2xl hover:scale-[1.02]"
               )}
               onMouseEnter={() => setIsHovering(true)}
@@ -460,7 +459,7 @@ export function FourthExperience() {
                       {experience.technologies.map((tech, i) => (
                         <span
                           key={i}
-                          className="px-3 py-1 rounded-full text-sm font-medium bg-secondary/10 dark:bg-accent/20 text-secondary dark:text-accent transition-colors duration-200"
+                          className="px-3 py-1 rounded-full text-sm font-medium bg-secondary/10 dark:bg-accent/20 text-secondary dark:text-accent"
                         >
                           {tech}
                         </span>
