@@ -198,16 +198,6 @@ export function FourthExperience() {
         ease: "power2.out",
       });
 
-      // Title animation with 3D effect
-      tl.from(".section-title", {
-        opacity: 0,
-        y: 30,
-        rotationX: 45,
-        transformPerspective: 1000,
-        duration: 0.8,
-        ease: "back.out(1.7)",
-      }, "-=0.4");
-
       // Experience cards reveal with 3D effect
       gsap.from(".experience-card", {
         opacity: 0,
