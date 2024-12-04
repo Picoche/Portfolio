@@ -23,7 +23,7 @@ const testimonials: Testimonial[] = [
     name: "Sarah Johnson",
     position: "Product Manager",
     company: "Tech Solutions Inc.",
-    image: "/testimonials/sarah.jpg",
+    image: "/johndoe.png",
     quote:
       "Working with this developer was an absolute pleasure. Their attention to detail and technical expertise helped us deliver our project ahead of schedule.",
     rating: 5,
@@ -33,7 +33,7 @@ const testimonials: Testimonial[] = [
     name: "Michael Chen",
     position: "CTO",
     company: "Digital Innovations",
-    image: "/testimonials/michael.jpg",
+    image: "/johndoe.png",
     quote:
       "The level of professionalism and technical skill demonstrated was exceptional. They consistently delivered high-quality code and innovative solutions.",
     rating: 5,
@@ -43,7 +43,7 @@ const testimonials: Testimonial[] = [
     name: "Emily Rodriguez",
     position: "Lead Designer",
     company: "Creative Studios",
-    image: "/testimonials/emily.jpg",
+    image: "/johndoe.png",
     quote:
       "Their ability to translate design concepts into flawless, responsive implementations was impressive. A true professional who delivers excellence.",
     rating: 5,
