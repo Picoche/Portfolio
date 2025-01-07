@@ -1,15 +1,14 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { ArrowRight, Code, Github, Linkedin, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { useGSAP } from "@gsap/react";
 
 export function FirstHero() {
   const sectionRef = useRef<HTMLElement>(null);
   const floatingParticlesRef = useRef<HTMLDivElement>(null);
 
-  useGSAP(() => {
+  useEffect(() => {
     const tl = gsap.timeline();
 
     // Fade in background and particles
@@ -109,7 +108,7 @@ export function FirstHero() {
       });
     });
 
-  }, { scope: sectionRef });
+  }, []);
 
   return (
     <section 
