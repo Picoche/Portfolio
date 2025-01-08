@@ -17,7 +17,7 @@ const projects = [
     year: "2024",
     technologies: ["React", "Node.js", "MongoDB", "Express", "Stripe"],
     liveLink: "https://example.com",
-    githubLink: "https://github.com",
+    githubLink: "https://github.com/Picoche",
     icon: Globe,
   },
   {
@@ -28,7 +28,7 @@ const projects = [
     year: "2023",
     technologies: ["Vue.js", "Firebase", "Vuex", "Tailwind CSS"],
     liveLink: "https://example.com",
-    githubLink: "https://github.com",
+    githubLink: "https://github.com/Picoche",
     icon: Blocks,
   },
   {
@@ -39,7 +39,7 @@ const projects = [
     year: "2024",
     technologies: ["Python", "TensorFlow", "React", "Flask", "Docker"],
     liveLink: "https://example.com",
-    githubLink: "https://github.com",
+    githubLink: "https://github.com/Picoche",
     icon: Code,
   },
 ];

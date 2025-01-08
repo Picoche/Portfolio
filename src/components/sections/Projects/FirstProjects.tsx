@@ -16,7 +16,7 @@ const projects = [
     image: "/ecommerce.jpg",
     technologies: ["React", "Node.js", "MongoDB", "Express", "Stripe"],
     liveLink: "https://placeholder.com",
-    githubLink: "https://github.com",
+    githubLink: "https://github.com/Picoche",
   },
   {
     title: "Task Management App",
@@ -25,7 +25,7 @@ const projects = [
     image: "/ecommerce.jpg",
     technologies: ["Vue.js", "Firebase", "Vuex", "Tailwind CSS"],
     liveLink: "https://placeholder.com",
-    githubLink: "https://github.com",
+    githubLink: "https://github.com/Picoche",
   },
   {
     title: "AI-Powered Chatbot",
@@ -34,7 +34,7 @@ const projects = [
     image: "/ecommerce.jpg",
     technologies: ["Python", "TensorFlow", "React", "Flask", "Docker"],
     liveLink: "https://placeholder.com",
-    githubLink: "https://github.com",
+    githubLink: "https://github.com/Picoche",
   },
 ];
 

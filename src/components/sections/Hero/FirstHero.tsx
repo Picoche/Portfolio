@@ -205,7 +205,7 @@ export function FirstHero() {
 
         <div className="mt-8 flex justify-center space-x-4">
           <Link
-            href="https://github.com"
+            href="https://github.com/Picoche/Picoche"
             target="_blank"
             rel="noopener noreferrer"
             className="social-icon text-primary dark:text-primary-dark hover:text-secondary dark:hover:text-accent-dark"
@@ -214,7 +214,7 @@ export function FirstHero() {
             <span className="sr-only">GitHub</span>
           </Link>
           <Link
-            href="https://linkedin.com"
+            href="https://www.linkedin.com/in/fabien-hombert/"
             target="_blank"
             rel="noopener noreferrer"
             className="social-icon text-primary dark:text-primary-dark hover:text-secondary dark:hover:text-accent-dark"

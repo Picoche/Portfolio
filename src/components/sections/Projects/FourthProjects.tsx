@@ -31,7 +31,7 @@ const projects = [
     },
     technologies: ["React", "Node.js", "MongoDB", "Express", "Stripe"],
     liveLink: "https://example.com",
-    githubLink: "https://github.com",
+    githubLink: "https://github.com/Picoche",
     icon: Globe,
   },
   {
@@ -50,7 +50,7 @@ const projects = [
     },
     technologies: ["Vue.js", "Firebase", "Vuex", "Tailwind CSS"],
     liveLink: "https://example.com",
-    githubLink: "https://github.com",
+    githubLink: "https://github.com/Picoche",
     icon: Blocks,
   },
   {
@@ -69,7 +69,7 @@ const projects = [
     },
     technologies: ["Python", "TensorFlow", "React", "Flask", "Docker"],
     liveLink: "https://example.com",
-    githubLink: "https://github.com",
+    githubLink: "https://github.com/Picoche",
     icon: Code,
   },
 ];

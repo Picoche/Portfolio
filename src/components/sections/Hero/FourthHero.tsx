@@ -205,7 +205,7 @@ export function FourthHero() {
 
             <div className="flex justify-center lg:justify-start gap-4 pt-2 sm:pt-4">
               <Link
-                href="https://github.com"
+                href="https://github.com/Picoche"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="social-icon text-primary dark:text-primary-dark hover:text-secondary dark:hover:text-secondary-dark transition-colors duration-300"
@@ -213,7 +213,7 @@ export function FourthHero() {
                 <Github className="w-6 h-6" />
               </Link>
               <Link
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/fabien-hombert/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="social-icon text-primary dark:text-primary-dark hover:text-secondary dark:hover:text-secondary-dark transition-colors duration-300"

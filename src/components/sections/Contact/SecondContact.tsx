@@ -33,7 +33,7 @@ const contactInfo = {
   },
   socialLinks: [
     { name: "LinkedIn", url: "https://linkedin.com" },
-    { name: "GitHub", url: "https://github.com" },
+    { name: "GitHub", url: "https://github.com/Picoche" },
     { name: "Twitter", url: "https://twitter.com" },
   ],
 };
