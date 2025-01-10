@@ -92,7 +92,7 @@ export function FourthAbout() {
         scrollTrigger: {
           trigger: counter,
           start: "top center+=100",
-          toggleActions: "play none none reset",
+          toggleActions: "play none none none", // Updated toggleActions
         },
       });
     });
