@@ -29,12 +29,12 @@ const contactInfo = {
 
 const steps = [
   {
-    title: "Basic Info",
+    title: "Nom",
     fields: ["name", "email"],
     icon: Mail,
   },
   {
-    title: "Project Details",
+    title: "Sujet",
     fields: ["subject"],
     icon: MessageSquare,
   },
@@ -266,7 +266,7 @@ export function ThirdContact() {
                       htmlFor="name"
                       className="text-sm text-primary/60 dark:text-slate-50/60"
                     >
-                      Your Name
+                      Votre nom
                     </label>
                     <Input
                       id="name"
@@ -291,7 +291,7 @@ export function ThirdContact() {
                       htmlFor="email"
                       className="text-sm text-primary/60 dark:text-slate-50/60"
                     >
-                      Your Email
+                      Votre Email
                     </label>
                     <Input
                       id="email"
@@ -320,12 +320,12 @@ export function ThirdContact() {
                     htmlFor="subject"
                     className="text-sm text-primary/60 dark:text-slate-50/60"
                   >
-                    Subject
+                    Sujet
                   </label>
                   <Input
                     id="subject"
                     {...register("subject")}
-                    placeholder="Project Inquiry"
+                    placeholder="Raison de contact"
                     className={cn(
                       "bg-secondary/5 dark:bg-accent/5 border-secondary/20 dark:border-accent/20",
                       errors.subject &&
@@ -352,7 +352,7 @@ export function ThirdContact() {
                   <Textarea
                     id="message"
                     {...register("message")}
-                    placeholder="Your message here..."
+                    placeholder="Entrez votre message ici..."
                     className={cn(
                       "min-h-[200px] bg-secondary/5 dark:bg-accent/5 border-secondary/20 dark:border-accent/20",
                       errors.message &&
@@ -379,7 +379,7 @@ export function ThirdContact() {
                 className="group hover:bg-secondary/5 dark:hover:bg-accent/5"
               >
                 <ArrowRight className="w-4 h-4 mr-2 rotate-180 group-hover:-translate-x-1" />
-                Previous
+                Précédent
               </Button>
 
               {currentStep === steps.length - 1 ? (
@@ -401,7 +401,7 @@ export function ThirdContact() {
                   onClick={handleNext}
                   className="group bg-gradient-to-r from-secondary to-accent hover:from-accent hover:to-secondary dark:from-accent dark:to-secondary dark:hover:from-secondary dark:hover:to-accent"
                 >
-                  Next
+                  Suivant
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
               )}
