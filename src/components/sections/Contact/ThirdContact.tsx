@@ -7,7 +7,6 @@ import {
   Phone,
   Send,
   Loader2,
-  Clock,
   MessageSquare,
   ArrowRight,
   Check,
@@ -18,7 +17,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 import { useContactForm } from "@/hooks/use-contact-form";
-import { contactFormSchema as schema } from "../../../lib/validations/contact";
+import { contactFormSchema as schema } from "@/lib/validations/contact";
 
 gsap.registerPlugin(ScrollTrigger);
 

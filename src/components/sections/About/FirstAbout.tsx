@@ -113,12 +113,12 @@ export function FirstAbout() {
               Fabien Hombert, Concepteur-Développeur
             </h3>
             <p className="text-lg mb-6 text-primary/80 dark:text-primary-dark/80 font-body transition-colors duration-200">
-              Passionné depuis tout petit par l'informatique, je me spécialise 
+              Passionné depuis tout petit par l&apos;informatique, je me spécialise 
               dans la conception d'applications Web comme Mobile de A à Z,
-              du design primaire jusqu'au fonctionnel.
+              du design primaire jusqu&apos;au fonctionnel.
             </p>
             <p className="text-lg mb-6 text-primary/80 dark:text-primary-dark/80 font-body transition-colors duration-200">
-              Toujours à l'affut des dernières technologies et bonnes pratiques,
+              Toujours à l&apos;affut des dernières technologies et bonnes pratiques,
               je travaille avec une trousse à outil moderne me permettant de garantir
               accessibilité et performance au travers de mes projets, sans pour autant
               délaisser le visuel.

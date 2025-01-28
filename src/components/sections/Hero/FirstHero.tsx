@@ -137,7 +137,7 @@ export function FirstHero() {
         <div className="mb-6">
           <span className="status-badge inline-flex items-center px-3 py-1 text-sm font-medium rounded-full bg-secondary/10 text-secondary dark:bg-primary-dark/10 dark:text-primary-dark mb-8">
             <span className="w-2 h-2 bg-green-400 dark:bg-green-500 rounded-full mr-2 animate-pulse" />
-            En quête d'une nouvelle mission
+            En quête d&apos;une nouvelle mission
           </span>
           <Code className="code-icon w-16 h-16 mx-auto text-secondary dark:text-secondary-dark mt-4" />
         </div>
