@@ -98,10 +98,10 @@ export function FirstAbout() {
             >
               <div className="absolute inset-0 bg-gradient-to-br from-secondary/20 to-accent/20 dark:from-secondary-dark/20 dark:to-accent-dark/20 rounded-full blur-xl transition-colors duration-200" />
               <Image
-                src="/fabien hombert.png"
+                src="/Fabien_Hombert.web"
                 width={500}
                 height={500}
-                alt="John Doe"
+                alt="Fabien Hombert"
                 className="rounded-full shadow-lg relative z-10"
               />
               <div className="absolute inset-0 rounded-full border-2 border-secondary dark:border-secondary-dark z-20 transition-colors duration-200" />
