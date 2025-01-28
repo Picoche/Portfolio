@@ -12,9 +12,9 @@ interface NavLink {
 }
 
 const navLinks: NavLink[] = [
-  { href: "#about", label: "About" },
-  { href: "#skills", label: "Skills" },
-  { href: "#projects", label: "Projects" },
+  { href: "#about", label: "À Propos" },
+  { href: "#skills", label: "Compétences" },
+  { href: "#contact", label: "Contact" },
 ];
 
 export function Navigation() {
