@@ -23,19 +23,9 @@ import { contactFormSchema as schema } from "../../../lib/validations/contact";
 gsap.registerPlugin(ScrollTrigger);
 
 const contactInfo = {
-  email: "contact@example.com",
-  phone: "+1 (555) 123-4567",
-  location: "San Francisco, CA",
-  availability: {
-    days: "Monday - Friday",
-    hours: "9:00 AM - 6:00 PM",
-    timezone: "PST",
-  },
-  socialLinks: [
-    { name: "LinkedIn", url: "https://linkedin.com" },
-    { name: "GitHub", url: "https://github.com/Picoche" },
-    { name: "Twitter", url: "https://twitter.com" },
-  ],
+  email: "hombert.fabien@gmail.com",
+  phone: "06 19 59 00 51",
+  location: "81100 Castres",
 };
 
 const steps = [
@@ -208,7 +198,7 @@ export function ThirdContact() {
       <div className="container mx-auto px-4 relative z-10">
         <h2 className="section-title text-5xl md:text-7xl font-bold text-center mb-16">
           <span className="bg-gradient-to-r from-secondary to-accent dark:from-accent dark:to-secondary bg-clip-text text-transparent">
-            Get in Touch
+            Restons En Contact
           </span>
         </h2>
 
@@ -421,7 +411,7 @@ export function ThirdContact() {
         </div>
 
         {/* Contact info cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto mt-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto mt-12">
           <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg rounded-xl p-6 shadow-lg border border-secondary/20 dark:border-accent/20">
             <Mail className="w-6 h-6 text-secondary dark:text-accent mb-4" />
             <h3 className="font-semibold text-primary dark:text-slate-50 mb-2">
@@ -438,7 +428,7 @@ export function ThirdContact() {
           <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg rounded-xl p-6 shadow-lg border border-secondary/20 dark:border-accent/20">
             <Phone className="w-6 h-6 text-secondary dark:text-accent mb-4" />
             <h3 className="font-semibold text-primary dark:text-slate-50 mb-2">
-              Phone
+              Téléphone
             </h3>
             <a
               href={`tel:${contactInfo.phone}`}
@@ -446,19 +436,6 @@ export function ThirdContact() {
             >
               {contactInfo.phone}
             </a>
-          </div>
-
-          <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg rounded-xl p-6 shadow-lg border border-secondary/20 dark:border-accent/20">
-            <Clock className="w-6 h-6 text-secondary dark:text-accent mb-4" />
-            <h3 className="font-semibold text-primary dark:text-slate-50 mb-2">
-              Available Hours
-            </h3>
-            <p className="text-primary/80 dark:text-slate-50/80">
-              {contactInfo.availability.days}
-              <br />
-              {contactInfo.availability.hours}{" "}
-              {contactInfo.availability.timezone}
-            </p>
           </div>
         </div>
       </div>

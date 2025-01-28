@@ -17,57 +17,51 @@ gsap.registerPlugin(ScrollTrigger);
 
 const educationData = [
   {
-    year: "2020",
-    degree: "Master of Science in Computer Science",
-    specialization: "AI & Machine Learning",
-    institution: "Stanford University",
-    location: "Stanford, CA",
-    gpa: "4.0",
+    year: "2024",
+    degree: "Métiers du Multimédia et de l'Internet - BUT MMI",
+    specialization: "Développement Web & Dispositifs Interactifs",
+    institution: "Université de Toulouse",
+    location: "81100 Castres",
+    gpa: "14",
     achievements: [
-      { icon: Trophy, text: "Department Honors" },
-      { icon: Brain, text: "2 Research Publications" },
-      { icon: Users, text: "AI Research Group Lead" },
+      { icon: Trophy, text: "Mention Bien" },
+      { icon: Brain, text: "Deux périodes de stage" },
+      { icon: Users, text: "Meneur de groupe" },
     ],
     keySkills: [
-      "Deep Learning",
-      "Neural Networks",
-      "Natural Language Processing",
-      "Computer Vision",
-      "Research Methods",
+      "Gestion de Projet",
+      "Développement en Équipe",
+      "Maquettage",
+      "Développement Natif",
+      "Approche Agile",
     ],
     description:
-      "Conducted groundbreaking research in AI applications, focusing on deep learning architectures and natural language understanding.",
+      "Cursus de trois ans durant lesquels j'ai pu acquérir diverses compétences",
     highlights: [
-      "Led a team of 5 researchers in developing novel NLP algorithms",
-      "Published papers in top-tier conferences with 100+ citations",
-      "Developed AI models achieving 95%+ accuracy in image recognition",
+      "Prototypage et mise en place de trois projets majeurs en solo",
+      "Chef d'équipe récurrent, travail au sein de trois équipes différentes durant le cursus",
+      "Troisième année en alternance, première véritable expérience au contact de développeurs professionnels",
     ],
   },
   {
-    year: "2018",
-    degree: "Bachelor of Science in Software Engineering",
-    specialization: "Full Stack Development",
-    institution: "MIT",
-    location: "Cambridge, MA",
-    gpa: "3.95",
+    year: "2020",
+    degree: "Option SIN - Baccalauréat STI2D",
+    specialization: "Systèmes d'information et numérique",
+    institution: "Lycée Charles Renouvier",
+    location: "66500 Prades",
+    gpa: "13",
     achievements: [
-      { icon: Star, text: "Dean's List All Semesters" },
-      { icon: Trophy, text: "Hackathon Champion" },
-      { icon: Users, text: "Club President" },
+      { icon: Trophy, text: "Mention AB" },
+      { icon: Star, text: "3e place concours robotique" },
     ],
     keySkills: [
-      "Software Architecture",
-      "Data Structures",
-      "Algorithms",
-      "Web Development",
-      "Database Design",
+      "Robotique avec Arduino",
+      "Développement d'algorithmes simples"
     ],
     description:
-      "Built a strong foundation in software engineering principles while leading multiple innovative projects.",
+      "Premières notions de développement, prise en main des différents outils.",
     highlights: [
-      "Developed full-stack applications used by 1000+ students",
-      "Led winning team in MIT's annual hackathon",
-      "Mentored 20+ junior students in programming",
+      "Troisième place remise pour un projet de classe, concours de robotique",
     ],
   },
 ];
@@ -193,7 +187,7 @@ export function FourthEducation() {
 
       <div className="container mx-auto px-4">
         <h2 className="section-title text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-secondary to-accent dark:from-accent dark:to-secondary bg-clip-text text-transparent">
-          Educational Background
+          Parcours Académique
         </h2>
 
         <div className="max-w-6xl mx-auto">
@@ -304,7 +298,7 @@ export function FourthEducation() {
                   <div>
                     <h4 className="text-lg font-semibold text-primary dark:text-slate-50 mb-3 flex items-center gap-2">
                       <Book className="w-5 h-5 text-secondary dark:text-accent" />
-                      Key Skills
+                      Compétences Acquises
                     </h4>
                     <div className="flex flex-wrap gap-2">
                       {educationData[activeIndex].keySkills.map((skill, i) => (
@@ -323,7 +317,7 @@ export function FourthEducation() {
               {/* Highlights */}
               <div className="bg-secondary/5 dark:bg-accent/10 rounded-xl p-6">
                 <h4 className="text-lg font-semibold text-primary dark:text-slate-50 mb-4">
-                  Key Highlights
+                  Réussites
                 </h4>
                 <ul className="space-y-3">
                   {educationData[activeIndex].highlights.map((highlight, i) => (

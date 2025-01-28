@@ -137,7 +137,7 @@ export function FirstHero() {
         <div className="mb-6">
           <span className="status-badge inline-flex items-center px-3 py-1 text-sm font-medium rounded-full bg-secondary/10 text-secondary dark:bg-primary-dark/10 dark:text-primary-dark mb-8">
             <span className="w-2 h-2 bg-green-400 dark:bg-green-500 rounded-full mr-2 animate-pulse" />
-            Ready for new opportunities
+            En quête d'une nouvelle mission
           </span>
           <Code className="code-icon w-16 h-16 mx-auto text-secondary dark:text-secondary-dark mt-4" />
         </div>
@@ -145,7 +145,7 @@ export function FirstHero() {
         <h1 className="hero-title text-4xl md:text-6xl lg:text-7xl font-bold mb-4 font-heading text-primary dark:text-primary-dark">
           <div className="text-primary dark:text-primary-dark">
             {/* Split each word into a span */}
-            {"Welcome, I'm".split(" ").map((word, i) => (
+            {"Salut ! Moi,".split(" ").map((word, i) => (
               <span key={i} className="inline-block">
                 {word}&nbsp;
               </span>
@@ -153,7 +153,7 @@ export function FirstHero() {
           </div>
           <div className="bg-gradient-to-r from-secondary to-accent dark:from-primary-dark dark:to-accent-dark bg-clip-text">
             {/* Split name into spans */}
-            {"John Doe".split(" ").map((word, i) => (
+            {"C'est Fabien.".split(" ").map((word, i) => (
               <span key={i} className="inline-block">
                 {word}&nbsp;
               </span>
@@ -163,7 +163,7 @@ export function FirstHero() {
 
         <h2 className="hero-subtitle text-xl md:text-2xl lg:text-3xl mb-6 text-secondary dark:text-secondary-dark/90 font-accent italic">
           {/* Split subtitle into spans */}
-          {"Full Stack Developer".split(" ").map((word, i) => (
+          {"Concepteur - Développeur".split(" ").map((word, i) => (
             <span key={i} className="inline-block">
               {word}&nbsp;
             </span>
@@ -172,7 +172,7 @@ export function FirstHero() {
 
         <p className="hero-description text-base md:text-lg lg:text-xl mb-8 max-w-2xl mx-auto text-primary/80 dark:text-primary-dark/90 font-body">
           {/* Split description into spans */}
-          {"Transforming ideas into elegant, efficient, and scalable web solutions with modern technologies and best practices"
+          {"Performant, Responsive, Dynamique & Accessible"
             .split(" ")
             .map((word, i) => (
               <span key={i} className="inline-block">
@@ -187,7 +187,7 @@ export function FirstHero() {
             className="hero-button group bg-secondary hover:bg-accent text-background dark:bg-primary-dark dark:hover:bg-accent-dark dark:text-background-dark"
           >
             <Link href="#projects" className="flex items-center">
-              View My Work
+              Voir Mes Projets
               <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-200" />
             </Link>
           </Button>
@@ -197,7 +197,7 @@ export function FirstHero() {
             className="hero-button group bg-secondary hover:bg-accent text-background dark:bg-primary-dark dark:hover:bg-accent-dark dark:text-background-dark"
           >
             <Link href="#contact" className="flex items-center">
-              Contact Me
+              Me Contacter
               <ExternalLink className="ml-2 h-4 w-4 group-hover:translate-x-1" />
             </Link>
           </Button>

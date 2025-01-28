@@ -12,7 +12,7 @@ interface SkillCategory {
   color: string;
   skills: {
     name: string;
-    proficiency: "Beginner" | "Intermediate" | "Advanced" | "Expert";
+    proficiency: "Débutant" | "Moyen" | "Avancé" | "Maîtrisé";
     years: number;
   }[];
 }
@@ -23,10 +23,10 @@ const skillsData: SkillCategory[] = [
     icon: Code,
     color: "from-secondary to-accent",
     skills: [
-      { name: "React/Next.js", proficiency: "Expert", years: 4 },
-      { name: "TypeScript", proficiency: "Expert", years: 3 },
-      { name: "Tailwind CSS", proficiency: "Expert", years: 3 },
-      { name: "GSAP", proficiency: "Advanced", years: 2 },
+      { name: "React/Next.js", proficiency: "Moyen", years: 2 },
+      { name: "TypeScript", proficiency: "Avancé", years: 2 },
+      { name: "Tailwind CSS", proficiency: "Avancé", years: 2 },
+      { name: "React Native", proficiency: "Moyen", years: 2 },
     ],
   },
   {
@@ -34,21 +34,21 @@ const skillsData: SkillCategory[] = [
     icon: Server,
     color: "from-accent to-secondary",
     skills: [
-      { name: "Node.js", proficiency: "Expert", years: 4 },
-      { name: "Python", proficiency: "Advanced", years: 3 },
-      { name: "GraphQL", proficiency: "Advanced", years: 2 },
-      { name: "REST APIs", proficiency: "Expert", years: 4 },
+      { name: "Node.js", proficiency: "Avancé", years: 3 },
+      { name: "PHP", proficiency: "Avancé", years: 3 },
+      { name: "Laravel", proficiency: "Moyen", years: 3 },
+      { name: "Symfony", proficiency: "Moyen", years: 2 },
     ],
   },
   {
-    name: "Database",
+    name: "Bases de données",
     icon: Database,
     color: "from-secondary/80 to-accent/80",
     skills: [
-      { name: "PostgreSQL", proficiency: "Expert", years: 4 },
-      { name: "MongoDB", proficiency: "Advanced", years: 3 },
-      { name: "Redis", proficiency: "Intermediate", years: 2 },
-      { name: "Firebase", proficiency: "Advanced", years: 3 },
+      { name: "PostgreSQL", proficiency: "Moyen", years: 1 },
+      { name: "MongoDB", proficiency: "Moyen", years: 2 },
+      { name: "Firebase", proficiency: "Moyen", years: 1 },
+      { name: "Supabase", proficiency: "Moyen", years: 2 },
     ],
   },
   {
@@ -56,41 +56,38 @@ const skillsData: SkillCategory[] = [
     icon: Cloud,
     color: "from-accent/80 to-secondary/80",
     skills: [
-      { name: "Docker", proficiency: "Advanced", years: 3 },
-      { name: "AWS", proficiency: "Advanced", years: 3 },
-      { name: "CI/CD", proficiency: "Advanced", years: 3 },
-      { name: "Kubernetes", proficiency: "Intermediate", years: 2 },
+      { name: "Docker", proficiency: "Moyen", years: 1 },
+      { name: "Linux", proficiency: "Avancé", years: 3 },
+      { name: "Git", proficiency: "Avancé", years: 2 },
     ],
   },
   {
-    name: "Tools",
+    name: "Outils",
     icon: Braces,
     color: "from-secondary/60 to-accent/60",
     skills: [
-      { name: "Git", proficiency: "Expert", years: 5 },
-      { name: "VS Code", proficiency: "Expert", years: 5 },
-      { name: "Webpack", proficiency: "Advanced", years: 3 },
-      { name: "Jest", proficiency: "Advanced", years: 3 },
+      { name: "VSCode", proficiency: "Maîtrisé", years: 4 },
+      { name: "Webpack/Vite", proficiency: "Avancé", years: 3 },
     ],
   },
   {
-    name: "Other",
+    name: "Autres",
     icon: Globe,
     color: "from-accent/60 to-secondary/60",
     skills: [
-      { name: "SEO", proficiency: "Advanced", years: 3 },
-      { name: "Analytics", proficiency: "Advanced", years: 3 },
-      { name: "Performance", proficiency: "Expert", years: 4 },
-      { name: "Security", proficiency: "Advanced", years: 3 },
+      { name: "SEO", proficiency: "Avancé", years: 2 },
+      { name: "Analytics", proficiency: "Moyen", years: 1 },
+      { name: "Performance", proficiency: "Avancé", years: 2 },
+      { name: "Securité", proficiency: "Avancé", years: 2 },
     ],
   },
 ];
 
 const proficiencyToLevel = {
-  Beginner: 25,
-  Intermediate: 50,
-  Advanced: 75,
-  Expert: 100,
+  Débutant: 25,
+  Moyen: 50,
+  Avancé: 75,
+  Maîtrisé: 100,
 };
 
 export function SecondSkills() {
@@ -229,7 +226,7 @@ export function SecondSkills() {
 
       <div className="container mx-auto px-4">
         <h2 className="section-title text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-secondary to-accent dark:from-accent dark:to-secondary bg-clip-text text-transparent">
-          Professional Skills
+          Boîte à Outils
         </h2>
 
         {/* Category navigation */}
@@ -293,7 +290,7 @@ export function SecondSkills() {
               })()}
             </div>
             <h3 className="text-2xl font-bold text-primary dark:text-slate-50">
-              {skillsData[activeCategory].name} Skills
+              {skillsData[activeCategory].name}
             </h3>
           </div>
 

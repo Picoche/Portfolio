@@ -2,10 +2,8 @@
 
 import { About } from "@/components/sections/About/AboutBase";
 import { Hero } from "@/components/sections/Hero/HeroBase";
-import { Projects } from "@/components/sections/Projects/ProjectsBase";
 import { Skills } from "@/components/sections/Skills/SkillsBase";
 import { Experience } from "@/components/sections/Experience/ExperienceBase";
-import { Testimonials } from "@/components/sections/Testimonials/TestimonialsBase";
 import { Contact } from "@/components/sections/Contact/ContactBase";
 import { Education } from "@/components/sections/Education/EducationBase";
 import { Separator } from "@/components/ui/separator";
@@ -41,23 +39,9 @@ export default function Home() {
 
       <Separator orientation="horizontal" className=" bg-background-dark dark:bg-background w-[90%]" />
 
-      {/* Projects Section */}
-      <section id="projects" className="w-full bg-background dark:bg-background-dark py-20">
-        <Projects />
-      </section>
-
-      <Separator orientation="horizontal" className=" bg-background-dark dark:bg-background w-[90%]" />
-
       {/* Experience Section */}
       <section id="experience" className="w-full bg-background dark:bg-background-dark py-20">
         <Experience />
-      </section>
-
-      <Separator orientation="horizontal" className=" bg-background-dark dark:bg-background w-[90%]" />
-
-      {/* Testimonials Section */}
-      <section id="testimonials" className="w-full bg-background dark:bg-background-dark py-20">
-        <Testimonials />
       </section>
 
       <Separator orientation="horizontal" className=" bg-background-dark dark:bg-background w-[90%]" />
@@ -71,8 +55,8 @@ export default function Home() {
       
       {/* Footer */}
       <footer className="w-full py-6 text-center border-t">
-        <p className="text-sm text-background">
-          © {new Date().getFullYear()} Portfolio. All rights reserved.
+        <p className="text-sm bg-gradient-to-r from-secondary to-accent dark:from-accent dark:to-secondary bg-clip-text text-transparent">
+          © {new Date().getFullYear()} Fabien Hombert. Tous droits réservés.
         </p>
       </footer>
     </main>

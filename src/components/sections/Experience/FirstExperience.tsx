@@ -18,28 +18,27 @@ interface Experience {
 
 const experiences: Experience[] = [
   {
-    title: "Senior Frontend Developer",
-    company: "Tech Innovators Inc.",
-    location: "San Francisco, CA",
-    period: "2022 - Present",
+    title: "Concepteur-Développeur",
+    company: "CPAM de Haute-Garonne",
+    location: "31000 Toulouse",
+    period: "Juillet 2023 - Mars 2025",
     description: [
-      "Led development of next-generation web applications using Next.js and TypeScript",
-      "Implemented advanced animations and micro-interactions using GSAP",
-      "Mentored junior developers and established best practices",
+      "Développement, maintenance et refonte d'applications locales et nationales",
+      "Collaboration avec d'autres équipes développement d'autres organismes, organisation agile",
+      "D'abord en alternance, puis poursuite en CDD",
     ],
-    technologies: ["Next.js", "TypeScript", "GSAP", "Tailwind CSS"],
+    technologies: ["Symfony", "PHP", "PostgreSQL", "Docker", 'GitLab', 'Linux'],
   },
   {
-    title: "Full Stack Developer",
-    company: "Digital Solutions Ltd",
-    location: "New York, NY",
-    period: "2020 - 2022",
+    title: "Intégrateur Web - Stage Première Année",
+    company: "Études Dirigées Roques",
+    location: "81100 Castres",
+    period: "Février 2022 - Mars 2022",
     description: [
-      "Developed and maintained full-stack applications using React and Node.js",
-      "Optimized application performance and implemented CI/CD pipelines",
-      "Collaborated with UX designers to implement responsive designs",
+      "Refonte du site web 'Études Dirigées Roques'",
+      "Design de flyers et autres supports promotionnels",
     ],
-    technologies: ["React", "Node.js", "PostgreSQL", "AWS"],
+    technologies: ["HTML", "CSS", "JavaScript", "PHP", "Suite Adobe"],
   },
 ];
 
@@ -129,7 +128,7 @@ export function FirstExperience() {
     >
       <div className="container mx-auto px-4">
         <h2 className="section-title text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-secondary to-accent dark:from-accent dark:to-secondary bg-clip-text text-transparent">
-          Professional Experience
+          Expérience Professionnelle
         </h2>
 
         <div className="space-y-12">

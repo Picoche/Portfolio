@@ -86,9 +86,9 @@ export function FirstAbout() {
       className="py-20 bg-background dark:bg-background-dark transition-colors duration-200"
     >
       <div className="container mx-auto px-4">
-        <h2 className="about-heading text-3xl md:text-4xl font-bold mb-12 text-primary dark:text-primary-dark text-center transition-colors duration-200">
-          About Me
-        </h2>
+      <h2 className="section-title text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent">
+          À Propos
+      </h2>
         
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
           <div className="lg:w-1/2">
@@ -110,30 +110,34 @@ export function FirstAbout() {
 
           <div ref={contentRef} className="lg:w-1/2 content-section">
             <h3 className="text-2xl font-bold mb-4 text-primary dark:text-primary-dark font-heading transition-colors duration-200">
-              Hi there! I&apos;m John Doe
+              Fabien Hombert, Concepteur-Développeur
             </h3>
             <p className="text-lg mb-6 text-primary/80 dark:text-primary-dark/80 font-body transition-colors duration-200">
-              I&apos;m a passionate Full Stack Developer with over 5 years of
-              experience in crafting robust and scalable web applications. My
-              expertise spans across the entire development stack, from
-              designing intuitive user interfaces to architecting efficient
-              backend systems.
+              Passionné depuis tout petit par l'informatique, je me spécialise 
+              dans la conception d'applications Web comme Mobile de A à Z,
+              du design primaire jusqu'au fonctionnel.
             </p>
             <p className="text-lg mb-6 text-primary/80 dark:text-primary-dark/80 font-body transition-colors duration-200">
-              I thrive on solving complex problems and turning innovative ideas
-              into reality. My approach combines clean code practices,
-              user-centric design, and cutting-edge technologies to deliver
-              exceptional digital experiences.
+              Toujours à l'affut des dernières technologies et bonnes pratiques,
+              je travaille avec une trousse à outil moderne me permettant de garantir
+              accessibilité et performance au travers de mes projets, sans pour autant
+              délaisser le visuel.
             </p>
             
             <div className="flex flex-wrap gap-4 mb-8">
               {[
-                "JavaScript",
-                "React",
-                "Node.js",
-                "Python",
-                "AWS",
+                "TypeScript",
+                "Next.js",
+                "React/Native",
+                "TailwindCSS",
+                "PHP",
+                "Laravel",
+                "SQL, noSQL",
+                "MongoDB",
+                "Firebase",
                 "Docker",
+                "Git, GitLab",
+                "Linux"
               ].map((skill) => (
                 <span
                   key={skill}
