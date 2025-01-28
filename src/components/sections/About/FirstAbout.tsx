@@ -114,7 +114,7 @@ export function FirstAbout() {
             </h3>
             <p className="text-lg mb-6 text-primary/80 dark:text-primary-dark/80 font-body transition-colors duration-200">
               Passionné depuis tout petit par l&apos;informatique, je me spécialise 
-              dans la conception d'applications Web comme Mobile de A à Z,
+              dans la conception d&apos;applications Web comme Mobile de A à Z,
               du design primaire jusqu&apos;au fonctionnel.
             </p>
             <p className="text-lg mb-6 text-primary/80 dark:text-primary-dark/80 font-body transition-colors duration-200">
