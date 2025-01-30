@@ -184,15 +184,6 @@ export function FirstHero() {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Button
             asChild
-            className="hero-button group bg-secondary hover:bg-accent text-background dark:bg-primary-dark dark:hover:bg-accent-dark dark:text-background-dark"
-          >
-            <Link href="#projects" className="flex items-center">
-              Voir Mes Projets
-              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-200" />
-            </Link>
-          </Button>
-          <Button
-            asChild
             variant="outline"
             className="hero-button group bg-secondary hover:bg-accent text-background dark:bg-primary-dark dark:hover:bg-accent-dark dark:text-background-dark"
           >
