@@ -1,6 +1,6 @@
 import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
-import { ArrowRight, Code, Github, Linkedin, ExternalLink } from "lucide-react";
+import { Code, Github, Linkedin, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
