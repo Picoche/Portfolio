@@ -303,7 +303,7 @@ export function SecondSkills() {
                       {skill.name}
                     </h4>
                     <p className="text-sm text-primary/60 dark:text-slate-50/60">
-                      {skill.years} années d'expérience
+                      {skill.years} années d&apos;expérience
                     </p>
                   </div>
                   <span className="text-secondary dark:text-accent font-medium">
