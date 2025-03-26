@@ -172,7 +172,7 @@ export function FirstHero() {
 
         <p className="hero-description text-base md:text-lg lg:text-xl mb-8 max-w-2xl mx-auto text-primary/80 dark:text-primary-dark/90 font-body">
           {/* Split description into spans */}
-          {"Performant, Responsive, Dynamique & Accessible"
+          {"Perfectionniste, Autonome & Dynamique"
             .split(" ")
             .map((word, i) => (
               <span key={i} className="inline-block">
