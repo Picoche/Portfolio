@@ -19,9 +19,9 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Professional Portfolio",
-  description: "A showcase of my work, skills, and experience",
-  keywords: ["portfolio", "developer", "projects", "skills"],
+  title: "Fabien Hombert - Concepteur Développeur",
+  description: "Mise en avant de mon travail, compétences et expériences",
+  keywords: ["portfolio", "developer", "projets", "projects", "skills", "compétences", "internship", "alternance"],
 };
 
 export default function RootLayout({
