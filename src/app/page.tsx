@@ -4,6 +4,7 @@ import { About } from "@/components/sections/About/AboutBase";
 import { Hero } from "@/components/sections/Hero/HeroBase";
 import { Skills } from "@/components/sections/Skills/SkillsBase";
 import { Experience } from "@/components/sections/Experience/ExperienceBase";
+import { Projects } from "@/components/sections/Projects/ProjectsBase";
 import { Contact } from "@/components/sections/Contact/ContactBase";
 import { Education } from "@/components/sections/Education/EducationBase";
 import { Separator } from "@/components/ui/separator";
@@ -42,6 +43,13 @@ export default function Home() {
       {/* Experience Section */}
       <section id="experience" className="w-full bg-background dark:bg-background-dark py-20">
         <Experience />
+      </section>
+
+      <Separator orientation="horizontal" className=" bg-background-dark dark:bg-background w-[90%]" />
+
+      {/* Projects Section */}
+      <section id="projects" className="w-full bg-background dark:bg-background-dark py-20">
+        <Projects />
       </section>
 
       <Separator orientation="horizontal" className=" bg-background-dark dark:bg-background w-[90%]" />
