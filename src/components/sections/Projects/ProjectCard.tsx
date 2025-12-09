@@ -84,7 +84,11 @@ export function ProjectCard({ title, description, tags, link, github, image }: P
 
              <div className="pt-6 mt-auto hidden md:flex">
                 {link && (
-                    <Button variant="outline" size="sm" className="gap-2 hover:text-secondary dark:hover:text-accent ml-auto" asChild>
+                    <Button 
+                        size="sm" 
+                        className="gap-2 bg-secondary text-primary-foreground hover:bg-secondary/90 dark:bg-accent dark:text-accent-foreground dark:hover:bg-accent/90 ml-auto transition-colors duration-300" 
+                        asChild
+                    >
                         <a href={link} target="_blank" rel="noopener noreferrer">
                             <ExternalLink className="h-4 w-4" />
                             Voir le projet
