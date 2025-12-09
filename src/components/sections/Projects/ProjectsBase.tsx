@@ -33,7 +33,7 @@ const projects = [
     title: "Portfolio Legacy",
     description: "Ancienne version de mon portfolio personnel. Présentation de mes projets et compétences antérieurs.",
     tags: ["Portfolio", "Archive", "Personnel"],
-    link: "https://legacy.fabien-hombert.fr ",
+    link: "https://legacy.fabien-hombert.com ",
     image: legacyImg,
   },
 ];
